@@ -1,0 +1,14 @@
+{
+  "workspace": ["./supabase/functions/api", "./scripts"],
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@std/testing": "jsr:@std/testing@^1.0.18"
+  },
+  "minimumDependencyAge": "P7D",
+  "lint": {
+    "exclude": ["node_modules", ".yarn", "scripts/client"]
+  },
+  "fmt": {
+    "exclude": ["./supabase/functions/api/types/*.types.ts"]
+  }
+}

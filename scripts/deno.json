@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "@/": "./",
+    "@cliffy/command": "jsr:@cliffy/command@^1.1.0",
+    "@hey-api/openapi-ts": "npm:@hey-api/openapi-ts@^0.97.2",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.6",
+    "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.105.4"
+  }
+}
