@@ -1,23 +1,26 @@
 # Mt. Rainier Pool Checker
 
+> **Fair warning:** this is completely over-engineered. The problem could be solved with a mailing list that mtrainierpool.com maintains. This project exists because I wanted an excuse to play with Supabase and Postgres.
+
 A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores.
 
 ## Stack
 
-| Layer | Tech |
-|---|---|
-| Frontend | React 19 + Vite, TanStack Router, TanStack Query, Mantine v9 |
-| Backend | Supabase Edge Function (Deno), Hono, zod-openapi |
-| Database | Supabase Postgres |
-| Auth | Supabase Auth — email/password + Discord OAuth |
-| AI | Supabase AI (`pool-operator` model) |
+| Layer    | Tech                                                         |
+| -------- | ------------------------------------------------------------ |
+| Frontend | React 19 + Vite PWA, TanStack Router, TanStack Query, Mantine v9 |
+| Backend  | Supabase Edge Function (Deno), Hono, zod-openapi             |
+| Database | Supabase Postgres                                            |
+| Auth     | Supabase Auth — email/password + Discord OAuth               |
+| AI       | Supabase AI (`pool-operator` model)                          |
 
 ## How it works
 
 1. `GET /api/check` scrapes `mtrainierpool.com` and extracts the status banner text.
-2. Each unique message is stored in `pool_closures` (deduplicated by UUID v5 of the message).
+2. Each unique message is stored in `pool_updates` (deduplicated by UUID v5 of the message).
 3. The `pool-operator` AI model analyzes the message and extracts `closure_date`, `reopening_date`, `confidence_score`, `reasoning`, and `flags` — stored in `pool_closure_analysis`.
-4. The frontend displays the latest analysis to authenticated users.
+4. A `pg_cron` job triggers `/api/check` daily at 6:00 AM PST automatically.
+5. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync) (Chrome only — still experimental).
 
 ## Prerequisites
 
@@ -38,12 +41,14 @@ This runs the full local Supabase stack (Postgres, Auth, Edge Runtime, Studio at
 ### 2. Set up environment variables
 
 Create `frontend/.env.local`:
+
 ```
 VITE_SUPABASE_URL=http://127.0.0.1:54321
 VITE_SUPABASE_ANON_KEY=<anon key from supabase start output>
 ```
 
 Create `.env` in the repo root (for the scripts CLI):
+
 ```
 SUPABASE_URL=http://127.0.0.1:54321
 SUPABASE_ANON_KEY=<anon key>
