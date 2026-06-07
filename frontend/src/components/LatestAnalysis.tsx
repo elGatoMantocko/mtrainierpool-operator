@@ -13,18 +13,18 @@ import {
 
 import { Tables } from '../types/database.types.ts';
 
-type PoolClosure = Tables<{ schema: 'public' }, 'pool_closures'>;
+type PoolUpdate = Tables<{ schema: 'public' }, 'pool_updates'>;
 type PoolClosureAnalysis =
   & Tables<
     { schema: 'public' },
     'pool_closure_analysis'
   >
-  & { pool_closures: PoolClosure };
+  & { pool_updates: PoolUpdate };
 
 interface PoolClosuresProps {
   loading: boolean;
   error: Error | null;
-  closures: PoolClosure[] | null;
+  closures: PoolUpdate[] | null;
 }
 
 export const PoolClosures = (
@@ -74,7 +74,7 @@ const Analysis = ({ analysis }: AnalysisProps) => {
         <Box>Reasoning &ndash; {analysis.reasoning}</Box>
         <Box>Confidence &ndash; {analysis.confidence_score}</Box>
         <Box>
-          Pool update &ndash; <Code>{analysis.pool_closures.message}</Code>
+          Pool update &ndash; <Code>{analysis.pool_updates.message}</Code>
         </Box>
         <Group mt='md' justify='flex-end'>
           {updated != null && (

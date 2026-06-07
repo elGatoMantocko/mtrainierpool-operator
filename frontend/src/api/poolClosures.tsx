@@ -4,7 +4,7 @@ import { supabase } from './supabase.tsx';
 export const poolClosuresQueryOptions = queryOptions({
   queryKey: ['poolClosures'],
   queryFn: async () => {
-    const { data, error } = await supabase.from('pool_closures').select('*')
+    const { data, error } = await supabase.from('pool_updates').select('*')
       .order(
         'created_at',
         { ascending: false },

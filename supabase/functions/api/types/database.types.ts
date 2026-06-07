@@ -16,7 +16,7 @@ export type Database = {
           created_at: string
           flags: string[]
           id: string
-          pool_closure_id: string
+          pool_update_id: string
           reasoning: string | null
           reopening_date: string | null
           updated_at: string | null
@@ -27,7 +27,7 @@ export type Database = {
           created_at?: string
           flags?: string[]
           id?: string
-          pool_closure_id: string
+          pool_update_id: string
           reasoning?: string | null
           reopening_date?: string | null
           updated_at?: string | null
@@ -38,22 +38,22 @@ export type Database = {
           created_at?: string
           flags?: string[]
           id?: string
-          pool_closure_id?: string
+          pool_update_id?: string
           reasoning?: string | null
           reopening_date?: string | null
           updated_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "pool_closure_analysis_pool_closure_id_fkey"
-            columns: ["pool_closure_id"]
+            foreignKeyName: "pool_closure_analysis_pool_update_id_fkey"
+            columns: ["pool_update_id"]
             isOneToOne: true
-            referencedRelation: "pool_closures"
+            referencedRelation: "pool_updates"
             referencedColumns: ["id"]
           },
         ]
       }
-      pool_closures: {
+      pool_updates: {
         Row: {
           created_at: string
           deleted_at: string | null
@@ -218,3 +218,4 @@ export const Constants = {
     Enums: {},
   },
 } as const
+

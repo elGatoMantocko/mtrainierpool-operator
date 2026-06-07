@@ -122,7 +122,7 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
     .filter((f) => f != null);
 
   const toUpsert: PoolClosureAnalysis = {
-    pool_closure_id: poolClosureId,
+    pool_update_id: poolClosureId,
     confidence_score: structured.confidence_score,
     reasoning,
     closure_date,
@@ -132,7 +132,7 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
 
   const { data, error } = await c.var.supabaseContext.supabaseAdmin
     .from("pool_closure_analysis")
-    .upsert(toUpsert, { onConflict: "pool_closure_id" })
+    .upsert(toUpsert, { onConflict: "pool_update_id" })
     .select()
     .single();
   if (error) {
@@ -162,7 +162,7 @@ export const app = new OpenAPIHono<SupabaseVariables>().openapi(
       Buffer.from(bannerText, "utf8"),
     );
     const { data, error } = await c.var.supabaseContext.supabaseAdmin
-      .from("pool_closures")
+      .from("pool_updates")
       .upsert({ id, message: bannerText, source: "mtrainierpool.com" }, {
         ignoreDuplicates: true,
       })
