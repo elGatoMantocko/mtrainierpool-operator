@@ -116,6 +116,14 @@ ALTER TABLE ONLY "public"."pool_closure_analysis"
 
 
 
+CREATE POLICY "Authenticated users can query pool closure analysis." ON "public"."pool_closure_analysis" FOR SELECT TO "authenticated" USING (true);
+
+
+
+CREATE POLICY "Authenticated users can query pool closures." ON "public"."pool_closures" FOR SELECT TO "authenticated" USING (true);
+
+
+
 ALTER TABLE "public"."pool_closure_analysis" ENABLE ROW LEVEL SECURITY;
 
 
@@ -171,3 +179,10 @@ ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TAB
 ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES TO "anon";
 ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES TO "authenticated";
 ALTER DEFAULT PRIVILEGES FOR ROLE "postgres" IN SCHEMA "public" GRANT ALL ON TABLES TO "service_role";
+
+
+
+
+
+
+

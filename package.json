@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "packageManager": "yarn@4.15.0",
+  "packageManager": "yarn@4.16.0",
+  "workspaces": [
+    "./frontend"
+  ],
   "dependencies": {
     "@b-fuze/deno-dom": "jsr:^0.1.56",
     "@cliffy/command": "jsr:^1.1.0",
-    "@hey-api/openapi-ts": "^0.97.2",
+    "@hey-api/openapi-ts": "^0.97.3",
     "@hono/zod-openapi": "jsr:^1.4.0",
     "@std/dotenv": "jsr:^0.225.6",
     "@std/uuid": "jsr:^1.1.1",
     "@supabase/functions-js": "jsr:^2.105.4",
     "@supabase/server": "^1.1.0",
     "@supabase/supabase-js": "jsr:^2.105.4",
-    "hono": "^4.12.21",
+    "hono": "^4.12.23",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -28,6 +31,8 @@
     "deno:refresh": "deno cache -r ./scripts/**/*.ts ./supabase/**/*.ts",
     "gen:types": "supabase gen types --schema public --local > ./supabase/functions/api/types/database.types.ts",
     "gen:schema": "supabase db dump --schema public --local > ./supabase/schema.sql",
-    "gen:seed": "supabase db dump --schema public --data-only --local > ./supabase/seed.sql"
+    "gen:seed:public": "supabase db dump --schema public --data-only --local > ./supabase/seed/public.sql",
+    "gen:seed:vault": "supabase db dump --schema vault --data-only --local > ./supabase/seed/vault.sql",
+    "gen:seed": "yarn gen:seed:public && yarn gen:seed:vault"
   }
 }

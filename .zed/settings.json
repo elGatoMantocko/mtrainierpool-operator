@@ -7,6 +7,17 @@
   "code_actions_on_format": {
     "source.organizeImports": true,
   },
+  "ensure_final_newline_on_save": true,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/node_modules",
+    "**/routeTree.gen.ts",
+  ],
   "lsp": {
     "deno": {
       "settings": {
@@ -63,6 +74,9 @@
         "...",
       ],
       "formatter": "language_server",
+    },
+    "CSS": {
+      "language_servers": ["!vscode-css-language-server", "..."],
     },
   },
 }

@@ -69,6 +69,7 @@ const checkCmd = new Command()
       console.error(error, request, response);
       return;
     }
+    console.log(request);
     console.log(data);
   });
 

@@ -1,0 +1,9 @@
+.title {
+  font-size: rem(80px);
+  letter-spacing: rem(-1px);
+  font-weight: 300;
+
+  @media (max-width: var(--mantine-breakpoint-md)) {
+    font-size: rem(48px);
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["./src/vite-env.d.ts"]
+  },
+  "fmt": {
+    "exclude": ["./node_modules"],
+    "singleQuote": true
+  },
+  "lint": {
+    "exclude": ["./node_modules"],
+    "rules": {
+      "exclude": ["no-sloppy-imports", "ban-ts-comment", "no-explicit-any"]
+    }
+  }
+}

@@ -10,5 +10,6 @@
   },
   "fmt": {
     "exclude": ["./supabase/functions/api/types/*.types.ts"]
-  }
+  },
+  "allowScripts": ["npm:sharp@0.33.5"]
 }

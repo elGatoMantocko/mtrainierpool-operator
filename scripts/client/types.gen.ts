@@ -4,6 +4,17 @@ export type ClientOptions = {
     baseUrl: `${string}://${string}` | (string & {});
 };
 
+/**
+ * A Mt. Rainier pool status update.
+ */
+export type StatusUpdate = {
+    id: string;
+    message: string;
+    source: string;
+    created_at: Date;
+    updated_at: Date;
+};
+
 export type CheckData = {
     body?: never;
     path?: never;
@@ -22,9 +33,13 @@ export type CheckError = CheckErrors[keyof CheckErrors];
 
 export type CheckResponses = {
     /**
-     * Finished getting pool status.
+     * Found a pool status update.
      */
-    200: string;
+    200: StatusUpdate;
+    /**
+     * No status update available.
+     */
+    204: void;
 };
 
 export type CheckResponse = CheckResponses[keyof CheckResponses];

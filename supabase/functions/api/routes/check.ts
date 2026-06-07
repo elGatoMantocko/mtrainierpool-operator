@@ -163,14 +163,20 @@ export const app = new OpenAPIHono<SupabaseVariables>().openapi(
     );
     const { data, error } = await c.var.supabaseContext.supabaseAdmin
       .from("pool_closures")
-      .upsert({ id, message: bannerText, source: "mtrainierpool.com" })
+      .upsert({ id, message: bannerText, source: "mtrainierpool.com" }, {
+        ignoreDuplicates: true,
+      })
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       throw new Error("failed to create new pool closure record", {
         cause: error,
       });
+    }
+
+    if (data == null) {
+      return c.body(null, 204);
     }
 
     console.log("found pool closure", data);

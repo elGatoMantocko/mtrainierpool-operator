@@ -2,6 +2,7 @@
 
 import { client } from './client.gen.ts';
 import type { Client, Options as Options2, TDataShape } from './client/index.ts';
+import { checkResponseTransformer } from './transformers.gen.ts';
 import type { CheckData, CheckErrors, CheckResponses } from './types.gen.ts';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
@@ -59,6 +60,7 @@ export class PoolClient extends HeyApiClient {
     
     public check<ThrowOnError extends boolean = false>(options?: Options<CheckData, ThrowOnError>) {
         return (options?.client ?? this.client).get<CheckResponses, CheckErrors, ThrowOnError>({
+            responseTransformer: checkResponseTransformer,
             security: [{ name: 'apiKey', type: 'apiKey' }],
             url: '/api/check',
             ...options
