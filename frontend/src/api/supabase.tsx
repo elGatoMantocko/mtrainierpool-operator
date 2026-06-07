@@ -85,6 +85,17 @@ export const useAuth = () => {
   return ctx;
 };
 
+function sendSessionToSW(session: Session | null) {
+  const controller = navigator.serviceWorker?.controller;
+  if (!controller) return;
+  controller.postMessage({
+    type: 'SESSION_UPDATE',
+    supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
+    supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+    accessToken: session?.access_token ?? null,
+  });
+}
+
 export const SupabaseProvider = (
   { children }: PropsWithChildren,
 ) => {
@@ -108,6 +119,7 @@ export const SupabaseProvider = (
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_, session) => {
         updateSession(session);
+        sendSessionToSW(session);
       },
     );
     return () => subscription.unsubscribe();

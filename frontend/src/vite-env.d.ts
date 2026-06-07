@@ -16,30 +16,14 @@ declare module 'virtual:pwa-register/react' {
 }
 
 declare global {
-  interface PeriodicSyncBindOptions {
-    minInterval: number;
-  }
-
+  // Periodic Background Sync API (Chrome only)
   interface PeriodicSyncManager {
-    register(tag: string, options?: PeriodicSyncBindOptions): Promise<void>;
+    register(tag: string, options?: { minInterval: number }): Promise<void>;
     getTags(): Promise<string[]>;
     unregister(tag: string): Promise<void>;
   }
 
-  // Extend existing DOM interfaces
   interface ServiceWorkerRegistration {
     readonly periodicSync: PeriodicSyncManager;
-  }
-
-  interface ServiceWorkerGlobalScopeEventMap {
-    periodicsync: PeriodicSyncEvent;
-  }
-
-  interface ExtendableEvent {
-    waitUntil(promise: Promise<void>): void;
-  }
-
-  interface PeriodicSyncEvent extends ExtendableEvent {
-    readonly tag: string;
   }
 }

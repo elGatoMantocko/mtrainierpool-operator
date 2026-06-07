@@ -14,8 +14,11 @@ export default defineConfig({
     }),
     react(),
     VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       // injectRegister: null,
-      // devOptions: { enabled: true, type: 'module' },
+      devOptions: { enabled: true, type: 'module' },
       manifest: {
         name: 'Mt. Rainier Pool Checker',
         short_name: 'swim',
