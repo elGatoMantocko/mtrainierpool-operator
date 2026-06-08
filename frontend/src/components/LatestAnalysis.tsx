@@ -64,7 +64,8 @@ const Analysis = ({ analysis }: AnalysisProps) => {
     : null;
 
   const isOpen = closureDate == null &&
-    (reopeningDate == null || reopeningDate <= today);
+    (reopeningDate == null ||
+      Temporal.PlainDate.compare(reopeningDate, today) <= 0);
 
   const overview = isOpen ? 'Pool seems to be open' : 'Pool seems to be closed';
 

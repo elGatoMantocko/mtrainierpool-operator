@@ -18,7 +18,14 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
-  auth: { persistSession: true, autoRefreshToken: true },
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    lock: (name, _acquireTimeout, fn) => {
+      if (typeof navigator === 'undefined' || !navigator.locks) return fn();
+      return navigator.locks.request(name, fn);
+    },
+  },
 });
 
 interface NotReadyContext {

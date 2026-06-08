@@ -19,23 +19,28 @@ export function usePeriodicSync() {
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return;
 
-    if ('Notification' in window && Notification.permission === 'default') {
-      Notification.requestPermission();
-    }
-
-    navigator.serviceWorker.ready.then((registration) => {
-      if (!hasPeriodicSync(registration)) return;
-      registration.periodicSync.getTags().then((tags) => {
-        if (!tags.includes(SYNC_TAG)) {
-          registration.periodicSync.register(SYNC_TAG, {
-            minInterval: SYNC_INTERVAL_MS,
-          });
-        }
-      });
-    });
-
     navigator.serviceWorker?.addEventListener('controllerchange', () => {
       location.reload();
     });
+
+    const setup = async () => {
+      if ('Notification' in window && Notification.permission === 'default') {
+        await Notification.requestPermission();
+      }
+
+      if (Notification.permission !== 'granted') return;
+
+      const registration = await navigator.serviceWorker.ready;
+      if (!hasPeriodicSync(registration)) return;
+
+      const tags = await registration.periodicSync.getTags();
+      if (!tags.includes(SYNC_TAG)) {
+        await registration.periodicSync.register(SYNC_TAG, {
+          minInterval: SYNC_INTERVAL_MS,
+        });
+      }
+    };
+
+    setup();
   }, []);
 }
