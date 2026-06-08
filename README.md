@@ -6,13 +6,13 @@ A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's we
 
 ## Stack
 
-| Layer    | Tech                                                         |
-| -------- | ------------------------------------------------------------ |
+| Layer    | Tech                                                             |
+| -------- | ---------------------------------------------------------------- |
 | Frontend | React 19 + Vite PWA, TanStack Router, TanStack Query, Mantine v9 |
-| Backend  | Supabase Edge Function (Deno), Hono, zod-openapi             |
-| Database | Supabase Postgres                                            |
-| Auth     | Supabase Auth — email/password + Discord OAuth               |
-| AI       | Supabase AI (`pool-operator` model)                          |
+| Backend  | Supabase Edge Function (Deno), Hono, zod-openapi                 |
+| Database | Supabase Postgres                                                |
+| Auth     | Supabase Auth — email/password + Discord OAuth                   |
+| AI       | Supabase AI (`pool-operator` model)                              |
 
 ## How it works
 
@@ -20,7 +20,7 @@ A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's we
 2. Each unique message is stored in `pool_updates` (deduplicated by UUID v5 of the message).
 3. The `pool-operator` AI model analyzes the message and extracts `closure_date`, `reopening_date`, `confidence_score`, `reasoning`, and `flags` — stored in `pool_closure_analysis`.
 4. A `pg_cron` job triggers `/api/check` daily at 6:00 AM PST automatically.
-5. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync) (Chrome only — still experimental).
+5. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync).
 
 ## Prerequisites
 
@@ -103,3 +103,66 @@ yarn pool create-client
     ├── pool.ts             # CLI entrypoint
     └── client/             # Generated API client (do not edit)
 ```
+
+## Self-hosting
+
+The frontend is served via Docker using `vite preview`. The Supabase stack must already be running (`supabase start`) before starting the container — it creates the `supabase_network_swimming` Docker network that the frontend joins to proxy API requests.
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Ollama](https://ollama.com/) — runs the `pool-operator` AI model used by the edge function
+
+### Environment variables
+
+Create a `.env` file at the repo root. These are read by `supabase start` via the `env(...)` references in `supabase/config.toml`:
+
+| Variable                    | Required | Description                                                                     |
+| --------------------------- | -------- | ------------------------------------------------------------------------------- |
+| `AI_INFERENCE_API_HOST`     | Yes      | Ollama base URL, e.g. `http://host.docker.internal:11434`                       |
+| `SITE_BASE_URL`             | Yes      | Public URL of the app, e.g. `https://your-domain.com`. Used for auth redirects. |
+| `DISCORD_AUTH_SECRET`       | Yes      | Discord OAuth application secret                                                |
+| `DISCORD_AUTH_REDIRECT_URI` | Yes      | Discord OAuth callback URL, e.g. `https://your-domain.com/auth/callback`        |
+| `OPENAI_API_KEY`            | No       | Enables AI features in Supabase Studio                                          |
+
+### Steps
+
+**1. Create the Ollama model**
+
+The edge function calls a `pool-operator` model defined in `Modelfile` (based on `qwen3.5`):
+
+```sh
+ollama create pool-operator -f Modelfile
+```
+
+**2. Start Supabase**
+
+```sh
+supabase start
+```
+
+**3. Configure `frontend/.env`**
+
+```sh
+VITE_SUPABASE_URL=https://<your-domain>:<port>
+VITE_SUPABASE_ANON_KEY=<your-anon-key>
+```
+
+These are baked into the build by Vite — update them before building the image.
+
+**4. Place TLS certificates**
+
+```
+supabase/certs/privkey.pem
+supabase/certs/fullchain.pem
+```
+
+If the certs are absent the preview server falls back to HTTP.
+
+**5. Build and run**
+
+```sh
+docker compose up --build
+```
+
+The frontend is available on port `3000`. API calls (`/rest/v1`, `/auth/v1`, `/storage/v1`, `/functions/v1`) are proxied to Kong (`supabase_kong_swimming:8000`) over the shared Docker network.
