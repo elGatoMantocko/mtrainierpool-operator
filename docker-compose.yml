@@ -1,0 +1,11 @@
+services:
+  mtrainier-pool-operator-vite:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - supabase_network_swimming
+
+networks:
+  supabase_network_swimming:
+    external: true

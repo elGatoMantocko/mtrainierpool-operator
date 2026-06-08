@@ -8,20 +8,16 @@ import { VitePWA } from 'vite-plugin-pwa';
 const CERT_DIR = '../supabase/certs';
 
 export default defineConfig(({ command }) => {
-  const keyPath = fs.realpathSync(`${CERT_DIR}/privkey.pem`);
-  const certPath = fs.realpathSync(`${CERT_DIR}/fullchain.pem`);
+  const certsExist = command !== 'build' &&
+    fs.existsSync(`${CERT_DIR}/privkey.pem`) &&
+    fs.existsSync(`${CERT_DIR}/fullchain.pem`);
 
-  const httpsConfig = command !== 'build'
+  const httpsConfig = certsExist
     ? {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath),
+      key: fs.readFileSync(fs.realpathSync(`${CERT_DIR}/privkey.pem`)),
+      cert: fs.readFileSync(fs.realpathSync(`${CERT_DIR}/fullchain.pem`)),
     }
     : undefined;
-
-  const supabaseProxy = {
-    target: 'http://localhost:54321',
-    changeOrigin: true,
-  };
 
   return {
     server: {
@@ -29,14 +25,21 @@ export default defineConfig(({ command }) => {
       host: '0.0.0.0',
       allowedHosts: ['.mantock.com'],
       proxy: {
-        '/rest/v1': supabaseProxy,
-        '/auth/v1': supabaseProxy,
-        '/storage/v1': supabaseProxy,
-        '/functions/v1': supabaseProxy,
-        '/realtime/v1': {
-          ...supabaseProxy,
-          target: 'ws://localhost:54321',
-          ws: true,
+        '/rest/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/auth/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/storage/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/functions/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
         },
       },
     },
@@ -44,6 +47,24 @@ export default defineConfig(({ command }) => {
       https: httpsConfig,
       host: '0.0.0.0',
       allowedHosts: ['.mantock.com'],
+      proxy: {
+        '/rest/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/auth/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/storage/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+        '/functions/v1': {
+          target: 'http://supabase_kong_swimming:8000',
+          changeOrigin: true,
+        },
+      },
     },
     plugins: [
       tanstackRouter({
