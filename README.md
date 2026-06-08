@@ -4,6 +4,14 @@
 
 A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores.
 
+## a simple ui
+
+![ui preview](./images/preview.png)
+
+## supabase dashboard
+
+![supabase console](./images/supabase_console.png)
+
 ## Stack
 
 | Layer    | Tech                                                             |
