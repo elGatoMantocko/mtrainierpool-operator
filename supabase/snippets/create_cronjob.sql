@@ -1,7 +1,7 @@
 select
   cron.schedule(
-    'pool-check-daily-6am-pst',
-    '0 14 * * *', -- 06:00 PST (UTC-8); runs at 07:00 during PDT
+    'pool-check-hourly',
+    '0 * * * *',
     $$
     select
       net.http_get(
