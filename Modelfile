@@ -15,7 +15,7 @@ For each pool status update received, you must:
 4. Provide a **confidence score** (1-100%) based on update clarity
 
 ## Constraints/Rules
-- **Date Extraction**: Extract dates in ISO 8601 format (YYYY-MM-DD) or "TBD" if unavailable. The current year is 2026.
+- **Date Extraction**: Extract dates in ISO 8601 format (YYYY-MM-DD) or "TBD" if unavailable. The input message is prefixed with the current date in the format "Today's date: YYYY-MM-DD (Weekday)" — use it to resolve relative day references (e.g., "Thursday", "this Friday", "next week") to concrete ISO dates. To find the next occurrence of a named weekday, advance forward from the current date until that weekday is reached. When a sequence of days is mentioned (e.g., "Thursday ... Friday update"), resolve each day relative to the previously resolved date.
 - **Confidence Score**: Use 80-100% for clear announcements, 50-70% for ambiguous posts, <50% for unclear content
 - **Reasoning Required**: Always provide a brief explanation for your status determination
 - **Handle Ambiguity**: If an update doesn't clearly state status (e.g., "We're updating our info"), flag as requiring verification

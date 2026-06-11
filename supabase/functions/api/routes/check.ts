@@ -97,6 +97,12 @@ function sanitizeDate<T extends string | null>(date: T): T {
   return cleaned;
 }
 
+function getPrompt(bannerText: string): string {
+  const today = Temporal.Now.plainDateISO("America/Los_Angeles");
+  const weekday = today.toLocaleString("en-US", { weekday: "long" });
+  return `Today's date: ${today} (${weekday})\n\nPool update message: ${bannerText}`;
+}
+
 async function runPoolOperator<C extends Context<SupabaseVariables>>(
   c: C,
   poolClosureId: string,
@@ -104,9 +110,17 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
 ) {
   console.log("biginning LLM analysis");
   const session = new Supabase.ai.Session("pool-operator");
-  const output = await session.run(bannerText, { timeout: 300 }) as unknown as {
+  const prompt = getPrompt(bannerText);
+
+  console.log(`sending prompt: \`${prompt}\``);
+
+  const output = await session.run(prompt, {
+    timeout: 300,
+  }) as unknown as {
     response: string;
   };
+
+  console.log(`received response: \`${output.response}\``);
 
   const structured = JSON.parse(sanitize(output.response));
   if (!isLLMAnalysis(structured)) {

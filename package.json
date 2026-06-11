@@ -33,6 +33,7 @@
     "gen:schema": "supabase db dump --schema public --local > ./supabase/schema.sql",
     "gen:seed:public": "supabase db dump --schema public --data-only --local > ./supabase/seed/public.sql",
     "gen:seed:vault": "supabase db dump --schema vault --data-only --local > ./supabase/seed/vault.sql",
-    "gen:seed": "yarn gen:seed:public && yarn gen:seed:vault"
+    "gen:seed": "yarn gen:seed:public && yarn gen:seed:vault",
+    "gen:model": "ollama create pool-operator"
   }
 }
