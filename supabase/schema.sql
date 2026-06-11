@@ -23,6 +23,31 @@ COMMENT ON SCHEMA "public" IS 'standard public schema';
 
 
 
+CREATE OR REPLACE FUNCTION "public"."log_net_http_response"() RETURNS "trigger"
+    LANGUAGE "plpgsql" SECURITY DEFINER
+    AS $$
+begin
+  if coalesce(new.timed_out, false)
+     or new.error_msg is not null
+     or new.status_code is null
+     or new.status_code >= 400
+  then
+    raise warning 'pg_net request % failed: status=%, error=%, timed_out=%',
+      new.id,
+      coalesce(new.status_code::text, 'null'),
+      coalesce(new.error_msg, 'none'),
+      coalesce(new.timed_out, false);
+  else
+    raise log 'pg_net request % succeeded: status=%', new.id, new.status_code;
+  end if;
+  return new;
+end;
+$$;
+
+
+ALTER FUNCTION "public"."log_net_http_response"() OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."rls_auto_enable"() RETURNS "event_trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     SET "search_path" TO 'pg_catalog'
@@ -134,6 +159,12 @@ GRANT USAGE ON SCHEMA "public" TO "postgres";
 GRANT USAGE ON SCHEMA "public" TO "anon";
 GRANT USAGE ON SCHEMA "public" TO "authenticated";
 GRANT USAGE ON SCHEMA "public" TO "service_role";
+
+
+
+GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "anon";
+GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "authenticated";
+GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "service_role";
 
 
 

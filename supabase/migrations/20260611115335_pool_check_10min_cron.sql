@@ -1,3 +1,5 @@
+select cron.unschedule('pool-check-hourly');
+
 select
   cron.schedule(
     'pool-check-10min',
