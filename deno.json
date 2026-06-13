@@ -2,7 +2,7 @@
   "workspace": ["./supabase/functions/api", "./scripts"],
   "nodeModulesDir": "auto",
   "imports": {
-    "@std/testing": "jsr:@std/testing@^1.0.18"
+    "@std/testing": "jsr:@std/testing@^1.0.19"
   },
   "minimumDependencyAge": "P7D",
   "lint": {

@@ -1,5 +1,29 @@
 import "@supabase/functions-js/edge-runtime.d.ts";
 
+// deno check (TS 6, moduleDetection: auto) treats edge-runtime.d.ts as a module
+// because of "type":"module" in the JSR compat shim, so the ambient import above
+// doesn't propagate globals. Declare them explicitly at module scope as a workaround.
+declare const Supabase: {
+  ai: {
+    Session: {
+      new (model: string): {
+        run(
+          prompt: string | Record<string, unknown>,
+          options?: {
+            stream?: boolean;
+            timeout?: number;
+            mode?: string;
+            signal?: AbortSignal;
+          },
+        ): unknown;
+      };
+    };
+  };
+};
+declare const EdgeRuntime: {
+  waitUntil<T>(promise: Promise<T>): Promise<T>;
+};
+
 import { DOMParser } from "@b-fuze/deno-dom";
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import * as uuid from "@std/uuid";
@@ -15,12 +39,25 @@ const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
   Buffer.from("@mycah/pool-closure", "utf8"),
 );
 
+const Analysis = z.object({
+  id: z.uuid(),
+  poolUpdateId: z.uuid(),
+  closureDate: z.iso.date().nullable(),
+  reopeningDate: z.iso.date().nullable(),
+  reasoning: z.string().nullable(),
+  confidenceScore: z.int().nullable(),
+  createdAt: z.iso.datetime(),
+  updatedAt: z.iso.datetime().nullable(),
+  flags: z.array(z.string()),
+});
+
 const StatusUpdate = z.object({
   id: z.uuid(),
   message: z.string(),
   source: z.string(),
-  created_at: z.iso.datetime(),
-  updated_at: z.iso.datetime(),
+  createdAt: z.iso.datetime(),
+  updatedAt: z.iso.datetime(),
+  poolClosureAnalysis: Analysis.nullable(),
 }).openapi("StatusUpdate", {
   description: "A Mt. Rainier pool status update.",
 });
@@ -113,7 +150,6 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   const prompt = getPrompt(bannerText);
 
   console.log(`sending prompt: \`${prompt}\``);
-
   const output = await session.run(prompt, {
     timeout: 300,
   }) as unknown as {
@@ -121,7 +157,6 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   };
 
   console.log(`received response: \`${output.response}\``);
-
   const structured = JSON.parse(sanitize(output.response));
   if (!isLLMAnalysis(structured)) {
     console.error("invalid analysis response", structured);
@@ -177,11 +212,26 @@ export const app = new OpenAPIHono<SupabaseVariables>().openapi(
     );
     const { data, error } = await c.var.supabaseContext.supabaseAdmin
       .from("pool_updates")
-      .upsert({ id, message: bannerText, source: "mtrainierpool.com" }, {
-        ignoreDuplicates: true,
-      })
-      .select()
-      .maybeSingle();
+      .upsert({ id, message: bannerText, source: "mtrainierpool.com" })
+      .select(
+        `id
+        ,message
+        ,source
+        ,createdAt:created_at
+        ,updatedAt:updated_at
+        ,poolClosureAnalysis:pool_closure_analysis(
+          id,
+          poolUpdateId:pool_update_id,
+          closureDate:closure_date,
+          reopeningDate:reopening_date,
+          reasoning,
+          confidenceScore:confidence_score,
+          createdAt:created_at,
+          updatedAt:updated_at,
+          flags
+        )`,
+      )
+      .single();
 
     if (error) {
       throw new Error("failed to create new pool closure record", {
@@ -189,12 +239,12 @@ export const app = new OpenAPIHono<SupabaseVariables>().openapi(
       });
     }
 
-    if (data == null) {
-      return c.body(null, 204);
-    }
+    console.log("got a pool update", data);
 
-    console.log("found pool closure", data);
-    EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
+    // need to run and apply an analysis
+    if (data.poolClosureAnalysis == null) {
+      EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
+    }
 
     return c.json(data, 200);
   },

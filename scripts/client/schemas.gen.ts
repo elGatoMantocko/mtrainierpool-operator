@@ -13,21 +13,80 @@ export const StatusUpdateSchema = {
         source: {
             type: 'string'
         },
-        created_at: {
+        createdAt: {
             type: 'string',
             format: 'date-time'
         },
-        updated_at: {
+        updatedAt: {
             type: 'string',
             format: 'date-time'
+        },
+        poolClosureAnalysis: {
+            type: 'object',
+            nullable: true,
+            properties: {
+                id: {
+                    type: 'string',
+                    format: 'uuid'
+                },
+                poolUpdateId: {
+                    type: 'string',
+                    format: 'uuid'
+                },
+                closureDate: {
+                    type: 'string',
+                    nullable: true,
+                    format: 'date'
+                },
+                reopeningDate: {
+                    type: 'string',
+                    nullable: true,
+                    format: 'date'
+                },
+                reasoning: {
+                    type: 'string',
+                    nullable: true
+                },
+                confidenceScore: {
+                    type: 'integer',
+                    nullable: true
+                },
+                createdAt: {
+                    type: 'string',
+                    format: 'date-time'
+                },
+                updatedAt: {
+                    type: 'string',
+                    nullable: true,
+                    format: 'date-time'
+                },
+                flags: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    }
+                }
+            },
+            required: [
+                'id',
+                'poolUpdateId',
+                'closureDate',
+                'reopeningDate',
+                'reasoning',
+                'confidenceScore',
+                'createdAt',
+                'updatedAt',
+                'flags'
+            ]
         }
     },
     required: [
         'id',
         'message',
         'source',
-        'created_at',
-        'updated_at'
+        'createdAt',
+        'updatedAt',
+        'poolClosureAnalysis'
     ],
     description: 'A Mt. Rainier pool status update.'
 } as const;

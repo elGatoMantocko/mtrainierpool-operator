@@ -11,8 +11,19 @@ export type StatusUpdate = {
     id: string;
     message: string;
     source: string;
-    created_at: Date;
-    updated_at: Date;
+    createdAt: Date;
+    updatedAt: Date;
+    poolClosureAnalysis: {
+        id: string;
+        poolUpdateId: string;
+        closureDate: Date | null;
+        reopeningDate: Date | null;
+        reasoning: string | null;
+        confidenceScore: number | null;
+        createdAt: Date;
+        updatedAt: Date | null;
+        flags: Array<string>;
+    } | null;
 };
 
 export type CheckData = {

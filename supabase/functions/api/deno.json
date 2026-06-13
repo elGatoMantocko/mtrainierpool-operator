@@ -3,10 +3,11 @@
     "@/": "./",
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.56",
     "@std/uuid": "jsr:@std/uuid@^1.1.1",
-    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.105.4",
-    "@supabase/server": "npm:@supabase/server@^1",
+    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.107.0",
+    "@supabase/server": "npm:@supabase/server@^1.1.0",
     "@hono/zod-openapi": "npm:@hono/zod-openapi@^1.4.0",
-    "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.105.4",
-    "hono": "npm:hono@^4.12.21"
+    "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.107.0",
+    "hono": "npm:hono@^4.12.23",
+    "zod": "npm:zod@^4.4.3"
   }
 }

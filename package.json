@@ -9,19 +9,19 @@
   ],
   "dependencies": {
     "@b-fuze/deno-dom": "jsr:^0.1.56",
-    "@cliffy/command": "jsr:^1.1.0",
-    "@hey-api/openapi-ts": "^0.97.3",
-    "@hono/zod-openapi": "jsr:^1.4.0",
-    "@std/dotenv": "jsr:^0.225.6",
+    "@cliffy/command": "jsr:^1.2.1",
+    "@hey-api/openapi-ts": "^0.98.1",
+    "@hono/zod-openapi": "^1.4.0",
+    "@std/dotenv": "jsr:^0.225.7",
     "@std/uuid": "jsr:^1.1.1",
-    "@supabase/functions-js": "jsr:^2.105.4",
+    "@supabase/functions-js": "jsr:^2.107.0",
     "@supabase/server": "^1.1.0",
-    "@supabase/supabase-js": "jsr:^2.105.4",
+    "@supabase/supabase-js": "jsr:^2.107.0",
     "hono": "^4.12.23",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@std/testing": "jsr:^1.0.18",
+    "@std/testing": "jsr:^1.0.19",
     "typescript": "^6.0.3"
   },
   "scripts": {
