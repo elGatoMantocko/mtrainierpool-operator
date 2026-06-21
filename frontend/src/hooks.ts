@@ -15,6 +15,10 @@ function hasPeriodicSync(
     typeof (reg as Record<string, unknown>).periodicSync === 'object';
 }
 
+function triggerCheckViaSW() {
+  navigator.serviceWorker?.controller?.postMessage({ type: 'TRIGGER_CHECK' });
+}
+
 export function usePeriodicSync() {
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return;
@@ -23,12 +27,19 @@ export function usePeriodicSync() {
       location.reload();
     });
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') triggerCheckViaSW();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     const setup = async () => {
       if ('Notification' in window && Notification.permission === 'default') {
         await Notification.requestPermission();
       }
 
       if (Notification.permission !== 'granted') return;
+
+      triggerCheckViaSW();
 
       const registration = await navigator.serviceWorker.ready;
       if (!hasPeriodicSync(registration)) return;
@@ -42,5 +53,9 @@ export function usePeriodicSync() {
     };
 
     setup();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 }

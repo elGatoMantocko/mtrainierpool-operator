@@ -3,21 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "packageManager": "yarn@4.16.0",
+  "packageManager": "yarn@4.17.0",
   "workspaces": [
     "./frontend"
   ],
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.1068.0",
     "@b-fuze/deno-dom": "jsr:^0.1.56",
     "@cliffy/command": "jsr:^1.2.1",
-    "@hey-api/openapi-ts": "^0.98.1",
+    "@hey-api/openapi-ts": "^0.98.2",
     "@hono/zod-openapi": "^1.4.0",
     "@std/dotenv": "jsr:^0.225.7",
     "@std/uuid": "jsr:^1.1.1",
-    "@supabase/functions-js": "jsr:^2.107.0",
+    "@supabase/functions-js": "jsr:^2.108.1",
     "@supabase/server": "^1.1.0",
-    "@supabase/supabase-js": "jsr:^2.107.0",
-    "hono": "^4.12.23",
+    "@supabase/supabase-js": "jsr:^2.108.1",
+    "hono": "^4.12.25",
     "zod": "^4.4.3"
   },
   "devDependencies": {

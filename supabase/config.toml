@@ -229,14 +229,19 @@ otp_length = 6
 otp_expiry = 3600
 
 # Use a production-ready SMTP server
-# [auth.email.smtp]
-# enabled = true
-# host = "smtp.sendgrid.net"
-# port = 587
-# user = "apikey"
-# pass = "env(SENDGRID_API_KEY)"
-# admin_email = "admin@email.com"
-# sender_name = "Admin"
+[auth.email.smtp]
+enabled = true
+host = "env(SMTP_HOST)"
+port = 587
+user = "env(AWS_ACCESS_KEY_ID)"
+pass = "env(AWS_SECRET_ACCESS_KEY)"
+admin_email = "env(SMTP_ADMIN_EMAIL)"
+sender_name = "Pool Operator"
+
+# Uncomment to customize email template
+# [auth.email.template.magic_link]
+# subject = "Your Magic Link"
+# content_path = "./supabase/templates/magic_link.html"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
@@ -386,6 +391,9 @@ deno_version = 2
 
 [edge_runtime.secrets]
 AI_INFERENCE_API_HOST = "env(AI_INFERENCE_API_HOST)"
+SMTP_ADMIN_EMAIL = "env(SMTP_ADMIN_EMAIL)"
+AWS_ACCESS_KEY_ID = "env(AWS_ACCESS_KEY_ID)"
+AWS_SECRET_ACCESS_KEY = "env(AWS_SECRET_ACCESS_KEY)"
 
 [analytics]
 enabled = true

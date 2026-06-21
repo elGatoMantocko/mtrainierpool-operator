@@ -100,6 +100,7 @@ function sendSessionToSW(session: Session | null) {
     supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
     supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
     accessToken: session?.access_token ?? null,
+    refreshToken: session?.refresh_token ?? null,
   });
 }
 

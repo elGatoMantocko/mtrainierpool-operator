@@ -1,31 +1,5 @@
-import "@supabase/functions-js/edge-runtime.d.ts";
-
-// deno check (TS 6, moduleDetection: auto) treats edge-runtime.d.ts as a module
-// because of "type":"module" in the JSR compat shim, so the ambient import above
-// doesn't propagate globals. Declare them explicitly at module scope as a workaround.
-declare const Supabase: {
-  ai: {
-    Session: {
-      new (model: string): {
-        run(
-          prompt: string | Record<string, unknown>,
-          options?: {
-            stream?: boolean;
-            timeout?: number;
-            mode?: string;
-            signal?: AbortSignal;
-          },
-        ): unknown;
-      };
-    };
-  };
-};
-declare const EdgeRuntime: {
-  waitUntil<T>(promise: Promise<T>): Promise<T>;
-};
-
 import { DOMParser } from "@b-fuze/deno-dom";
-import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import { createRoute, z } from "@hono/zod-openapi";
 import * as uuid from "@std/uuid";
 import { withSupabase } from "@supabase/server/adapters/hono";
 import { Context } from "hono";
@@ -33,6 +7,7 @@ import { Buffer } from "node:buffer";
 
 import { SupabaseVariables } from "@/index.ts";
 import type { TablesInsert } from "@/types/database.types.ts";
+import { DefaultOpenAPIHono } from "@/utils/hono.ts";
 
 const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
   uuid.NAMESPACE_URL,
@@ -170,27 +145,30 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
     .map((f) => sanitize(f))
     .filter((f) => f != null);
 
-  const toUpsert: PoolClosureAnalysis = {
-    pool_update_id: poolClosureId,
-    confidence_score: structured.confidence_score,
-    reasoning,
-    closure_date,
-    reopening_date,
-    flags,
-  };
-
   const { data, error } = await c.var.supabaseContext.supabaseAdmin
     .from("pool_closure_analysis")
-    .upsert(toUpsert, { onConflict: "pool_update_id" })
-    .select()
+    .upsert({
+      pool_update_id: poolClosureId,
+      confidence_score: structured.confidence_score,
+      reasoning,
+      closure_date,
+      reopening_date,
+      flags,
+    }, { onConflict: "pool_update_id" })
+    .select("*,poolUpdate:pool_updates(*)")
     .single();
   if (error) {
     console.error("failed to upsert analysis", error);
   }
+  if (!data) {
+    console.log("no new analysis to perform");
+    return null;
+  }
+
   console.log("upserted LLM analysis", data);
 }
 
-export const app = new OpenAPIHono<SupabaseVariables>().openapi(
+export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
   route,
   async (c) => {
     const res = await fetch("https://mtrainierpool.com");

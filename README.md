@@ -2,7 +2,7 @@
 
 > **Fair warning:** this is completely over-engineered. The problem could be solved with a mailing list that mtrainierpool.com maintains. This project exists because I wanted an excuse to play with Supabase and Postgres.
 
-A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores.
+A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores. When the pool closes, it emails registered users and fires push notifications.
 
 ## a simple ui
 
@@ -21,14 +21,16 @@ A PWA that tracks whether the Mt. Rainier pool is open. It scrapes the pool's we
 | Database | Supabase Postgres                                                |
 | Auth     | Supabase Auth — email/password + Discord OAuth                   |
 | AI       | Supabase AI (`pool-operator` model)                              |
+| Email    | AWS SES (closure notifications + Auth SMTP)                      |
 
 ## How it works
 
 1. `GET /api/check` scrapes `mtrainierpool.com` and extracts the status banner text.
 2. Each unique message is stored in `pool_updates` (deduplicated by UUID v5 of the message).
 3. The `pool-operator` AI model analyzes the message and extracts `closure_date`, `reopening_date`, `confidence_score`, `reasoning`, and `flags` — stored in `pool_closure_analysis`.
-4. A `pg_cron` job triggers `/api/check` daily at 6:00 AM PST automatically.
-5. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync).
+4. A `pg_cron` job triggers `/api/check` every 10 minutes during the morning PST window automatically.
+5. A Postgres trigger on `pool_closure_analysis` calls `POST /api/notify/email`, which emails registered users via AWS SES if the pool is currently closed. Deliveries are tracked idempotently in `notification_deliveries` / `email_deliveries`.
+6. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync).
 
 ## Prerequisites
 
@@ -131,6 +133,11 @@ Create a `.env` file at the repo root. These are read by `supabase start` via th
 | `SITE_BASE_URL`             | Yes      | Public URL of the app, e.g. `https://your-domain.com`. Used for auth redirects. |
 | `DISCORD_AUTH_SECRET`       | Yes      | Discord OAuth application secret                                                |
 | `DISCORD_AUTH_REDIRECT_URI` | Yes      | Discord OAuth callback URL, e.g. `https://your-domain.com/auth/callback`        |
+| `AWS_ACCESS_KEY_ID`         | Yes      | AWS SES access key (closure emails + Auth SMTP)                                 |
+| `AWS_SECRET_ACCESS_KEY`     | Yes      | AWS SES secret key                                                              |
+| `AWS_REGION`                | No       | SES region for the edge function; defaults to `us-west-2`                       |
+| `SMTP_ADMIN_EMAIL`          | Yes      | Verified SES sender / From address                                              |
+| `SMTP_HOST`                 | Yes      | SES SMTP host for Supabase Auth, e.g. `email-smtp.us-west-2.amazonaws.com`      |
 | `OPENAI_API_KEY`            | No       | Enables AI features in Supabase Studio                                          |
 
 ### Steps

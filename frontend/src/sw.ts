@@ -49,6 +49,7 @@ interface SwSession {
   supabaseUrl: string;
   supabaseAnonKey: string;
   accessToken: string | null;
+  refreshToken: string | null;
 }
 
 async function getSession(): Promise<SwSession | null> {
@@ -69,23 +70,59 @@ async function setLastSeenId(id: string): Promise<void> {
   await cache.put('last-seen-id', new Response(id));
 }
 
+async function refreshAccessToken(session: SwSession): Promise<string | null> {
+  if (!session.refreshToken) return null;
+  try {
+    const refreshUrl =
+      `${session.supabaseUrl}/auth/v1/token?grant_type=refresh_token`;
+    const res = await fetch(refreshUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: session.supabaseAnonKey,
+      },
+      body: JSON.stringify({ refresh_token: session.refreshToken }),
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as {
+      access_token: string;
+      refresh_token: string;
+    };
+    session.accessToken = data.access_token;
+    session.refreshToken = data.refresh_token;
+    const cache = await caches.open(AUTH_CACHE);
+    await cache.put('session', new Response(JSON.stringify(session)));
+    return data.access_token;
+  } catch {
+    return null;
+  }
+}
+
 async function checkForNewAnalysis(): Promise<void> {
   const session = await getSession();
-  if (!session?.accessToken) return;
+  if (!session) return;
 
   const url = new URL(`${session.supabaseUrl}/rest/v1/pool_closure_analysis`);
   url.searchParams.set('select', 'id,closure_date,reopening_date');
   url.searchParams.set('order', 'created_at.desc');
   url.searchParams.set('limit', '1');
 
-  let response: Response;
-  try {
-    response = await fetch(url.toString(), {
+  const makeRequest = (token: string | null) =>
+    fetch(url.toString(), {
       headers: {
         apikey: session.supabaseAnonKey,
-        Authorization: `Bearer ${session.accessToken}`,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
+
+  let response: Response;
+  try {
+    response = await makeRequest(session.accessToken);
+    if (response.status === 401) {
+      const newToken = await refreshAccessToken(session);
+      if (!newToken) return;
+      response = await makeRequest(newToken);
+    }
   } catch {
     return;
   }
@@ -159,17 +196,23 @@ self.addEventListener('notificationclick', (event) => {
 
 self.addEventListener('message', async (event: ExtendableMessageEvent) => {
   if (event.data?.type === 'SESSION_UPDATE') {
-    const { supabaseUrl, supabaseAnonKey, accessToken } = event.data as
-      & SwSession
-      & {
-        type: string;
-      };
+    const { supabaseUrl, supabaseAnonKey, accessToken, refreshToken } = event
+      .data as SwSession & { type: string };
     const cache = await caches.open(AUTH_CACHE);
     await cache.put(
       'session',
       new Response(
-        JSON.stringify({ supabaseUrl, supabaseAnonKey, accessToken }),
+        JSON.stringify({
+          supabaseUrl,
+          supabaseAnonKey,
+          accessToken,
+          refreshToken,
+        }),
       ),
     );
+  }
+
+  if (event.data?.type === 'TRIGGER_CHECK') {
+    event.waitUntil(checkForNewAnalysis());
   }
 });

@@ -23,6 +23,28 @@ COMMENT ON SCHEMA "public" IS 'standard public schema';
 
 
 
+CREATE TYPE "public"."notification_channel" AS ENUM (
+    'email',
+    'sms'
+);
+
+
+ALTER TYPE "public"."notification_channel" OWNER TO "postgres";
+
+
+CREATE TYPE "public"."notification_delivery_status" AS ENUM (
+    'pending',
+    'sending',
+    'sent',
+    'delivered',
+    'failed',
+    'cancelled'
+);
+
+
+ALTER TYPE "public"."notification_delivery_status" OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."log_net_http_response"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     AS $$
@@ -84,6 +106,48 @@ SET default_tablespace = '';
 SET default_table_access_method = "heap";
 
 
+CREATE TABLE IF NOT EXISTS "public"."email_deliveries" (
+    "delivery_id" "uuid" NOT NULL,
+    "from_address" "text" NOT NULL,
+    "to_address" "text" NOT NULL,
+    "reply_to" "text",
+    "subject" "text",
+    "bounce_type" "text",
+    "complaint_type" "text",
+    "last_event" "text",
+    "last_event_at" timestamp with time zone,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone
+);
+
+
+ALTER TABLE "public"."email_deliveries" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."notification_deliveries" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "user_id" "uuid" NOT NULL,
+    "type" "text" NOT NULL,
+    "idempotency_key" "uuid" NOT NULL,
+    "channel" "public"."notification_channel" NOT NULL,
+    "status" "public"."notification_delivery_status" DEFAULT 'pending'::"public"."notification_delivery_status" NOT NULL,
+    "recipient" "text" NOT NULL,
+    "payload" "jsonb" DEFAULT '{}'::"jsonb" NOT NULL,
+    "provider" "text",
+    "provider_message_id" "text",
+    "error" "text",
+    "attempts" integer DEFAULT 0 NOT NULL,
+    "sent_at" timestamp with time zone,
+    "delivered_at" timestamp with time zone,
+    "failed_at" timestamp with time zone,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone
+);
+
+
+ALTER TABLE "public"."notification_deliveries" OWNER TO "postgres";
+
+
 CREATE TABLE IF NOT EXISTS "public"."pool_closure_analysis" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
     "pool_update_id" "uuid" NOT NULL,
@@ -113,6 +177,21 @@ CREATE TABLE IF NOT EXISTS "public"."pool_updates" (
 ALTER TABLE "public"."pool_updates" OWNER TO "postgres";
 
 
+ALTER TABLE ONLY "public"."email_deliveries"
+    ADD CONSTRAINT "email_deliveries_pkey" PRIMARY KEY ("delivery_id");
+
+
+
+ALTER TABLE ONLY "public"."notification_deliveries"
+    ADD CONSTRAINT "notification_deliveries_idempotency_key_key" UNIQUE ("idempotency_key");
+
+
+
+ALTER TABLE ONLY "public"."notification_deliveries"
+    ADD CONSTRAINT "notification_deliveries_pkey" PRIMARY KEY ("id");
+
+
+
 ALTER TABLE ONLY "public"."pool_closure_analysis"
     ADD CONSTRAINT "pool_closure_analysis_pkey" PRIMARY KEY ("id");
 
@@ -128,11 +207,41 @@ ALTER TABLE ONLY "public"."pool_updates"
 
 
 
+CREATE INDEX "notification_deliveries_pending_idx" ON "public"."notification_deliveries" USING "btree" ("created_at") WHERE ("status" = 'pending'::"public"."notification_delivery_status");
+
+
+
+CREATE UNIQUE INDEX "notification_deliveries_provider_message_id_key" ON "public"."notification_deliveries" USING "btree" ("provider_message_id") WHERE ("provider_message_id" IS NOT NULL);
+
+
+
+CREATE INDEX "notification_deliveries_user_id_idx" ON "public"."notification_deliveries" USING "btree" ("user_id");
+
+
+
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."email_deliveries" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."notification_deliveries" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
 CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
 
 
 
 CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_updates" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
+ALTER TABLE ONLY "public"."email_deliveries"
+    ADD CONSTRAINT "email_deliveries_delivery_id_fkey" FOREIGN KEY ("delivery_id") REFERENCES "public"."notification_deliveries"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."notification_deliveries"
+    ADD CONSTRAINT "notification_deliveries_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id") ON DELETE CASCADE;
 
 
 
@@ -147,6 +256,12 @@ CREATE POLICY "Authenticated users can query pool closure analysis." ON "public"
 
 CREATE POLICY "Authenticated users can query pool closures." ON "public"."pool_updates" FOR SELECT TO "authenticated" USING (true);
 
+
+
+ALTER TABLE "public"."email_deliveries" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."notification_deliveries" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."pool_closure_analysis" ENABLE ROW LEVEL SECURITY;
@@ -171,6 +286,18 @@ GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "service_role";
 GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "anon";
 GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "authenticated";
 GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."email_deliveries" TO "anon";
+GRANT ALL ON TABLE "public"."email_deliveries" TO "authenticated";
+GRANT ALL ON TABLE "public"."email_deliveries" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."notification_deliveries" TO "anon";
+GRANT ALL ON TABLE "public"."notification_deliveries" TO "authenticated";
+GRANT ALL ON TABLE "public"."notification_deliveries" TO "service_role";
 
 
 

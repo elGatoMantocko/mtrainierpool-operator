@@ -1,6 +1,9 @@
 {
   "workspace": ["./supabase/functions/api", "./scripts"],
   "nodeModulesDir": "auto",
+  "compilerOptions": {
+    "types": ["@supabase/functions-js/edge-runtime.d.ts"]
+  },
   "imports": {
     "@std/testing": "jsr:@std/testing@^1.0.19"
   },
