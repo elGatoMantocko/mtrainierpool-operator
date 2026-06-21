@@ -1,3 +1,4 @@
+import { Container, Loader } from '@mantine/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 
@@ -6,9 +7,8 @@ import {
   SupabaseProvider,
   useAuth,
 } from './api/supabase.tsx';
-//
+
 // Import the generated route tree
-import { Container, Loader } from '@mantine/core';
 import { routeTree } from './routeTree.gen.ts';
 
 const client = new QueryClient();
