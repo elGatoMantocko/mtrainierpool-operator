@@ -2,7 +2,7 @@
 
 > **Fair warning:** this is completely over-engineered. The problem could be solved with a mailing list that mtrainierpool.com maintains. This project exists because I wanted an excuse to play with Supabase and Postgres.
 
-An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores. When the pool closes, it emails registered users and fires push notifications.
+An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores. When the pool closes, it emails registered users and the installed PWA shows a closure notification.
 
 ## a simple ui
 
@@ -30,7 +30,7 @@ An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's w
 3. The `pool-operator` AI model analyzes the message and extracts `closure_date`, `reopening_date`, `confidence_score`, `reasoning`, and `flags` — stored in `pool_closure_analysis`.
 4. A `pg_cron` job triggers `/api/check` every 10 minutes during the morning PST window automatically.
 5. A Postgres trigger on `pool_closure_analysis` calls `POST /api/notify/email`, which emails registered users via AWS SES if the pool is currently closed. Deliveries are tracked idempotently in `notification_deliveries` / `email_deliveries`.
-6. The frontend displays the latest analysis to authenticated users and fires push notifications for new closures via the [Periodic Background Sync API](https://developer.chrome.com/docs/capabilities/periodic-background-sync).
+6. The frontend displays the latest analysis to authenticated users. On load (and when the tab regains focus) the page asks its service worker to fetch the latest analysis and show a local notification if the pool is closed.
 
 ## Prerequisites
 

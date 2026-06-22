@@ -1,6 +1,6 @@
-/// <reference types="vite/client" />
-/// <reference types="vite-plugin-pwa/client" />
-/// <reference types="vite-plugin-pwa/react" />
+import 'vite-plugin-pwa/client';
+import 'vite-plugin-pwa/react';
+import 'vite/client';
 
 declare module 'virtual:pwa-register/react' {
   import type { Dispatch, SetStateAction } from 'react';
@@ -13,17 +13,4 @@ declare module 'virtual:pwa-register/react' {
     offlineReady: [boolean, Dispatch<SetStateAction<boolean>>];
     updateServiceWorker: (reloadPage?: boolean) => Promise<void>;
   };
-}
-
-declare global {
-  // Periodic Background Sync API (Chrome only)
-  interface PeriodicSyncManager {
-    register(tag: string, options?: { minInterval: number }): Promise<void>;
-    getTags(): Promise<string[]>;
-    unregister(tag: string): Promise<void>;
-  }
-
-  interface ServiceWorkerRegistration {
-    readonly periodicSync: PeriodicSyncManager;
-  }
 }

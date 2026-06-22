@@ -4,11 +4,6 @@ declare const self: ServiceWorkerGlobalScope & {
   __WB_MANIFEST: Array<{ url: string; revision: string | null }>;
 };
 
-// Periodic Background Sync API (Chrome only, not in standard TS webworker lib)
-interface PeriodicSyncEvent extends ExtendableEvent {
-  readonly tag: string;
-}
-
 const CACHE_NAME = 'app-shell-v1';
 const AUTH_CACHE = 'pool-auth-state';
 const SYNC_CACHE = 'pool-sync-state';
@@ -162,17 +157,6 @@ async function checkForNewAnalysis(): Promise<void> {
     data: { url: self.registration.scope },
   });
 }
-
-function isPeriodicSyncEvent(event: Event): event is PeriodicSyncEvent {
-  return 'tag' in event &&
-    typeof (event as Record<string, unknown>).tag === 'string';
-}
-
-self.addEventListener('periodicsync', (event) => {
-  if (isPeriodicSyncEvent(event) && event.tag === SYNC_TAG) {
-    event.waitUntil(checkForNewAnalysis());
-  }
-});
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();

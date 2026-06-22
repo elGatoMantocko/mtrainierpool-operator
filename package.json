@@ -15,9 +15,9 @@
     "@hono/zod-openapi": "^1.4.0",
     "@std/dotenv": "jsr:^0.225.7",
     "@std/uuid": "jsr:^1.1.1",
-    "@supabase/functions-js": "jsr:^2.108.1",
+    "@supabase/functions-js": "jsr:^2.108.2",
     "@supabase/server": "^1.1.0",
-    "@supabase/supabase-js": "jsr:^2.108.1",
+    "@supabase/supabase-js": "jsr:^2.108.2",
     "hono": "^4.12.25",
     "zod": "^4.4.3"
   },

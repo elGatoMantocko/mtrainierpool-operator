@@ -26,8 +26,8 @@
     "jsr:@std/testing@^1.0.19": "1.0.19",
     "jsr:@std/text@^1.0.19": "1.0.19",
     "jsr:@std/uuid@^1.1.1": "1.1.1",
-    "jsr:@supabase/functions-js@^2.108.1": "2.108.1",
-    "jsr:@supabase/supabase-js@^2.108.1": "2.108.1",
+    "jsr:@supabase/functions-js@^2.108.2": "2.108.2",
+    "jsr:@supabase/supabase-js@^2.108.2": "2.108.2",
     "npm:@aws-sdk/client-ses@^3.1063.0": "3.1068.0",
     "npm:@aws-sdk/client-ses@^3.1068.0": "3.1068.0",
     "npm:@hey-api/openapi-ts@~0.98.1": "0.98.2_typescript@6.0.3",
@@ -39,19 +39,19 @@
     "npm:@jsr/std__dotenv@~0.225.7": "0.225.7",
     "npm:@jsr/std__testing@^1.0.19": "1.0.19",
     "npm:@jsr/std__uuid@^1.1.1": "1.1.1",
-    "npm:@jsr/supabase__functions-js@^2.108.1": "2.108.1_zod@4.4.3",
-    "npm:@jsr/supabase__supabase-js@^2.108.1": "2.108.1",
+    "npm:@jsr/supabase__functions-js@^2.108.2": "2.108.2_zod@4.4.3",
+    "npm:@jsr/supabase__supabase-js@^2.108.2": "2.108.2",
     "npm:@mantine/core@^9.3.1": "9.3.1_@mantine+hooks@9.3.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
     "npm:@mantine/dates@^9.3.1": "9.3.1_@mantine+core@9.3.1__@mantine+hooks@9.3.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.3.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
     "npm:@mantine/form@^9.3.1": "9.3.1_react@19.2.7",
     "npm:@mantine/hooks@^9.3.1": "9.3.1_react@19.2.7",
-    "npm:@supabase/auth-js@2.108.1": "2.108.1",
-    "npm:@supabase/functions-js@2.108.1": "2.108.1",
-    "npm:@supabase/postgrest-js@2.108.1": "2.108.1",
-    "npm:@supabase/realtime-js@2.108.1": "2.108.1",
-    "npm:@supabase/server@^1.1.0": "1.1.0_@supabase+supabase-js@2.108.1_hono@4.12.25",
-    "npm:@supabase/storage-js@2.108.1": "2.108.1",
-    "npm:@supabase/supabase-js@^2.108.1": "2.108.1",
+    "npm:@supabase/auth-js@2.108.2": "2.108.2",
+    "npm:@supabase/functions-js@2.108.2": "2.108.2",
+    "npm:@supabase/postgrest-js@2.108.2": "2.108.2",
+    "npm:@supabase/realtime-js@2.108.2": "2.108.2",
+    "npm:@supabase/server@^1.1.0": "1.1.0_@supabase+supabase-js@2.108.2_hono@4.12.25",
+    "npm:@supabase/storage-js@2.108.2": "2.108.2",
+    "npm:@supabase/supabase-js@^2.108.2": "2.108.2",
     "npm:@tanstack/react-query-devtools@^5.101.0": "5.101.0_@tanstack+react-query@5.101.0__react@19.2.7_react@19.2.7",
     "npm:@tanstack/react-query@^5.101.0": "5.101.0_react@19.2.7",
     "npm:@tanstack/react-router-devtools@^1.167.0": "1.167.0_@tanstack+react-router@1.170.15__react@19.2.7__react-dom@19.2.7___react@19.2.7_@tanstack+router-core@1.171.13_react@19.2.7_react-dom@19.2.7__react@19.2.7",
@@ -193,17 +193,17 @@
     "@supabase/functions-js@2.89.0": {
       "integrity": "9b7c4224a25fe62c27a35b49be9a52d134b45238ccbb2efeb21529227c7351a5"
     },
-    "@supabase/functions-js@2.108.1": {
-      "integrity": "ac161d85d6696e77aebc78314e90e5a84df3e2eef045ad29c18d759478e9769b",
+    "@supabase/functions-js@2.108.2": {
+      "integrity": "39665d68e1cb721b0714ed1f55c075fba16f8d992672b51458660b3c1ec77c8f",
       "dependencies": [
         "npm:openai"
       ]
     },
-    "@supabase/supabase-js@2.108.1": {
-      "integrity": "c31883d00e36c759796683f2974e99201c3039fc2e539e0c3a1dd6dfb370332d",
+    "@supabase/supabase-js@2.108.2": {
+      "integrity": "db603b534b1939a216ef004fe9fdd0c72bb4ba097fb04be23ea76cb8c70272aa",
       "dependencies": [
         "npm:@supabase/auth-js",
-        "npm:@supabase/functions-js@2.108.1",
+        "npm:@supabase/functions-js@2.108.2",
         "npm:@supabase/postgrest-js",
         "npm:@supabase/realtime-js",
         "npm:@supabase/storage-js"
@@ -1554,15 +1554,15 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__uuid/1.1.1.tgz"
     },
-    "@jsr/supabase__functions-js@2.108.1_zod@4.4.3": {
-      "integrity": "sha512-zKkpoMTgUT5xXe2TvRyQgE/dOU/uhE6Lo6ceM1TBdIZvUOuZhdl3oOgPGlZzuLL6P0gwl7Y9f2XpZOW6se28lw==",
+    "@jsr/supabase__functions-js@2.108.2_zod@4.4.3": {
+      "integrity": "sha512-XOf0A+9VoGS5j4SSLRAG7DRnfsmyOW+wtC6UJQ+psH39HaI3jEyQC0QvkpYEGAk2sz+CtDEbZDxnzrC6TLIW1Q==",
       "dependencies": [
         "openai"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__functions-js/2.108.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__functions-js/2.108.2.tgz"
     },
-    "@jsr/supabase__supabase-js@2.108.1": {
-      "integrity": "sha512-pPhBSwkni2ZIF9n1JoYLHo0Uv5gwc9Gox9jB2bobBrTmmkB69JEkZTESc/reKeRz+ghnxduKNtOLDhSNdX4TYw==",
+    "@jsr/supabase__supabase-js@2.108.2": {
+      "integrity": "sha512-osbzVZy1W7qpk5l1XP+sGpgtHRQAEtspwysdzAsWlTmi2jGUxVaFRsCpebXRdKem+8IzKZgIoYReRzzZb9BJyw==",
       "dependencies": [
         "@supabase/auth-js",
         "@supabase/functions-js",
@@ -1570,7 +1570,7 @@
         "@supabase/realtime-js",
         "@supabase/storage-js"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__supabase-js/2.108.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__supabase-js/2.108.2.tgz"
     },
     "@lukeed/ms@2.0.2": {
       "integrity": "sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA=="
@@ -1970,14 +1970,14 @@
     "@standard-schema/spec@1.1.0": {
       "integrity": "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="
     },
-    "@supabase/auth-js@2.108.1": {
-      "integrity": "sha512-Lle5rKU8f9LF3K5dDd8Or8mkkG+ptzRZZWKPVMm9B9UuovH65Ss2+iFnQqRsCqaGouvJEcTWyl0cj2riNrrDLQ==",
+    "@supabase/auth-js@2.108.2": {
+      "integrity": "sha512-tNaQmBgodDZwgB40mRwVbxFy8IDYwjdpcZ0BYrWiwlULCSQoJj4QoG4zgJT7QRPXcqipefNOzvO/qAu4dF98ag==",
       "dependencies": [
         "tslib"
       ]
     },
-    "@supabase/functions-js@2.108.1": {
-      "integrity": "sha512-fxBRW/A4IG7ADQztVt0NaEy5ysiO1WJ2pbldsnBchrkHuyepX0Krek9qA9T4gUQBVVTCE9Ea4pdsM5hfn3nc4A==",
+    "@supabase/functions-js@2.108.2": {
+      "integrity": "sha512-RNUX8EiBy3iLwAX19jtRzLyePnl11/fHcgwDHLnpKcDSXt/5qBnh3LUwAtIjT21Q66QsmNUR2esrHziLCpNubw==",
       "dependencies": [
         "tslib"
       ]
@@ -1985,20 +1985,20 @@
     "@supabase/phoenix@0.4.2": {
       "integrity": "sha512-YSAGnmDAfuleFCVt3CeurQZAhxRfXWeZIIkwp7NhYzQ1UwW6ePSnzsFAiUm/mbCkfoCf70QQHKW/K6RKh52a4A=="
     },
-    "@supabase/postgrest-js@2.108.1": {
-      "integrity": "sha512-9lj2MCPPMgSTaJ5y+amnhb3TWPtMFVlbDn2hmX/VV91xQU4j0AauwfMaBErHBJ+zzsSwjc0jLU+zLIZFLQzfig==",
+    "@supabase/postgrest-js@2.108.2": {
+      "integrity": "sha512-GQ28/Y8hk3CFmkb3kXH1h/AQx6JIYSQfO0CJMRVBcEKZoNy6C45cXAZ4fcJvRC5Id0cs6xnkUV0+c0rIocigsw==",
       "dependencies": [
         "tslib"
       ]
     },
-    "@supabase/realtime-js@2.108.1": {
-      "integrity": "sha512-mHGGqOjwd1XTydcoffUqEMsbFQHUi6A3uhQ0EXr3iqzpLqItxKA9nbN6gIQxrZ7JRRnuUe/iOFPUkYV9Tdc5lg==",
+    "@supabase/realtime-js@2.108.2": {
+      "integrity": "sha512-aAGxCSUemZvQIibnCdvNvgaKib28I4rfrNjKbQ9cG1uBLwUsI7hVpGXgEbypCCDhLjQlDTAiJlu7rgljYUT73g==",
       "dependencies": [
         "@supabase/phoenix",
         "tslib"
       ]
     },
-    "@supabase/server@1.1.0_@supabase+supabase-js@2.108.1_hono@4.12.25": {
+    "@supabase/server@1.1.0_@supabase+supabase-js@2.108.2_hono@4.12.25": {
       "integrity": "sha512-vw71/xLMUMcAu5EELSy74MeSxQT3iTHk+uWA7PyEELtgFVKn1uJpeK4KUBrkLDqt0YTgbgvqSD4jxhKG4UrhAQ==",
       "dependencies": [
         "@supabase/supabase-js",
@@ -2009,15 +2009,15 @@
         "hono"
       ]
     },
-    "@supabase/storage-js@2.108.1": {
-      "integrity": "sha512-Er0SGGt85iT6ye+SSh98Az6L2CesoZJuyzEZYH2oBOAnIxa9Nn4CtwUC3veGxYggoT56X+3tVuuQeDBP8kR8sg==",
+    "@supabase/storage-js@2.108.2": {
+      "integrity": "sha512-TVZPQxXGxY2+A6yTtm77zUHsh70lBhYUEaJL8RQC+BghcX/ygiMG/rmXrNVBce30/WAeNPa8FiG8HbqlGeV05g==",
       "dependencies": [
         "iceberg-js",
         "tslib"
       ]
     },
-    "@supabase/supabase-js@2.108.1": {
-      "integrity": "sha512-V/1hRKLSCJ0zEL+9QFRBUtivvePfOsaAYQmC0HhFNSHC2F3xFs4jSF3YhkLmzex6E4V4FGvmBDOP72D/53NnZA==",
+    "@supabase/supabase-js@2.108.2": {
+      "integrity": "sha512-hFhnPveb5JQg4a0QYicM0swT253YHMdfeRAl2BKHOlI5VAzuHxUGSr8RbwNLYNPauWOgQMS1H8sz8bvYlgwUfQ==",
       "dependencies": [
         "@supabase/auth-js",
         "@supabase/functions-js",
@@ -4511,8 +4511,8 @@
         "npm:@jsr/std__dotenv@~0.225.7",
         "npm:@jsr/std__testing@^1.0.19",
         "npm:@jsr/std__uuid@^1.1.1",
-        "npm:@jsr/supabase__functions-js@^2.108.1",
-        "npm:@jsr/supabase__supabase-js@^2.108.1",
+        "npm:@jsr/supabase__functions-js@^2.108.2",
+        "npm:@jsr/supabase__supabase-js@^2.108.2",
         "npm:@supabase/server@^1.1.0",
         "npm:hono@^4.12.25",
         "npm:typescript@^6.0.3",
@@ -4528,7 +4528,7 @@
             "npm:@mantine/dates@^9.3.1",
             "npm:@mantine/form@^9.3.1",
             "npm:@mantine/hooks@^9.3.1",
-            "npm:@supabase/supabase-js@^2.108.1",
+            "npm:@supabase/supabase-js@^2.108.2",
             "npm:@tanstack/react-query-devtools@^5.101.0",
             "npm:@tanstack/react-query@^5.101.0",
             "npm:@tanstack/react-router-devtools@^1.167.0",
@@ -4557,7 +4557,7 @@
         "dependencies": [
           "jsr:@cliffy/command@^1.2.1",
           "jsr:@std/dotenv@~0.225.7",
-          "jsr:@supabase/supabase-js@^2.108.1",
+          "jsr:@supabase/supabase-js@^2.108.2",
           "npm:@hey-api/openapi-ts@~0.98.1"
         ]
       },
@@ -4565,8 +4565,8 @@
         "dependencies": [
           "jsr:@b-fuze/deno-dom@~0.1.56",
           "jsr:@std/uuid@^1.1.1",
-          "jsr:@supabase/functions-js@^2.108.1",
-          "jsr:@supabase/supabase-js@^2.108.1",
+          "jsr:@supabase/functions-js@^2.108.2",
+          "jsr:@supabase/supabase-js@^2.108.2",
           "npm:@aws-sdk/client-ses@^3.1063.0",
           "npm:@hono/zod-openapi@^1.4.0",
           "npm:@supabase/server@^1.1.0",
