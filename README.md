@@ -32,6 +32,84 @@ An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's w
 5. A Postgres trigger on `pool_closure_analysis` calls `POST /api/notify/email`, which emails registered users via AWS SES if the pool is currently closed. Deliveries are tracked idempotently in `notification_deliveries` / `email_deliveries`.
 6. The frontend displays the latest analysis to authenticated users. On load (and when the tab regains focus) the page asks its service worker to fetch the latest analysis and show a local notification if the pool is closed.
 
+## Architecture & data flow
+
+```mermaid
+flowchart TD
+    staff(["🏊 Pool staff edit the<br/>#updates_banner on the website"])
+
+    subgraph upstream["Upstream source"]
+        site["mtrainierpool.com"]
+    end
+    staff --> site
+
+    subgraph schedule["Scheduling"]
+        cron["pg_cron: pool-check-10min<br/>*/10 9-15 * * * UTC (~1–8 AM PST)"]
+    end
+
+    subgraph edge["Edge Function (Hono / Deno) — /api"]
+        subgraph checkRoute["GET /api/check"]
+            check["handler<br/>• scrape #updates_banner p<br/>• UUID v5 dedupe of message"]
+            operator["runPoolOperator()<br/>EdgeRuntime.waitUntil"]
+        end
+        subgraph notifyRoute["POST /api/notify/email"]
+            notify["handler<br/>• load analysis<br/>• isPoolClosed? list users"]
+            sendEmails["sendEmails()<br/>idempotent claim<br/>EdgeRuntime.waitUntil"]
+        end
+    end
+
+    ai["Supabase.ai.Session<br/>(AI_INFERENCE_API_HOST)"]
+    ollama["🤖 Ollama<br/>pool-operator model (Modelfile, qwen3.5)<br/>→ closure_date, reopening_date,<br/>confidence_score, reasoning, flags"]
+
+    subgraph db["Supabase Postgres"]
+        authusers[("auth.users")]
+        pool_updates[("pool_updates")]
+        analysis[("pool_closure_analysis")]
+        deliveries[("notification_deliveries")]
+        emails[("email_deliveries")]
+        trigger{{"trigger: notify_pool_closure_email<br/>AFTER INSERT → net.http_post"}}
+        vault[("Vault: project_url +<br/>service_role_key")]
+
+        analysis ===|"FK pool_update_id → id (1:1)"| pool_updates
+        emails ===|"FK delivery_id → id (1:1)"| deliveries
+        deliveries ===|"FK user_id → id"| authusers
+        deliveries -.->|"idempotency_key = analysis.id<br/>(soft link; UNIQUE w/ user_id)"| analysis
+    end
+
+    ses["📧 AWS SES"]
+    users(["📬 Registered users"])
+
+    subgraph frontend["Frontend PWA (React + Vite)"]
+        ui["Auth-gated UI<br/>TanStack Query (1h stale)"]
+        sw["Service worker<br/>checkForNewAnalysis()<br/>on load / tab focus"]
+        localnotif(["🔔 Local notification"])
+    end
+
+    cron -->|service role key from Vault| check
+    check -->|scrape| site
+    check -->|upsert| pool_updates
+    check -.->|if no analysis yet| operator
+    operator -->|prompt| ai
+    ai -->|inference request| ollama
+    ollama -->|structured JSON| ai
+    ai -->|response| operator
+    operator -->|upsert on pool_update_id| analysis
+
+    analysis --> trigger
+    vault -.-> trigger
+    trigger -->|poolUpdateId| notify
+    notify -->|listUsers → recipient emails| authusers
+    notify -.-> sendEmails
+    sendEmails -->|"status: pending → sending → sent / failed"| deliveries
+    sendEmails -->|SendEmailCommand| ses
+    sendEmails -->|audit row| emails
+    ses --> users
+
+    ui -->|read latest analysis| analysis
+    sw -->|REST: latest pool_closure_analysis| analysis
+    sw --> localnotif
+```
+
 ## Prerequisites
 
 - [Deno](https://deno.land/) v2
