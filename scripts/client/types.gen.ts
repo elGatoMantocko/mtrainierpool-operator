@@ -26,6 +26,22 @@ export type StatusUpdate = {
     } | null;
 };
 
+/**
+ * Per-recipient email delivery outcomes.
+ */
+export type NotifyEmailResult = {
+    poolUpdateId: string;
+    analysisId: string;
+    started: number;
+};
+
+/**
+ * Deliver the pool-closure email for a pool update's analysis.
+ */
+export type NotifyEmailRequest = {
+    poolUpdateId: string;
+};
+
 export type CheckData = {
     body?: never;
     path?: never;
@@ -54,3 +70,32 @@ export type CheckResponses = {
 };
 
 export type CheckResponse = CheckResponses[keyof CheckResponses];
+
+export type NotifyEmailData = {
+    body: NotifyEmailRequest;
+    path?: never;
+    query?: never;
+    url: '/api/notify/email';
+};
+
+export type NotifyEmailErrors = {
+    /**
+     * No analysis exists for the given pool update.
+     */
+    404: string;
+    /**
+     * Internal server error.
+     */
+    500: string;
+};
+
+export type NotifyEmailError = NotifyEmailErrors[keyof NotifyEmailErrors];
+
+export type NotifyEmailResponses = {
+    /**
+     * Delivery attempted; returns per-recipient outcomes.
+     */
+    200: NotifyEmailResult;
+};
+
+export type NotifyEmailResponse = NotifyEmailResponses[keyof NotifyEmailResponses];

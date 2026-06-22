@@ -9,6 +9,116 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      email_deliveries: {
+        Row: {
+          bounce_type: string | null
+          complaint_type: string | null
+          created_at: string
+          delivery_id: string
+          from_address: string
+          last_event: string | null
+          last_event_at: string | null
+          reply_to: string | null
+          subject: string | null
+          to_address: string
+          updated_at: string | null
+        }
+        Insert: {
+          bounce_type?: string | null
+          complaint_type?: string | null
+          created_at?: string
+          delivery_id: string
+          from_address: string
+          last_event?: string | null
+          last_event_at?: string | null
+          reply_to?: string | null
+          subject?: string | null
+          to_address: string
+          updated_at?: string | null
+        }
+        Update: {
+          bounce_type?: string | null
+          complaint_type?: string | null
+          created_at?: string
+          delivery_id?: string
+          from_address?: string
+          last_event?: string | null
+          last_event_at?: string | null
+          reply_to?: string | null
+          subject?: string | null
+          to_address?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_deliveries_delivery_id_fkey"
+            columns: ["delivery_id"]
+            isOneToOne: true
+            referencedRelation: "notification_deliveries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_deliveries: {
+        Row: {
+          attempts: number
+          channel: Database["public"]["Enums"]["notification_channel"]
+          created_at: string
+          delivered_at: string | null
+          error: string | null
+          failed_at: string | null
+          id: string
+          idempotency_key: string
+          payload: Json
+          provider: string | null
+          provider_message_id: string | null
+          recipient: string
+          sent_at: string | null
+          status: Database["public"]["Enums"]["notification_delivery_status"]
+          type: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          attempts?: number
+          channel: Database["public"]["Enums"]["notification_channel"]
+          created_at?: string
+          delivered_at?: string | null
+          error?: string | null
+          failed_at?: string | null
+          id?: string
+          idempotency_key: string
+          payload?: Json
+          provider?: string | null
+          provider_message_id?: string | null
+          recipient: string
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["notification_delivery_status"]
+          type: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          attempts?: number
+          channel?: Database["public"]["Enums"]["notification_channel"]
+          created_at?: string
+          delivered_at?: string | null
+          error?: string | null
+          failed_at?: string | null
+          id?: string
+          idempotency_key?: string
+          payload?: Json
+          provider?: string | null
+          provider_message_id?: string | null
+          recipient?: string
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["notification_delivery_status"]
+          type?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       pool_closure_analysis: {
         Row: {
           closure_date: string | null
@@ -88,7 +198,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      notification_channel: "email" | "sms"
+      notification_delivery_status:
+        | "pending"
+        | "sending"
+        | "sent"
+        | "delivered"
+        | "failed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -215,7 +332,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      notification_channel: ["email", "sms"],
+      notification_delivery_status: [
+        "pending",
+        "sending",
+        "sent",
+        "delivered",
+        "failed",
+        "cancelled",
+      ],
+    },
   },
 } as const
 

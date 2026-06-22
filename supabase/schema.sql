@@ -70,6 +70,37 @@ $$;
 ALTER FUNCTION "public"."log_net_http_response"() OWNER TO "postgres";
 
 
+CREATE OR REPLACE FUNCTION "public"."notify_pool_closure_email"() RETURNS "trigger"
+    LANGUAGE "plpgsql" SECURITY DEFINER
+    SET "search_path" TO ''
+    AS $$
+declare
+  v_project_url text;
+  v_service_role_key text;
+begin
+  select decrypted_secret into v_project_url
+  from vault.decrypted_secrets where name = 'project_url';
+
+  select decrypted_secret into v_service_role_key
+  from vault.decrypted_secrets where name = 'service_role_key';
+
+  perform net.http_post(
+    url := v_project_url || '/functions/v1/api/notify/email',
+    body := jsonb_build_object('poolUpdateId', new.pool_update_id),
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'apikey', v_service_role_key
+    )
+  );
+
+  return new;
+end;
+$$;
+
+
+ALTER FUNCTION "public"."notify_pool_closure_email"() OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."rls_auto_enable"() RETURNS "event_trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     SET "search_path" TO 'pg_catalog'
@@ -183,7 +214,7 @@ ALTER TABLE ONLY "public"."email_deliveries"
 
 
 ALTER TABLE ONLY "public"."notification_deliveries"
-    ADD CONSTRAINT "notification_deliveries_idempotency_key_key" UNIQUE ("idempotency_key");
+    ADD CONSTRAINT "notification_deliveries_idempotency_key_user_id_key" UNIQUE ("idempotency_key", "user_id");
 
 
 
@@ -235,6 +266,10 @@ CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_up
 
 
 
+CREATE OR REPLACE TRIGGER "notify_pool_closure_email" AFTER INSERT ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "public"."notify_pool_closure_email"();
+
+
+
 ALTER TABLE ONLY "public"."email_deliveries"
     ADD CONSTRAINT "email_deliveries_delivery_id_fkey" FOREIGN KEY ("delivery_id") REFERENCES "public"."notification_deliveries"("id") ON DELETE CASCADE;
 
@@ -280,6 +315,11 @@ GRANT USAGE ON SCHEMA "public" TO "service_role";
 GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "anon";
 GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "authenticated";
 GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "service_role";
+
+
+
+REVOKE ALL ON FUNCTION "public"."notify_pool_closure_email"() FROM PUBLIC;
+GRANT ALL ON FUNCTION "public"."notify_pool_closure_email"() TO "service_role";
 
 
 

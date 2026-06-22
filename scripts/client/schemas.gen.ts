@@ -90,3 +90,40 @@ export const StatusUpdateSchema = {
     ],
     description: 'A Mt. Rainier pool status update.'
 } as const;
+
+export const NotifyEmailResultSchema = {
+    type: 'object',
+    properties: {
+        poolUpdateId: {
+            type: 'string',
+            format: 'uuid'
+        },
+        analysisId: {
+            type: 'string',
+            format: 'uuid'
+        },
+        started: {
+            type: 'integer'
+        }
+    },
+    required: [
+        'poolUpdateId',
+        'analysisId',
+        'started'
+    ],
+    description: 'Per-recipient email delivery outcomes.'
+} as const;
+
+export const NotifyEmailRequestSchema = {
+    type: 'object',
+    properties: {
+        poolUpdateId: {
+            type: 'string',
+            format: 'uuid'
+        }
+    },
+    required: [
+        'poolUpdateId'
+    ],
+    description: 'Deliver the pool-closure email for a pool update\'s analysis.'
+} as const;
