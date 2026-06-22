@@ -47,6 +47,7 @@ ALTER TYPE "public"."notification_delivery_status" OWNER TO "postgres";
 
 CREATE OR REPLACE FUNCTION "public"."log_net_http_response"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
+    SET "search_path" TO ''
     AS $$
 begin
   if coalesce(new.timed_out, false)
@@ -312,8 +313,7 @@ GRANT USAGE ON SCHEMA "public" TO "service_role";
 
 
 
-GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "anon";
-GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "authenticated";
+REVOKE ALL ON FUNCTION "public"."log_net_http_response"() FROM PUBLIC;
 GRANT ALL ON FUNCTION "public"."log_net_http_response"() TO "service_role";
 
 
@@ -323,31 +323,24 @@ GRANT ALL ON FUNCTION "public"."notify_pool_closure_email"() TO "service_role";
 
 
 
-GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "anon";
-GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "authenticated";
+REVOKE ALL ON FUNCTION "public"."rls_auto_enable"() FROM PUBLIC;
 GRANT ALL ON FUNCTION "public"."rls_auto_enable"() TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."email_deliveries" TO "anon";
-GRANT ALL ON TABLE "public"."email_deliveries" TO "authenticated";
 GRANT ALL ON TABLE "public"."email_deliveries" TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."notification_deliveries" TO "anon";
-GRANT ALL ON TABLE "public"."notification_deliveries" TO "authenticated";
 GRANT ALL ON TABLE "public"."notification_deliveries" TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "anon";
 GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "authenticated";
 GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."pool_updates" TO "anon";
 GRANT ALL ON TABLE "public"."pool_updates" TO "authenticated";
 GRANT ALL ON TABLE "public"."pool_updates" TO "service_role";
 
