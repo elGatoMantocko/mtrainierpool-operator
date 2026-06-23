@@ -76,28 +76,32 @@ function emailData(analysis: PoolClosureAnalysis): string {
 </html>`;
 }
 
+/**
+ * Very neive approach for closure. Basically...
+ *    If reopening date is in the future, it's probably closed.
+ *    If closure date is in the past, it's probably closed.
+ *    Otherwise, it's probably open.
+ * @param closureDate - The date the pool was closed, if known.
+ * @param reopeningDate - The date the pool is expected to reopen, if known.
+ * @returns Whether the pool is most likely closed.
+ */
 function isPoolClosed(
   closureDate: string | null,
   reopeningDate: string | null,
 ): boolean {
   const today = Temporal.Now.plainDateISO("America/Los_Angeles");
-  let closedOn: Temporal.PlainDate | undefined;
-  let reopenedOn: Temporal.PlainDate | undefined;
 
-  if (!closureDate) {
-    if (!reopeningDate) return false;
-    reopenedOn = Temporal.PlainDate.from(reopeningDate);
+  if (reopeningDate) {
+    const reopenedOn = Temporal.PlainDate.from(reopeningDate);
     return Temporal.PlainDate.compare(today, reopenedOn) < 0;
   }
-  if (!reopeningDate) {
-    closedOn = Temporal.PlainDate.from(closureDate);
+
+  if (closureDate) {
+    const closedOn = Temporal.PlainDate.from(closureDate);
     return Temporal.PlainDate.compare(today, closedOn) >= 0;
   }
 
-  closedOn = Temporal.PlainDate.from(closureDate);
-  reopenedOn = Temporal.PlainDate.from(reopeningDate);
-  return Temporal.PlainDate.compare(today, closedOn) >= 0 &&
-    Temporal.PlainDate.compare(today, reopenedOn) < 0;
+  return false;
 }
 
 async function sendEmails(
