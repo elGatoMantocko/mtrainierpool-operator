@@ -9,20 +9,23 @@ export type ClientOptions = {
  */
 export type StatusUpdate = {
     id: string;
-    message: string;
-    source: string;
+    message: string | null;
+    source: string | null;
     createdAt: Date;
-    updatedAt: Date;
-    poolClosureAnalysis: {
+    updatedAt: Date | null;
+    analysis: {
         id: string;
-        poolUpdateId: string;
-        closureDate: Date | null;
-        reopeningDate: Date | null;
-        reasoning: string | null;
-        confidenceScore: number | null;
+        model: string | null;
+        closures: Array<{
+            id: string;
+            closureDate: Date | null;
+            reopeningDate: Date | null;
+            reasoning: string | null;
+            confidenceScore: number | null;
+            flags: Array<string>;
+        }>;
         createdAt: Date;
         updatedAt: Date | null;
-        flags: Array<string>;
     } | null;
 };
 

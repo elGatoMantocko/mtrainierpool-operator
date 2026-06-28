@@ -196,6 +196,38 @@ CREATE TABLE IF NOT EXISTS "public"."pool_closure_analysis" (
 ALTER TABLE "public"."pool_closure_analysis" OWNER TO "postgres";
 
 
+COMMENT ON TABLE "public"."pool_closure_analysis" IS 'DEPRECATED: replaced by pool_operator_analysis (1:1 with pool_updates) + pool_closures (1:n). Retained until the edge function and frontend are migrated.';
+
+
+
+CREATE TABLE IF NOT EXISTS "public"."pool_closures" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "analysis_id" "uuid" NOT NULL,
+    "closure_date" timestamp with time zone,
+    "reopening_date" timestamp with time zone,
+    "confidence_score" smallint,
+    "reasoning" "text",
+    "flags" "text"[] DEFAULT '{}'::"text"[] NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone
+);
+
+
+ALTER TABLE "public"."pool_closures" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."pool_operator_analysis" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "pool_update_id" "uuid" NOT NULL,
+    "model" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone
+);
+
+
+ALTER TABLE "public"."pool_operator_analysis" OWNER TO "postgres";
+
+
 CREATE TABLE IF NOT EXISTS "public"."pool_updates" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
     "message" "text",
@@ -234,6 +266,26 @@ ALTER TABLE ONLY "public"."pool_closure_analysis"
 
 
 
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_analysis_id_closure_date_reopening_date_key" UNIQUE NULLS NOT DISTINCT ("analysis_id", "closure_date", "reopening_date");
+
+
+
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pool_update_id_key" UNIQUE ("pool_update_id");
+
+
+
 ALTER TABLE ONLY "public"."pool_updates"
     ADD CONSTRAINT "pool_updates_pkey" PRIMARY KEY ("id");
 
@@ -251,6 +303,10 @@ CREATE INDEX "notification_deliveries_user_id_idx" ON "public"."notification_del
 
 
 
+CREATE INDEX "pool_closures_analysis_id_idx" ON "public"."pool_closures" USING "btree" ("analysis_id");
+
+
+
 CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."email_deliveries" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
 
 
@@ -260,6 +316,14 @@ CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."notific
 
 
 CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_closures" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_operator_analysis" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
 
 
 
@@ -286,11 +350,29 @@ ALTER TABLE ONLY "public"."pool_closure_analysis"
 
 
 
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_analysis_id_fkey" FOREIGN KEY ("analysis_id") REFERENCES "public"."pool_operator_analysis"("id") ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pool_update_id_fkey" FOREIGN KEY ("pool_update_id") REFERENCES "public"."pool_updates"("id");
+
+
+
 CREATE POLICY "Authenticated users can query pool closure analysis." ON "public"."pool_closure_analysis" FOR SELECT TO "authenticated" USING (true);
 
 
 
+CREATE POLICY "Authenticated users can query pool closures rows." ON "public"."pool_closures" FOR SELECT TO "authenticated" USING (true);
+
+
+
 CREATE POLICY "Authenticated users can query pool closures." ON "public"."pool_updates" FOR SELECT TO "authenticated" USING (true);
+
+
+
+CREATE POLICY "Authenticated users can query pool operator analysis." ON "public"."pool_operator_analysis" FOR SELECT TO "authenticated" USING (true);
 
 
 
@@ -301,6 +383,12 @@ ALTER TABLE "public"."notification_deliveries" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."pool_closure_analysis" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."pool_closures" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."pool_operator_analysis" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."pool_updates" ENABLE ROW LEVEL SECURITY;
@@ -338,6 +426,16 @@ GRANT ALL ON TABLE "public"."notification_deliveries" TO "service_role";
 
 GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "authenticated";
 GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."pool_closures" TO "authenticated";
+GRANT ALL ON TABLE "public"."pool_closures" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."pool_operator_analysis" TO "authenticated";
+GRANT ALL ON TABLE "public"."pool_operator_analysis" TO "service_role";
 
 
 

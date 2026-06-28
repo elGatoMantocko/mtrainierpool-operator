@@ -4,17 +4,22 @@ import type { CheckResponse } from './types.gen.ts';
 
 const statusUpdateSchemaResponseTransformer = (data: any) => {
     data.createdAt = new Date(data.createdAt);
-    data.updatedAt = new Date(data.updatedAt);
-    if (data.poolClosureAnalysis) {
-        if (data.poolClosureAnalysis.closureDate) {
-            data.poolClosureAnalysis.closureDate = new Date(data.poolClosureAnalysis.closureDate);
-        }
-        if (data.poolClosureAnalysis.reopeningDate) {
-            data.poolClosureAnalysis.reopeningDate = new Date(data.poolClosureAnalysis.reopeningDate);
-        }
-        data.poolClosureAnalysis.createdAt = new Date(data.poolClosureAnalysis.createdAt);
-        if (data.poolClosureAnalysis.updatedAt) {
-            data.poolClosureAnalysis.updatedAt = new Date(data.poolClosureAnalysis.updatedAt);
+    if (data.updatedAt) {
+        data.updatedAt = new Date(data.updatedAt);
+    }
+    if (data.analysis) {
+        data.analysis.closures = data.analysis.closures.map((item: any) => {
+            if (item.closureDate) {
+                item.closureDate = new Date(item.closureDate);
+            }
+            if (item.reopeningDate) {
+                item.reopeningDate = new Date(item.reopeningDate);
+            }
+            return item;
+        });
+        data.analysis.createdAt = new Date(data.analysis.createdAt);
+        if (data.analysis.updatedAt) {
+            data.analysis.updatedAt = new Date(data.analysis.updatedAt);
         }
     }
     return data;

@@ -14,25 +14,30 @@ const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
   Buffer.from("@mycah/pool-closure", "utf8"),
 );
 
-const Analysis = z.object({
+const PoolClosure = z.object({
   id: z.uuid(),
-  poolUpdateId: z.uuid(),
   closureDate: z.iso.datetime().nullable(),
   reopeningDate: z.iso.datetime().nullable(),
   reasoning: z.string().nullable(),
   confidenceScore: z.int().nullable(),
+  flags: z.array(z.string()),
+});
+
+const Analysis = z.object({
+  id: z.uuid(),
+  model: z.string().nullable(),
+  closures: z.array(PoolClosure),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime().nullable(),
-  flags: z.array(z.string()),
 });
 
 const StatusUpdate = z.object({
   id: z.uuid(),
-  message: z.string(),
-  source: z.string(),
+  message: z.string().nullable(),
+  source: z.string().nullable(),
   createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
-  poolClosureAnalysis: Analysis.nullable(),
+  updatedAt: z.iso.datetime().nullable(),
+  analysis: Analysis.nullable(),
 }).openapi("StatusUpdate", {
   description: "A Mt. Rainier pool status update.",
 });
@@ -68,6 +73,8 @@ const route = createRoute({
   },
 });
 
+type PoolClosureUpsert = TablesInsert<"pool_closures">;
+
 interface LLMAnalysis {
   closure_date: string | null;
   reopening_date: string | null;
@@ -76,24 +83,22 @@ interface LLMAnalysis {
   flags: string[];
 }
 
-function isLLMAnalysis(obj: unknown): obj is LLMAnalysis {
+function isLLMAnalysis(obj: unknown): obj is LLMAnalysis[] {
   return (
-    typeof obj === "object" &&
-    obj !== null &&
-    "closure_date" in obj &&
-    "reopening_date" in obj &&
-    "confidence_score" in obj &&
-    typeof obj.confidence_score === "number" &&
-    "reasoning" in obj &&
-    "flags" in obj &&
-    Array.isArray(obj.flags)
+    Array.isArray(obj) &&
+    obj.every((item) =>
+      typeof item === "object" &&
+      item !== null &&
+      "closure_date" in item &&
+      "reopening_date" in item &&
+      "confidence_score" in item &&
+      typeof item.confidence_score === "number" &&
+      "reasoning" in item &&
+      "flags" in item &&
+      Array.isArray(item.flags)
+    )
   );
 }
-
-type PoolClosureAnalysis = TablesInsert<
-  { schema: "public" },
-  "pool_closure_analysis"
->;
 
 function sanitize<T extends string | null>(data: T): T {
   let cleaned = data;
@@ -116,7 +121,7 @@ export function getPrompt(bannerText: string): string {
 
 async function runPoolOperator<C extends Context<SupabaseVariables>>(
   c: C,
-  poolClosureId: string,
+  poolUpdateId: string,
   bannerText: string,
 ) {
   console.log("biginning LLM analysis");
@@ -127,6 +132,7 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   const output = await session.run(prompt, {
     timeout: 300,
   }) as unknown as {
+    model: string;
     response: string;
   };
 
@@ -137,34 +143,53 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
     return;
   }
 
-  const reasoning = sanitize(structured.reasoning);
-  const closure_date = sanitize(structured.closure_date);
-  const reopening_date = sanitize(structured.reopening_date);
-  const flags = structured.flags
-    .map((f) => sanitize(f))
-    .filter((f) => f != null);
-
-  const { data, error } = await c.var.supabaseContext.supabaseAdmin
-    .from("pool_closure_analysis")
-    .upsert({
-      pool_update_id: poolClosureId,
-      confidence_score: structured.confidence_score,
-      reasoning,
-      closure_date,
-      reopening_date,
-      flags,
-    }, { onConflict: "pool_update_id" })
-    .select("*,poolUpdate:pool_updates(*)")
+  const { data: analysisUpsert, error: analysisError } = await c.var
+    .supabaseContext.supabaseAdmin
+    .from("pool_operator_analysis")
+    .upsert({ pool_update_id: poolUpdateId, model: output.model }, {
+      onConflict: "pool_update_id",
+    })
+    .select("id")
     .single();
-  if (error) {
-    console.error("failed to upsert analysis", error);
+
+  if (analysisError) {
+    console.error("failed to upsert analysis", analysisError);
+    return;
   }
-  if (!data) {
+
+  const cleaned = structured.map((item) => ({
+    ...item,
+    analysis_id: analysisUpsert.id,
+    reasoning: sanitize(item.reasoning),
+    closure_date: sanitize(item.closure_date),
+    reopening_date: sanitize(item.reopening_date),
+    flags: item.flags
+      .map((f) => sanitize(f))
+      .filter((f) => f != null),
+  } satisfies PoolClosureUpsert));
+
+  const { data: closureUpsert, error: closureError } = await c.var
+    .supabaseContext.supabaseAdmin
+    .from("pool_closures")
+    .upsert(cleaned, { onConflict: "analysis_id,closure_date,reopening_date" })
+    .select(
+      `*
+      , poolOperatorAnalysis:pool_operator_analysis(
+        *
+        , poolUpdate:pool_updates(
+          *
+        )
+      )`,
+    );
+  if (closureError) {
+    console.error("failed to upsert analysis", closureError);
+  }
+  if (!closureUpsert) {
     console.log("no new analysis to perform");
     return null;
   }
 
-  console.log("upserted LLM analysis", data);
+  console.log("upserted LLM analysis", closureUpsert);
 }
 
 export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
@@ -196,16 +221,21 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
         ,source
         ,createdAt:created_at
         ,updatedAt:updated_at
-        ,poolClosureAnalysis:pool_closure_analysis(
+        ,analysis:pool_operator_analysis(
           id,
-          poolUpdateId:pool_update_id,
-          closureDate:closure_date,
-          reopeningDate:reopening_date,
-          reasoning,
-          confidenceScore:confidence_score,
+          model,
           createdAt:created_at,
           updatedAt:updated_at,
-          flags
+          closures:pool_closures(
+            id,
+            closureDate:closure_date,
+            reopeningDate:reopening_date,
+            reasoning,
+            confidenceScore:confidence_score,
+            flags,
+            createdAt:created_at,
+            updatedAt:updated_at
+          )
         )`,
       )
       .single();
@@ -219,10 +249,10 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
     console.log("got a pool update", data);
 
     // need to run and apply an analysis
-    if (data.poolClosureAnalysis == null) {
+    if (data.analysis == null) {
       EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
     }
 
-    return c.json(data, 200);
+    return c.json(data satisfies z.infer<typeof StatusUpdate>, 200);
   },
 );
