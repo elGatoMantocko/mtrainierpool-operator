@@ -113,10 +113,6 @@ export const StatusUpdateSchema = {
 export const NotifyEmailResultSchema = {
     type: 'object',
     properties: {
-        poolUpdateId: {
-            type: 'string',
-            format: 'uuid'
-        },
         analysisId: {
             type: 'string',
             format: 'uuid'
@@ -126,7 +122,6 @@ export const NotifyEmailResultSchema = {
         }
     },
     required: [
-        'poolUpdateId',
         'analysisId',
         'started'
     ],
@@ -136,13 +131,13 @@ export const NotifyEmailResultSchema = {
 export const NotifyEmailRequestSchema = {
     type: 'object',
     properties: {
-        poolUpdateId: {
+        analysisId: {
             type: 'string',
             format: 'uuid'
         }
     },
     required: [
-        'poolUpdateId'
+        'analysisId'
     ],
-    description: 'Deliver the pool-closure email for a pool update\'s analysis.'
+    description: 'Deliver the pool-closure email for a pool operator analysis.'
 } as const;

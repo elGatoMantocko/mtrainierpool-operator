@@ -2246,14 +2246,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsr/std__internal@npm:^1.0.12, @jsr/std__internal@npm:^1.0.14":
+"@jsr/std__internal@npm:^1.0.12, @jsr/std__internal@npm:^1.0.13, @jsr/std__internal@npm:^1.0.14":
   version: 1.0.14
   resolution: "@jsr/std__internal@npm:1.0.14::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__internal%2F1.0.14.tgz"
   checksum: 10c0/c6df89e03d3374207deb36366349c1ebfdc3c0150692d817c2819389b4d551e016f82fb1dced313e3cd107b7a5aa24a85db4a5ab21628376246b0430c5673c53
   languageName: node
   linkType: hard
 
-"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.5":
+"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.4, @jsr/std__path@npm:^1.1.5":
   version: 1.1.5
   resolution: "@jsr/std__path@npm:1.1.5::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__path%2F1.1.5.tgz"
   dependencies:
@@ -2860,6 +2860,17 @@ __metadata:
   version: 0.225.7
   resolution: "@jsr/std__dotenv@npm:0.225.7::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__dotenv%2F0.225.7.tgz"
   checksum: 10c0/a5cb6c062747a3203a1ed407b5926004ca8f306dda2a5dfece6fe5eb72232d115d067cf70980e7a20c3c87cf0eb05432ebe4def666e7904d37d330608306127d
+  languageName: node
+  linkType: hard
+
+"@std/expect@jsr:^1.0.19, @std/expect@npm:@jsr/std__expect@^1.0.19":
+  version: 1.0.19
+  resolution: "@jsr/std__expect@npm:1.0.19::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.19.tgz"
+  dependencies:
+    "@jsr/std__assert": "npm:^1.0.19"
+    "@jsr/std__internal": "npm:^1.0.13"
+    "@jsr/std__path": "npm:^1.1.4"
+  checksum: 10c0/d1276b4044b2bd76506e207aac886c0fb8e9d74c67cf70362238858086410518115950cb7de9f0cd395bda616f9f00d16aa0ae2807fedf84072f5ec73986a2a9
   languageName: node
   linkType: hard
 
@@ -6590,6 +6601,7 @@ __metadata:
     "@hey-api/openapi-ts": "npm:^0.98.2"
     "@hono/zod-openapi": "npm:^1.4.0"
     "@std/dotenv": "jsr:^0.225.7"
+    "@std/expect": "jsr:^1.0.19"
     "@std/testing": "jsr:^1.0.19"
     "@std/uuid": "jsr:^1.1.1"
     "@supabase/functions-js": "jsr:^2.108.2"

@@ -45,6 +45,47 @@ CREATE TYPE "public"."notification_delivery_status" AS ENUM (
 ALTER TYPE "public"."notification_delivery_status" OWNER TO "postgres";
 
 
+CREATE OR REPLACE FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") RETURNS "uuid"
+    LANGUAGE "plpgsql" SECURITY DEFINER
+    SET "search_path" TO ''
+    AS $$
+declare
+  v_analysis_id uuid;
+begin
+  insert into public.pool_operator_analysis (pool_update_id, model)
+  values (p_pool_update_id, p_model)
+  on conflict (pool_update_id)
+    do update set model = excluded.model
+  returning id into v_analysis_id;
+
+  insert into public.pool_closures (
+    analysis_id, closure_date, reopening_date, confidence_score, reasoning, flags
+  )
+  select
+    v_analysis_id,
+    nullif(c->>'closure_date', '')::timestamptz,
+    nullif(c->>'reopening_date', '')::timestamptz,
+    (c->>'confidence_score')::smallint,
+    c->>'reasoning',
+    coalesce(
+      array(select jsonb_array_elements_text(c->'flags')),
+      '{}'::text[]
+    )
+  from jsonb_array_elements(coalesce(p_closures, '[]'::jsonb)) as c
+  on conflict (analysis_id, closure_date, reopening_date)
+    do update set
+      confidence_score = excluded.confidence_score,
+      reasoning = excluded.reasoning,
+      flags = excluded.flags;
+
+  return v_analysis_id;
+end;
+$$;
+
+
+ALTER FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."log_net_http_response"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     SET "search_path" TO ''
@@ -79,6 +120,13 @@ declare
   v_project_url text;
   v_service_role_key text;
 begin
+  -- No closures extracted -> pool isn't closed -> nothing to notify.
+  if not exists (
+    select 1 from public.pool_closures where analysis_id = new.id
+  ) then
+    return null;
+  end if;
+
   select decrypted_secret into v_project_url
   from vault.decrypted_secrets where name = 'project_url';
 
@@ -87,14 +135,14 @@ begin
 
   perform net.http_post(
     url := v_project_url || '/functions/v1/api/notify/email',
-    body := jsonb_build_object('poolUpdateId', new.pool_update_id),
+    body := jsonb_build_object('analysisId', new.id),
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
       'apikey', v_service_role_key
     )
   );
 
-  return new;
+  return null;
 end;
 $$;
 
@@ -331,7 +379,7 @@ CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_up
 
 
 
-CREATE OR REPLACE TRIGGER "notify_pool_closure_email" AFTER INSERT ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "public"."notify_pool_closure_email"();
+CREATE CONSTRAINT TRIGGER "notify_pool_closure_email" AFTER INSERT ON "public"."pool_operator_analysis" DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION "public"."notify_pool_closure_email"();
 
 
 
@@ -398,6 +446,11 @@ GRANT USAGE ON SCHEMA "public" TO "postgres";
 GRANT USAGE ON SCHEMA "public" TO "anon";
 GRANT USAGE ON SCHEMA "public" TO "authenticated";
 GRANT USAGE ON SCHEMA "public" TO "service_role";
+
+
+
+REVOKE ALL ON FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") FROM PUBLIC;
+GRANT ALL ON FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") TO "service_role";
 
 
 

@@ -73,7 +73,8 @@ const route = createRoute({
   },
 });
 
-type PoolClosureUpsert = TablesInsert<"pool_closures">;
+// analysis_id is assigned by the ingest RPC, so the payload omits it.
+type PoolClosureInsert = Omit<TablesInsert<"pool_closures">, "analysis_id">;
 
 interface LLMAnalysis {
   closure_date: string | null;
@@ -143,53 +144,37 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
     return;
   }
 
-  const { data: analysisUpsert, error: analysisError } = await c.var
-    .supabaseContext.supabaseAdmin
-    .from("pool_operator_analysis")
-    .upsert({ pool_update_id: poolUpdateId, model: output.model }, {
-      onConflict: "pool_update_id",
-    })
-    .select("id")
-    .single();
-
-  if (analysisError) {
-    console.error("failed to upsert analysis", analysisError);
-    return;
-  }
-
   const cleaned = structured.map((item) => ({
-    ...item,
-    analysis_id: analysisUpsert.id,
     reasoning: sanitize(item.reasoning),
     closure_date: sanitize(item.closure_date),
     reopening_date: sanitize(item.reopening_date),
+    confidence_score: item.confidence_score,
     flags: item.flags
       .map((f) => sanitize(f))
       .filter((f) => f != null),
-  } satisfies PoolClosureUpsert));
+  } satisfies PoolClosureInsert)).filter((item) =>
+    // only include items with closure or reopening dates
+    // if both are null, the item is likely not relevant
+    item.closure_date != null || item.reopening_date != null
+  );
 
-  const { data: closureUpsert, error: closureError } = await c.var
+  // Ingest the analysis and its closures in a single transaction (RPC) so the
+  // deferred notify trigger on pool_operator_analysis fires at COMMIT with the
+  // closures already visible. See migration notify_on_pool_operator_analysis.
+  const { data: analysisId, error: ingestError } = await c.var
     .supabaseContext.supabaseAdmin
-    .from("pool_closures")
-    .upsert(cleaned, { onConflict: "analysis_id,closure_date,reopening_date" })
-    .select(
-      `*
-      , poolOperatorAnalysis:pool_operator_analysis(
-        *
-        , poolUpdate:pool_updates(
-          *
-        )
-      )`,
-    );
-  if (closureError) {
-    console.error("failed to upsert analysis", closureError);
-  }
-  if (!closureUpsert) {
-    console.log("no new analysis to perform");
-    return null;
+    .rpc("ingest_pool_operator_analysis", {
+      p_pool_update_id: poolUpdateId,
+      p_model: output.model,
+      p_closures: cleaned,
+    });
+
+  if (ingestError) {
+    console.error("failed to ingest pool operator analysis", ingestError);
+    return;
   }
 
-  console.log("upserted LLM analysis", closureUpsert);
+  console.log("ingested LLM analysis", analysisId);
 }
 
 export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(

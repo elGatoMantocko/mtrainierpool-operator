@@ -1,29 +1,40 @@
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 import { createRoute, z } from "@hono/zod-openapi";
 import { withSupabase } from "@supabase/server/adapters/hono";
+import type { Context } from "hono";
 
 import { SupabaseVariables } from "@/index.ts";
 import { AwsVariables, withAws } from "@/middleware/aws.ts";
 import { Tables } from "@/types/database.types.ts";
+import { formatDate } from "@/utils/dates.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
-import { Context } from "hono";
 
-type PoolClosureAnalysis = Tables<
-  { schema: "public" },
-  "pool_closure_analysis"
+type PoolClosure = Pick<
+  Tables<{ schema: "public" }, "pool_closures">,
+  "closure_date" | "reopening_date" | "reasoning"
 >;
+
+type PoolUpdate = Pick<
+  Tables<{ schema: "public" }, "pool_updates">,
+  "id" | "message" | "source"
+>;
+
+interface PoolOperatorAnalysis {
+  id: string;
+  poolUpdate: PoolUpdate | null;
+  closures: PoolClosure[];
+}
 
 const SMTP_ADMIN_EMAIL = Deno.env.get("SMTP_ADMIN_EMAIL");
 const POOL_CLOSED_SUBJECT = "Mt. Rainier Pool — Closure Notice";
 
 const NotifyEmailRequest = z.object({
-  poolUpdateId: z.uuid(),
+  analysisId: z.uuid(),
 }).openapi("NotifyEmailRequest", {
-  description: "Deliver the pool-closure email for a pool update's analysis.",
+  description: "Deliver the pool-closure email for a pool operator analysis.",
 });
 
 const NotifyEmailResult = z.object({
-  poolUpdateId: z.uuid(),
   analysisId: z.uuid(),
   started: z.int(),
 }).openapi("NotifyEmailResult", {
@@ -49,7 +60,7 @@ const route = createRoute({
       content: { "application/json": { schema: NotifyEmailResult } },
     },
     404: {
-      description: "No analysis exists for the given pool update.",
+      description: "No analysis exists for the given id.",
       content: { "text/plain": { schema: z.string() } },
     },
     500: {
@@ -59,61 +70,41 @@ const route = createRoute({
   },
 });
 
-function emailData(analysis: PoolClosureAnalysis): string {
-  const lines = [];
-  if (analysis.closure_date) {
-    lines.push(`Closed since: ${analysis.closure_date}`);
-  }
-  if (analysis.reopening_date) {
-    lines.push(`Expected to reopen: ${analysis.reopening_date}`);
-  }
-  if (analysis.reasoning) lines.push(`\nDetails: ${analysis.reasoning}`);
+function emailData(analysis: PoolOperatorAnalysis): string {
+  const blocks = analysis.closures.map((closure) => {
+    const lines = [];
+    if (closure.closure_date) {
+      lines.push(`Closed since: ${formatDate(closure.closure_date)}`);
+    }
+    if (closure.reopening_date) {
+      lines.push(`Expected to reopen: ${formatDate(closure.reopening_date)}`);
+    }
+    if (closure.reasoning) lines.push(`\nDetails: ${closure.reasoning}`);
+    return lines.map((line) => `<p>${line}</p>`).join("\n");
+  });
+  const message = analysis.poolUpdate?.message;
   return `<html>
 <body>
   <h2>The pool is most likely closed!</h2>
-  ${lines.map((line) => `<p>${line}</p>`).join("\n")}
+  ${message ? `<p><strong>Pool update:</strong> ${message}</p>` : ""}
+  ${blocks.join("\n<hr />\n")}
 </body>
 </html>`;
-}
-
-/**
- * Very neive approach for closure. Basically...
- *    If reopening date is in the future, it's probably closed.
- *    If closure date is in the past, it's probably closed.
- *    Otherwise, it's probably open.
- * @param closureDate - The date the pool was closed, if known.
- * @param reopeningDate - The date the pool is expected to reopen, if known.
- * @returns Whether the pool is most likely closed.
- */
-function isPoolClosed(
-  closureDate: string | null,
-  reopeningDate: string | null,
-): boolean {
-  const today = Temporal.Now.plainDateISO("America/Los_Angeles");
-
-  if (reopeningDate) {
-    const reopenedOn = Temporal.PlainDate.from(reopeningDate);
-    return Temporal.PlainDate.compare(today, reopenedOn) < 0;
-  }
-
-  if (closureDate) {
-    const closedOn = Temporal.PlainDate.from(closureDate);
-    return Temporal.PlainDate.compare(today, closedOn) >= 0;
-  }
-
-  return false;
 }
 
 async function sendEmails(
   c: Context<SupabaseVariables & AwsVariables>,
   recipients: Array<{ id: string; email: string }>,
-  analysis: PoolClosureAnalysis,
+  analysis: PoolOperatorAnalysis,
 ): Promise<void> {
   if (!SMTP_ADMIN_EMAIL) {
     throw new Error("missing configuration SMTP_ADMIN_EMAIL not set");
   }
-  if (!isPoolClosed(analysis.closure_date, analysis.reopening_date)) {
-    console.log("skipping notification, pool is not closed.");
+  // Any recorded closure means the pool is closed; the recipient interprets the
+  // specifics. The DB trigger already only notifies when closures exist, but
+  // guard here too since the route can be called directly.
+  if (analysis.closures.length === 0) {
+    console.log("skipping notification, analysis has no closures.");
     return;
   }
   for (const user of recipients) {
@@ -129,7 +120,7 @@ async function sendEmails(
         channel: "email",
         recipient: user.email,
         provider: "ses",
-        payload: { pool_update_id: analysis.pool_update_id },
+        payload: { pool_update_id: analysis.poolUpdate?.id ?? null },
       }, { onConflict: "idempotency_key,user_id", ignoreDuplicates: true });
 
     if (upsertError) {
@@ -169,7 +160,9 @@ async function sendEmails(
               Data: POOL_CLOSED_SUBJECT,
               Charset: "UTF-8",
             },
-            Body: { Html: { Data: emailData(analysis), Charset: "UTF-8" } },
+            Body: {
+              Html: { Data: emailData(analysis), Charset: "UTF-8" },
+            },
           },
         }),
       );
@@ -209,22 +202,26 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables & AwsVariables>()
   .openapi(
     route,
     async (c) => {
-      const { poolUpdateId } = c.req.valid("json");
+      const { analysisId } = c.req.valid("json");
       const supabase = c.var.supabaseContext.supabaseAdmin;
 
       const { data: analysis, error: analysisError } = await supabase
-        .from("pool_closure_analysis")
-        .select("*")
-        .eq("pool_update_id", poolUpdateId)
+        .from("pool_operator_analysis")
+        .select(
+          `id
+          , poolUpdate:pool_updates(id, message, source)
+          , closures:pool_closures(closure_date, reopening_date, reasoning)`,
+        )
+        .eq("id", analysisId)
         .maybeSingle();
 
       if (analysisError) {
-        throw new Error("failed to load pool closure analysis", {
+        throw new Error("failed to load pool operator analysis", {
           cause: analysisError,
         });
       }
       if (!analysis) {
-        return c.text("no analysis for pool update", 404);
+        return c.text("no analysis for id", 404);
       }
 
       const { data: listUsersRes, error: listUsersError } = await supabase.auth
@@ -243,7 +240,6 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables & AwsVariables>()
       EdgeRuntime.waitUntil(sendEmails(c, recipients, analysis));
 
       return c.json({
-        poolUpdateId,
         analysisId: analysis.id,
         started: recipients.length,
       }, 200);

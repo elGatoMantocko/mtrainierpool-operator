@@ -271,7 +271,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      ingest_pool_operator_analysis: {
+        Args: { p_closures: Json; p_model: string; p_pool_update_id: string }
+        Returns: string
+      }
     }
     Enums: {
       notification_channel: "email" | "sms"

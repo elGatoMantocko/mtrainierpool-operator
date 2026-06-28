@@ -33,16 +33,15 @@ export type StatusUpdate = {
  * Per-recipient email delivery outcomes.
  */
 export type NotifyEmailResult = {
-    poolUpdateId: string;
     analysisId: string;
     started: number;
 };
 
 /**
- * Deliver the pool-closure email for a pool update's analysis.
+ * Deliver the pool-closure email for a pool operator analysis.
  */
 export type NotifyEmailRequest = {
-    poolUpdateId: string;
+    analysisId: string;
 };
 
 export type CheckData = {
@@ -83,7 +82,7 @@ export type NotifyEmailData = {
 
 export type NotifyEmailErrors = {
     /**
-     * No analysis exists for the given pool update.
+     * No analysis exists for the given id.
      */
     404: string;
     /**
