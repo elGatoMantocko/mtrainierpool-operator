@@ -183,10 +183,10 @@ ALTER TABLE "public"."notification_deliveries" OWNER TO "postgres";
 CREATE TABLE IF NOT EXISTS "public"."pool_closure_analysis" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
     "pool_update_id" "uuid" NOT NULL,
-    "closure_date" "date",
+    "closure_date" timestamp with time zone,
     "reasoning" "text",
     "confidence_score" smallint,
-    "reopening_date" "date",
+    "reopening_date" timestamp with time zone,
     "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
     "flags" "text"[] DEFAULT '{}'::"text"[] NOT NULL,
     "updated_at" timestamp with time zone

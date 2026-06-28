@@ -73,11 +73,23 @@ const checkCmd = new Command()
     console.log(data);
   });
 
+const getPromptCmd = new Command()
+  .name("get-prompt")
+  .description("Get the prompt for a pool update.")
+  .argument("<bannerText:string>", "The banner text to use in the prompt.")
+  .action(async (_, bannerText) => {
+    const { getPrompt } = await import(
+      "../supabase/functions/api/routes/check.ts"
+    );
+    console.log(getPrompt(bannerText));
+  });
+
 const cmd = new Command()
   .name("pool")
   .description("Pool commands")
   .command("create-client", createClientCmd)
-  .command("check", checkCmd);
+  .command("check", checkCmd)
+  .command("get-prompt", getPromptCmd);
 
 if (import.meta.main) {
   await cmd.parse(Deno.args);

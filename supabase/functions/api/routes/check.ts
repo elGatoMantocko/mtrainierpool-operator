@@ -17,8 +17,8 @@ const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
 const Analysis = z.object({
   id: z.uuid(),
   poolUpdateId: z.uuid(),
-  closureDate: z.iso.date().nullable(),
-  reopeningDate: z.iso.date().nullable(),
+  closureDate: z.iso.datetime().nullable(),
+  reopeningDate: z.iso.datetime().nullable(),
   reasoning: z.string().nullable(),
   confidenceScore: z.int().nullable(),
   createdAt: z.iso.datetime(),
@@ -103,16 +103,15 @@ function sanitize<T extends string | null>(data: T): T {
   return cleaned;
 }
 
-function sanitizeDate<T extends string | null>(date: T): T {
-  let cleaned = sanitize(date);
-  if (cleaned?.toLowerCase() === "tbd") cleaned = null as T;
-  return cleaned;
-}
-
-function getPrompt(bannerText: string): string {
-  const today = Temporal.Now.plainDateISO("America/Los_Angeles");
-  const weekday = today.toLocaleString("en-US", { weekday: "long" });
-  return `Today's date: ${today} (${weekday})\n\nPool update message: ${bannerText}`;
+export function getPrompt(bannerText: string): string {
+  const now = Temporal.Now.zonedDateTimeISO("America/Los_Angeles");
+  const weekday = now.toLocaleString("en-US", { weekday: "long" });
+  // ISO 8601 timestamp with offset, e.g. 2026-06-28T14:30:00-07:00
+  const nowIso = now.toString({
+    timeZoneName: "never",
+    smallestUnit: "second",
+  });
+  return `Current date and time: ${nowIso} (${weekday}, timezone America/Los_Angeles, UTC offset ${now.offset})\n\nPool update message: ${bannerText}`;
 }
 
 async function runPoolOperator<C extends Context<SupabaseVariables>>(
@@ -139,8 +138,8 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   }
 
   const reasoning = sanitize(structured.reasoning);
-  const closure_date = sanitizeDate(structured.closure_date);
-  const reopening_date = sanitizeDate(structured.reopening_date);
+  const closure_date = sanitize(structured.closure_date);
+  const reopening_date = sanitize(structured.reopening_date);
   const flags = structured.flags
     .map((f) => sanitize(f))
     .filter((f) => f != null);
