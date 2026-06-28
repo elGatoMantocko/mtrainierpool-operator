@@ -22,6 +22,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@std/expect": "jsr:^1.0.19",
     "@std/testing": "jsr:^1.0.19",
     "typescript": "^6.0.3"
   },
@@ -29,6 +30,7 @@
     "pool": "deno run -A ./scripts/pool.ts",
     "typecheck": "deno check",
     "lint": "deno lint",
+    "test": "deno test ./supabase/functions/tests/",
     "deno:refresh": "deno cache -r ./scripts/**/*.ts ./supabase/**/*.ts",
     "gen:types": "supabase gen types --schema public --local > ./supabase/functions/api/types/database.types.ts",
     "gen:schema": "supabase db dump --schema public --local > ./supabase/schema.sql",

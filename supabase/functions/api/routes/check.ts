@@ -14,25 +14,30 @@ const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
   Buffer.from("@mycah/pool-closure", "utf8"),
 );
 
-const Analysis = z.object({
+const PoolClosure = z.object({
   id: z.uuid(),
-  poolUpdateId: z.uuid(),
-  closureDate: z.iso.date().nullable(),
-  reopeningDate: z.iso.date().nullable(),
+  closedAt: z.iso.datetime().nullable(),
+  openedAt: z.iso.datetime().nullable(),
   reasoning: z.string().nullable(),
   confidenceScore: z.int().nullable(),
+  flags: z.array(z.string()),
+});
+
+const Analysis = z.object({
+  id: z.uuid(),
+  model: z.string().nullable(),
+  closures: z.array(PoolClosure),
   createdAt: z.iso.datetime(),
   updatedAt: z.iso.datetime().nullable(),
-  flags: z.array(z.string()),
 });
 
 const StatusUpdate = z.object({
   id: z.uuid(),
-  message: z.string(),
-  source: z.string(),
+  message: z.string().nullable(),
+  source: z.string().nullable(),
   createdAt: z.iso.datetime(),
-  updatedAt: z.iso.datetime(),
-  poolClosureAnalysis: Analysis.nullable(),
+  updatedAt: z.iso.datetime().nullable(),
+  analysis: Analysis.nullable(),
 }).openapi("StatusUpdate", {
   description: "A Mt. Rainier pool status update.",
 });
@@ -68,6 +73,9 @@ const route = createRoute({
   },
 });
 
+// analysis_id is assigned by the ingest RPC, so the payload omits it.
+type PoolClosureInsert = Omit<TablesInsert<"pool_closures">, "analysis_id">;
+
 interface LLMAnalysis {
   closure_date: string | null;
   reopening_date: string | null;
@@ -76,24 +84,22 @@ interface LLMAnalysis {
   flags: string[];
 }
 
-function isLLMAnalysis(obj: unknown): obj is LLMAnalysis {
+function isLLMAnalysis(obj: unknown): obj is LLMAnalysis[] {
   return (
-    typeof obj === "object" &&
-    obj !== null &&
-    "closure_date" in obj &&
-    "reopening_date" in obj &&
-    "confidence_score" in obj &&
-    typeof obj.confidence_score === "number" &&
-    "reasoning" in obj &&
-    "flags" in obj &&
-    Array.isArray(obj.flags)
+    Array.isArray(obj) &&
+    obj.every((item) =>
+      typeof item === "object" &&
+      item !== null &&
+      "closure_date" in item &&
+      "reopening_date" in item &&
+      "confidence_score" in item &&
+      typeof item.confidence_score === "number" &&
+      "reasoning" in item &&
+      "flags" in item &&
+      Array.isArray(item.flags)
+    )
   );
 }
-
-type PoolClosureAnalysis = TablesInsert<
-  { schema: "public" },
-  "pool_closure_analysis"
->;
 
 function sanitize<T extends string | null>(data: T): T {
   let cleaned = data;
@@ -103,21 +109,20 @@ function sanitize<T extends string | null>(data: T): T {
   return cleaned;
 }
 
-function sanitizeDate<T extends string | null>(date: T): T {
-  let cleaned = sanitize(date);
-  if (cleaned?.toLowerCase() === "tbd") cleaned = null as T;
-  return cleaned;
-}
-
-function getPrompt(bannerText: string): string {
-  const today = Temporal.Now.plainDateISO("America/Los_Angeles");
-  const weekday = today.toLocaleString("en-US", { weekday: "long" });
-  return `Today's date: ${today} (${weekday})\n\nPool update message: ${bannerText}`;
+export function getPrompt(bannerText: string): string {
+  const now = Temporal.Now.zonedDateTimeISO("America/Los_Angeles");
+  const weekday = now.toLocaleString("en-US", { weekday: "long" });
+  // ISO 8601 timestamp with offset, e.g. 2026-06-28T14:30:00-07:00
+  const nowIso = now.toString({
+    timeZoneName: "never",
+    smallestUnit: "second",
+  });
+  return `Current date and time: ${nowIso} (${weekday}, timezone America/Los_Angeles, UTC offset ${now.offset})\n\nPool update message: ${bannerText}`;
 }
 
 async function runPoolOperator<C extends Context<SupabaseVariables>>(
   c: C,
-  poolClosureId: string,
+  poolUpdateId: string,
   bannerText: string,
 ) {
   console.log("biginning LLM analysis");
@@ -128,6 +133,7 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   const output = await session.run(prompt, {
     timeout: 300,
   }) as unknown as {
+    model: string;
     response: string;
   };
 
@@ -138,34 +144,37 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
     return;
   }
 
-  const reasoning = sanitize(structured.reasoning);
-  const closure_date = sanitizeDate(structured.closure_date);
-  const reopening_date = sanitizeDate(structured.reopening_date);
-  const flags = structured.flags
-    .map((f) => sanitize(f))
-    .filter((f) => f != null);
+  const cleaned = structured.map((item) => ({
+    reasoning: sanitize(item.reasoning),
+    closed_at: sanitize(item.closure_date),
+    opened_at: sanitize(item.reopening_date),
+    confidence_score: item.confidence_score,
+    flags: item.flags
+      .map((f) => sanitize(f))
+      .filter((f) => f != null),
+  } satisfies PoolClosureInsert)).filter((item) =>
+    // only include items with closure or reopening dates
+    // if both are null, the item is likely not relevant
+    item.closed_at != null || item.opened_at != null
+  );
 
-  const { data, error } = await c.var.supabaseContext.supabaseAdmin
-    .from("pool_closure_analysis")
-    .upsert({
-      pool_update_id: poolClosureId,
-      confidence_score: structured.confidence_score,
-      reasoning,
-      closure_date,
-      reopening_date,
-      flags,
-    }, { onConflict: "pool_update_id" })
-    .select("*,poolUpdate:pool_updates(*)")
-    .single();
-  if (error) {
-    console.error("failed to upsert analysis", error);
-  }
-  if (!data) {
-    console.log("no new analysis to perform");
-    return null;
+  // Ingest the analysis and its closures in a single transaction (RPC) so the
+  // deferred notify trigger on pool_operator_analysis fires at COMMIT with the
+  // closures already visible. See migration notify_on_pool_operator_analysis.
+  const { data: analysisId, error: ingestError } = await c.var
+    .supabaseContext.supabaseAdmin
+    .rpc("ingest_pool_operator_analysis", {
+      p_pool_update_id: poolUpdateId,
+      p_model: output.model,
+      p_closures: cleaned,
+    });
+
+  if (ingestError) {
+    console.error("failed to ingest pool operator analysis", ingestError);
+    return;
   }
 
-  console.log("upserted LLM analysis", data);
+  console.log("ingested LLM analysis", analysisId);
 }
 
 export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
@@ -197,16 +206,21 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
         ,source
         ,createdAt:created_at
         ,updatedAt:updated_at
-        ,poolClosureAnalysis:pool_closure_analysis(
+        ,analysis:pool_operator_analysis(
           id,
-          poolUpdateId:pool_update_id,
-          closureDate:closure_date,
-          reopeningDate:reopening_date,
-          reasoning,
-          confidenceScore:confidence_score,
+          model,
           createdAt:created_at,
           updatedAt:updated_at,
-          flags
+          closures:pool_closures(
+            id,
+            closedAt:closed_at,
+            openedAt:opened_at,
+            reasoning,
+            confidenceScore:confidence_score,
+            flags,
+            createdAt:created_at,
+            updatedAt:updated_at
+          )
         )`,
       )
       .single();
@@ -220,10 +234,10 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
     console.log("got a pool update", data);
 
     // need to run and apply an analysis
-    if (data.poolClosureAnalysis == null) {
+    if (data.analysis == null) {
       EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
     }
 
-    return c.json(data, 200);
+    return c.json(data satisfies z.infer<typeof StatusUpdate>, 200);
   },
 );

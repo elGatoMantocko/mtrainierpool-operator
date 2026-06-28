@@ -8,10 +8,12 @@ export const StatusUpdateSchema = {
             format: 'uuid'
         },
         message: {
-            type: 'string'
+            type: 'string',
+            nullable: true
         },
         source: {
-            type: 'string'
+            type: 'string',
+            nullable: true
         },
         createdAt: {
             type: 'string',
@@ -19,9 +21,10 @@ export const StatusUpdateSchema = {
         },
         updatedAt: {
             type: 'string',
+            nullable: true,
             format: 'date-time'
         },
-        poolClosureAnalysis: {
+        analysis: {
             type: 'object',
             nullable: true,
             properties: {
@@ -29,27 +32,53 @@ export const StatusUpdateSchema = {
                     type: 'string',
                     format: 'uuid'
                 },
-                poolUpdateId: {
-                    type: 'string',
-                    format: 'uuid'
-                },
-                closureDate: {
-                    type: 'string',
-                    nullable: true,
-                    format: 'date'
-                },
-                reopeningDate: {
-                    type: 'string',
-                    nullable: true,
-                    format: 'date'
-                },
-                reasoning: {
+                model: {
                     type: 'string',
                     nullable: true
                 },
-                confidenceScore: {
-                    type: 'integer',
-                    nullable: true
+                closures: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        properties: {
+                            id: {
+                                type: 'string',
+                                format: 'uuid'
+                            },
+                            closedAt: {
+                                type: 'string',
+                                nullable: true,
+                                format: 'date-time'
+                            },
+                            openedAt: {
+                                type: 'string',
+                                nullable: true,
+                                format: 'date-time'
+                            },
+                            reasoning: {
+                                type: 'string',
+                                nullable: true
+                            },
+                            confidenceScore: {
+                                type: 'integer',
+                                nullable: true
+                            },
+                            flags: {
+                                type: 'array',
+                                items: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        required: [
+                            'id',
+                            'closedAt',
+                            'openedAt',
+                            'reasoning',
+                            'confidenceScore',
+                            'flags'
+                        ]
+                    }
                 },
                 createdAt: {
                     type: 'string',
@@ -59,24 +88,14 @@ export const StatusUpdateSchema = {
                     type: 'string',
                     nullable: true,
                     format: 'date-time'
-                },
-                flags: {
-                    type: 'array',
-                    items: {
-                        type: 'string'
-                    }
                 }
             },
             required: [
                 'id',
-                'poolUpdateId',
-                'closureDate',
-                'reopeningDate',
-                'reasoning',
-                'confidenceScore',
+                'model',
+                'closures',
                 'createdAt',
-                'updatedAt',
-                'flags'
+                'updatedAt'
             ]
         }
     },
@@ -86,7 +105,7 @@ export const StatusUpdateSchema = {
         'source',
         'createdAt',
         'updatedAt',
-        'poolClosureAnalysis'
+        'analysis'
     ],
     description: 'A Mt. Rainier pool status update.'
 } as const;
@@ -94,10 +113,6 @@ export const StatusUpdateSchema = {
 export const NotifyEmailResultSchema = {
     type: 'object',
     properties: {
-        poolUpdateId: {
-            type: 'string',
-            format: 'uuid'
-        },
         analysisId: {
             type: 'string',
             format: 'uuid'
@@ -107,7 +122,6 @@ export const NotifyEmailResultSchema = {
         }
     },
     required: [
-        'poolUpdateId',
         'analysisId',
         'started'
     ],
@@ -117,13 +131,13 @@ export const NotifyEmailResultSchema = {
 export const NotifyEmailRequestSchema = {
     type: 'object',
     properties: {
-        poolUpdateId: {
+        analysisId: {
             type: 'string',
             format: 'uuid'
         }
     },
     required: [
-        'poolUpdateId'
+        'analysisId'
     ],
-    description: 'Deliver the pool-closure email for a pool update\'s analysis.'
+    description: 'Deliver the pool-closure email for a pool operator analysis.'
 } as const;

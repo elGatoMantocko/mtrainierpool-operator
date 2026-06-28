@@ -45,6 +45,47 @@ CREATE TYPE "public"."notification_delivery_status" AS ENUM (
 ALTER TYPE "public"."notification_delivery_status" OWNER TO "postgres";
 
 
+CREATE OR REPLACE FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") RETURNS "uuid"
+    LANGUAGE "plpgsql" SECURITY DEFINER
+    SET "search_path" TO ''
+    AS $$
+declare
+  v_analysis_id uuid;
+begin
+  insert into public.pool_operator_analysis (pool_update_id, model)
+  values (p_pool_update_id, p_model)
+  on conflict (pool_update_id)
+    do update set model = excluded.model
+  returning id into v_analysis_id;
+
+  insert into public.pool_closures (
+    analysis_id, closed_at, opened_at, confidence_score, reasoning, flags
+  )
+  select
+    v_analysis_id,
+    nullif(c->>'closed_at', '')::timestamptz,
+    nullif(c->>'opened_at', '')::timestamptz,
+    (c->>'confidence_score')::smallint,
+    c->>'reasoning',
+    coalesce(
+      array(select jsonb_array_elements_text(c->'flags')),
+      '{}'::text[]
+    )
+  from jsonb_array_elements(coalesce(p_closures, '[]'::jsonb)) as c
+  on conflict (analysis_id, closed_at, opened_at)
+    do update set
+      confidence_score = excluded.confidence_score,
+      reasoning = excluded.reasoning,
+      flags = excluded.flags;
+
+  return v_analysis_id;
+end;
+$$;
+
+
+ALTER FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") OWNER TO "postgres";
+
+
 CREATE OR REPLACE FUNCTION "public"."log_net_http_response"() RETURNS "trigger"
     LANGUAGE "plpgsql" SECURITY DEFINER
     SET "search_path" TO ''
@@ -79,6 +120,13 @@ declare
   v_project_url text;
   v_service_role_key text;
 begin
+  -- No closures extracted -> pool isn't closed -> nothing to notify.
+  if not exists (
+    select 1 from public.pool_closures where analysis_id = new.id
+  ) then
+    return null;
+  end if;
+
   select decrypted_secret into v_project_url
   from vault.decrypted_secrets where name = 'project_url';
 
@@ -87,14 +135,14 @@ begin
 
   perform net.http_post(
     url := v_project_url || '/functions/v1/api/notify/email',
-    body := jsonb_build_object('poolUpdateId', new.pool_update_id),
+    body := jsonb_build_object('analysisId', new.id),
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
       'apikey', v_service_role_key
     )
   );
 
-  return new;
+  return null;
 end;
 $$;
 
@@ -180,20 +228,32 @@ CREATE TABLE IF NOT EXISTS "public"."notification_deliveries" (
 ALTER TABLE "public"."notification_deliveries" OWNER TO "postgres";
 
 
-CREATE TABLE IF NOT EXISTS "public"."pool_closure_analysis" (
+CREATE TABLE IF NOT EXISTS "public"."pool_closures" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
-    "pool_update_id" "uuid" NOT NULL,
-    "closure_date" "date",
-    "reasoning" "text",
+    "analysis_id" "uuid" NOT NULL,
+    "closed_at" timestamp with time zone,
+    "opened_at" timestamp with time zone,
     "confidence_score" smallint,
-    "reopening_date" "date",
-    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "reasoning" "text",
     "flags" "text"[] DEFAULT '{}'::"text"[] NOT NULL,
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
     "updated_at" timestamp with time zone
 );
 
 
-ALTER TABLE "public"."pool_closure_analysis" OWNER TO "postgres";
+ALTER TABLE "public"."pool_closures" OWNER TO "postgres";
+
+
+CREATE TABLE IF NOT EXISTS "public"."pool_operator_analysis" (
+    "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
+    "pool_update_id" "uuid" NOT NULL,
+    "model" "text",
+    "created_at" timestamp with time zone DEFAULT "now"() NOT NULL,
+    "updated_at" timestamp with time zone
+);
+
+
+ALTER TABLE "public"."pool_operator_analysis" OWNER TO "postgres";
 
 
 CREATE TABLE IF NOT EXISTS "public"."pool_updates" (
@@ -224,13 +284,23 @@ ALTER TABLE ONLY "public"."notification_deliveries"
 
 
 
-ALTER TABLE ONLY "public"."pool_closure_analysis"
-    ADD CONSTRAINT "pool_closure_analysis_pkey" PRIMARY KEY ("id");
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_analysis_id_closed_at_opened_at_key" UNIQUE NULLS NOT DISTINCT ("analysis_id", "closed_at", "opened_at");
 
 
 
-ALTER TABLE ONLY "public"."pool_closure_analysis"
-    ADD CONSTRAINT "pool_closure_analysis_pool_update_id_key" UNIQUE ("pool_update_id");
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pkey" PRIMARY KEY ("id");
+
+
+
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pool_update_id_key" UNIQUE ("pool_update_id");
 
 
 
@@ -251,6 +321,10 @@ CREATE INDEX "notification_deliveries_user_id_idx" ON "public"."notification_del
 
 
 
+CREATE INDEX "pool_closures_analysis_id_idx" ON "public"."pool_closures" USING "btree" ("analysis_id");
+
+
+
 CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."email_deliveries" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
 
 
@@ -259,7 +333,11 @@ CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."notific
 
 
 
-CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_closures" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
+
+
+
+CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_operator_analysis" FOR EACH ROW EXECUTE FUNCTION "extensions"."moddatetime"('updated_at');
 
 
 
@@ -267,7 +345,7 @@ CREATE OR REPLACE TRIGGER "handle_updated_at" BEFORE UPDATE ON "public"."pool_up
 
 
 
-CREATE OR REPLACE TRIGGER "notify_pool_closure_email" AFTER INSERT ON "public"."pool_closure_analysis" FOR EACH ROW EXECUTE FUNCTION "public"."notify_pool_closure_email"();
+CREATE CONSTRAINT TRIGGER "notify_pool_closure_email" AFTER INSERT ON "public"."pool_operator_analysis" DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION "public"."notify_pool_closure_email"();
 
 
 
@@ -281,16 +359,25 @@ ALTER TABLE ONLY "public"."notification_deliveries"
 
 
 
-ALTER TABLE ONLY "public"."pool_closure_analysis"
-    ADD CONSTRAINT "pool_closure_analysis_pool_update_id_fkey" FOREIGN KEY ("pool_update_id") REFERENCES "public"."pool_updates"("id");
+ALTER TABLE ONLY "public"."pool_closures"
+    ADD CONSTRAINT "pool_closures_analysis_id_fkey" FOREIGN KEY ("analysis_id") REFERENCES "public"."pool_operator_analysis"("id") ON DELETE CASCADE;
 
 
 
-CREATE POLICY "Authenticated users can query pool closure analysis." ON "public"."pool_closure_analysis" FOR SELECT TO "authenticated" USING (true);
+ALTER TABLE ONLY "public"."pool_operator_analysis"
+    ADD CONSTRAINT "pool_operator_analysis_pool_update_id_fkey" FOREIGN KEY ("pool_update_id") REFERENCES "public"."pool_updates"("id");
+
+
+
+CREATE POLICY "Authenticated users can query pool closures rows." ON "public"."pool_closures" FOR SELECT TO "authenticated" USING (true);
 
 
 
 CREATE POLICY "Authenticated users can query pool closures." ON "public"."pool_updates" FOR SELECT TO "authenticated" USING (true);
+
+
+
+CREATE POLICY "Authenticated users can query pool operator analysis." ON "public"."pool_operator_analysis" FOR SELECT TO "authenticated" USING (true);
 
 
 
@@ -300,7 +387,10 @@ ALTER TABLE "public"."email_deliveries" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "public"."notification_deliveries" ENABLE ROW LEVEL SECURITY;
 
 
-ALTER TABLE "public"."pool_closure_analysis" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "public"."pool_closures" ENABLE ROW LEVEL SECURITY;
+
+
+ALTER TABLE "public"."pool_operator_analysis" ENABLE ROW LEVEL SECURITY;
 
 
 ALTER TABLE "public"."pool_updates" ENABLE ROW LEVEL SECURITY;
@@ -310,6 +400,11 @@ GRANT USAGE ON SCHEMA "public" TO "postgres";
 GRANT USAGE ON SCHEMA "public" TO "anon";
 GRANT USAGE ON SCHEMA "public" TO "authenticated";
 GRANT USAGE ON SCHEMA "public" TO "service_role";
+
+
+
+REVOKE ALL ON FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") FROM PUBLIC;
+GRANT ALL ON FUNCTION "public"."ingest_pool_operator_analysis"("p_pool_update_id" "uuid", "p_model" "text", "p_closures" "jsonb") TO "service_role";
 
 
 
@@ -336,8 +431,13 @@ GRANT ALL ON TABLE "public"."notification_deliveries" TO "service_role";
 
 
 
-GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "authenticated";
-GRANT ALL ON TABLE "public"."pool_closure_analysis" TO "service_role";
+GRANT ALL ON TABLE "public"."pool_closures" TO "authenticated";
+GRANT ALL ON TABLE "public"."pool_closures" TO "service_role";
+
+
+
+GRANT ALL ON TABLE "public"."pool_operator_analysis" TO "authenticated";
+GRANT ALL ON TABLE "public"."pool_operator_analysis" TO "service_role";
 
 
 

@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict W1fIo3mdVTTG3Tn8SH3Is8j3OyleZGK7KBuThgsoQKpGshAc7tUecKxSce7amx9
+-- \restrict eNLzuwr7spV9h0apaKgNYbek3NulnAiNEu46i24nT2ZsUtumJJhTMw1yyBzoxUq
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -25,7 +25,6 @@ SET row_security = off;
 -- Data for Name: secrets; Type: TABLE DATA; Schema: vault; Owner: supabase_admin
 --
 
--- these aren't actually secret, they are commonly known local supabase setup env options
 INSERT INTO "vault"."secrets" ("id", "name", "description", "secret", "key_id", "nonce", "created_at", "updated_at") VALUES
 	('702921f4-af29-4dc5-97b9-424c62c434f9', 'project_url', '', '4mbb5f/ka6DEEE6kLuH7c8QiEGBZ4ada7om7nbgmQlDbqp+xyGM16XjBe66SquDksGA3tUMHNenh
 zcXHm8+LKZJx', NULL, '\xa5ee328db6770993d2f6a5bafa3b2050', '2026-05-30 23:59:23.818217+00', '2026-06-06 18:44:29.240885+00'),
@@ -37,6 +36,6 @@ xbFHYiyBg++N3RPiJyrSAA==', NULL, '\xe10085d05da0f3b222d728583d0e493e', '2026-06-
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict W1fIo3mdVTTG3Tn8SH3Is8j3OyleZGK7KBuThgsoQKpGshAc7tUecKxSce7amx9
+-- \unrestrict eNLzuwr7spV9h0apaKgNYbek3NulnAiNEu46i24nT2ZsUtumJJhTMw1yyBzoxUq
 
 RESET ALL;
