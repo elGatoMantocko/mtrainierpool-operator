@@ -11,7 +11,7 @@ import { DefaultOpenAPIHono } from "@/utils/hono.ts";
 
 type PoolClosure = Pick<
   Tables<{ schema: "public" }, "pool_closures">,
-  "closure_date" | "reopening_date" | "reasoning"
+  "closed_at" | "opened_at" | "reasoning"
 >;
 
 type PoolUpdate = Pick<
@@ -73,11 +73,11 @@ const route = createRoute({
 function emailData(analysis: PoolOperatorAnalysis): string {
   const blocks = analysis.closures.map((closure) => {
     const lines = [];
-    if (closure.closure_date) {
-      lines.push(`Closed since: ${formatDate(closure.closure_date)}`);
+    if (closure.closed_at) {
+      lines.push(`Closed since: ${formatDate(closure.closed_at)}`);
     }
-    if (closure.reopening_date) {
-      lines.push(`Expected to reopen: ${formatDate(closure.reopening_date)}`);
+    if (closure.opened_at) {
+      lines.push(`Expected to reopen: ${formatDate(closure.opened_at)}`);
     }
     if (closure.reasoning) lines.push(`\nDetails: ${closure.reasoning}`);
     return lines.map((line) => `<p>${line}</p>`).join("\n");
@@ -210,7 +210,7 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables & AwsVariables>()
         .select(
           `id
           , poolUpdate:pool_updates(id, message, source)
-          , closures:pool_closures(closure_date, reopening_date, reasoning)`,
+          , closures:pool_closures(closed_at, opened_at, reasoning)`,
         )
         .eq("id", analysisId)
         .maybeSingle();

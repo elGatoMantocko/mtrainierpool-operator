@@ -59,12 +59,12 @@ begin
   returning id into v_analysis_id;
 
   insert into public.pool_closures (
-    analysis_id, closure_date, reopening_date, confidence_score, reasoning, flags
+    analysis_id, closed_at, opened_at, confidence_score, reasoning, flags
   )
   select
     v_analysis_id,
-    nullif(c->>'closure_date', '')::timestamptz,
-    nullif(c->>'reopening_date', '')::timestamptz,
+    nullif(c->>'closed_at', '')::timestamptz,
+    nullif(c->>'opened_at', '')::timestamptz,
     (c->>'confidence_score')::smallint,
     c->>'reasoning',
     coalesce(
@@ -72,7 +72,7 @@ begin
       '{}'::text[]
     )
   from jsonb_array_elements(coalesce(p_closures, '[]'::jsonb)) as c
-  on conflict (analysis_id, closure_date, reopening_date)
+  on conflict (analysis_id, closed_at, opened_at)
     do update set
       confidence_score = excluded.confidence_score,
       reasoning = excluded.reasoning,
@@ -251,8 +251,8 @@ COMMENT ON TABLE "public"."pool_closure_analysis" IS 'DEPRECATED: replaced by po
 CREATE TABLE IF NOT EXISTS "public"."pool_closures" (
     "id" "uuid" DEFAULT "gen_random_uuid"() NOT NULL,
     "analysis_id" "uuid" NOT NULL,
-    "closure_date" timestamp with time zone,
-    "reopening_date" timestamp with time zone,
+    "closed_at" timestamp with time zone,
+    "opened_at" timestamp with time zone,
     "confidence_score" smallint,
     "reasoning" "text",
     "flags" "text"[] DEFAULT '{}'::"text"[] NOT NULL,
@@ -315,7 +315,7 @@ ALTER TABLE ONLY "public"."pool_closure_analysis"
 
 
 ALTER TABLE ONLY "public"."pool_closures"
-    ADD CONSTRAINT "pool_closures_analysis_id_closure_date_reopening_date_key" UNIQUE NULLS NOT DISTINCT ("analysis_id", "closure_date", "reopening_date");
+    ADD CONSTRAINT "pool_closures_analysis_id_closed_at_opened_at_key" UNIQUE NULLS NOT DISTINCT ("analysis_id", "closed_at", "opened_at");
 
 
 

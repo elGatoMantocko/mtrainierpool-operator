@@ -166,35 +166,35 @@ export type Database = {
       pool_closures: {
         Row: {
           analysis_id: string
-          closure_date: string | null
+          closed_at: string | null
           confidence_score: number | null
           created_at: string
           flags: string[]
           id: string
+          opened_at: string | null
           reasoning: string | null
-          reopening_date: string | null
           updated_at: string | null
         }
         Insert: {
           analysis_id: string
-          closure_date?: string | null
+          closed_at?: string | null
           confidence_score?: number | null
           created_at?: string
           flags?: string[]
           id?: string
+          opened_at?: string | null
           reasoning?: string | null
-          reopening_date?: string | null
           updated_at?: string | null
         }
         Update: {
           analysis_id?: string
-          closure_date?: string | null
+          closed_at?: string | null
           confidence_score?: number | null
           created_at?: string
           flags?: string[]
           id?: string
+          opened_at?: string | null
           reasoning?: string | null
-          reopening_date?: string | null
           updated_at?: string | null
         }
         Relationships: [

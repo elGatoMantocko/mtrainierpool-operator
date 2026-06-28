@@ -45,12 +45,12 @@ export const StatusUpdateSchema = {
                                 type: 'string',
                                 format: 'uuid'
                             },
-                            closureDate: {
+                            closedAt: {
                                 type: 'string',
                                 nullable: true,
                                 format: 'date-time'
                             },
-                            reopeningDate: {
+                            openedAt: {
                                 type: 'string',
                                 nullable: true,
                                 format: 'date-time'
@@ -72,8 +72,8 @@ export const StatusUpdateSchema = {
                         },
                         required: [
                             'id',
-                            'closureDate',
-                            'reopeningDate',
+                            'closedAt',
+                            'openedAt',
                             'reasoning',
                             'confidenceScore',
                             'flags'

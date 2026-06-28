@@ -18,8 +18,8 @@ export type StatusUpdate = {
         model: string | null;
         closures: Array<{
             id: string;
-            closureDate: Date | null;
-            reopeningDate: Date | null;
+            closedAt: Date | null;
+            openedAt: Date | null;
             reasoning: string | null;
             confidenceScore: number | null;
             flags: Array<string>;

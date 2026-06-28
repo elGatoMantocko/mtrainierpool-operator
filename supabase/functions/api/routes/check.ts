@@ -16,8 +16,8 @@ const NAMESPACE_POOL_CLOSURE = await uuid.v5.generate(
 
 const PoolClosure = z.object({
   id: z.uuid(),
-  closureDate: z.iso.datetime().nullable(),
-  reopeningDate: z.iso.datetime().nullable(),
+  closedAt: z.iso.datetime().nullable(),
+  openedAt: z.iso.datetime().nullable(),
   reasoning: z.string().nullable(),
   confidenceScore: z.int().nullable(),
   flags: z.array(z.string()),
@@ -146,8 +146,8 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
 
   const cleaned = structured.map((item) => ({
     reasoning: sanitize(item.reasoning),
-    closure_date: sanitize(item.closure_date),
-    reopening_date: sanitize(item.reopening_date),
+    closed_at: sanitize(item.closure_date),
+    opened_at: sanitize(item.reopening_date),
     confidence_score: item.confidence_score,
     flags: item.flags
       .map((f) => sanitize(f))
@@ -155,7 +155,7 @@ async function runPoolOperator<C extends Context<SupabaseVariables>>(
   } satisfies PoolClosureInsert)).filter((item) =>
     // only include items with closure or reopening dates
     // if both are null, the item is likely not relevant
-    item.closure_date != null || item.reopening_date != null
+    item.closed_at != null || item.opened_at != null
   );
 
   // Ingest the analysis and its closures in a single transaction (RPC) so the
@@ -213,8 +213,8 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
           updatedAt:updated_at,
           closures:pool_closures(
             id,
-            closureDate:closure_date,
-            reopeningDate:reopening_date,
+            closedAt:closed_at,
+            openedAt:opened_at,
             reasoning,
             confidenceScore:confidence_score,
             flags,

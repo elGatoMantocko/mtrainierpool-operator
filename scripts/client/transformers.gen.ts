@@ -9,11 +9,11 @@ const statusUpdateSchemaResponseTransformer = (data: any) => {
     }
     if (data.analysis) {
         data.analysis.closures = data.analysis.closures.map((item: any) => {
-            if (item.closureDate) {
-                item.closureDate = new Date(item.closureDate);
+            if (item.closedAt) {
+                item.closedAt = new Date(item.closedAt);
             }
-            if (item.reopeningDate) {
-                item.reopeningDate = new Date(item.reopeningDate);
+            if (item.openedAt) {
+                item.openedAt = new Date(item.openedAt);
             }
             return item;
         });
