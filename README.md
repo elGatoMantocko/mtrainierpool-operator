@@ -27,9 +27,9 @@ An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's w
 
 1. `GET /api/check` scrapes `mtrainierpool.com` and extracts the status banner text.
 2. Each unique message is stored in `pool_updates` (deduplicated by UUID v5 of the message).
-3. The `pool-operator` AI model analyzes the message and extracts `closure_date`, `reopening_date`, `confidence_score`, `reasoning`, and `flags` — stored in `pool_closure_analysis`.
+3. The `pool-operator` AI model analyzes the message and extracts one or more closures (`closure_date`, `reopening_date`, `confidence_score`, `reasoning`, `flags`) — ingested as a `pool_operator_analysis` row plus its `pool_closures` children in a single transaction.
 4. A `pg_cron` job triggers `/api/check` every 10 minutes during the morning PST window automatically.
-5. A Postgres trigger on `pool_closure_analysis` calls `POST /api/notify/email`, which emails registered users via AWS SES if the pool is currently closed. Deliveries are tracked idempotently in `notification_deliveries` / `email_deliveries`.
+5. A Postgres trigger on `pool_operator_analysis` calls `POST /api/notify/email` (only when the analysis produced at least one closure), which emails registered users via AWS SES. Deliveries are tracked idempotently in `notification_deliveries` / `email_deliveries`.
 6. The frontend displays the latest analysis to authenticated users. On load (and when the tab regains focus) the page asks its service worker to fetch the latest analysis and show a local notification if the pool is closed.
 
 ## Architecture & data flow
@@ -64,13 +64,15 @@ flowchart TD
     subgraph db["Supabase Postgres"]
         authusers[("auth.users")]
         pool_updates[("pool_updates")]
-        analysis[("pool_closure_analysis")]
+        analysis[("pool_operator_analysis")]
+        closures[("pool_closures")]
         deliveries[("notification_deliveries")]
         emails[("email_deliveries")]
-        trigger{{"trigger: notify_pool_closure_email<br/>AFTER INSERT → net.http_post"}}
+        trigger{{"constraint trigger: notify_pool_closure_email<br/>AFTER INSERT (deferred, at COMMIT)<br/>if closures exist → net.http_post"}}
         vault[("Vault: project_url +<br/>service_role_key")]
 
         analysis ===|"FK pool_update_id → id (1:1)"| pool_updates
+        closures ===|"FK analysis_id → id"| analysis
         emails ===|"FK delivery_id → id (1:1)"| deliveries
         deliveries ===|"FK user_id → id"| authusers
         deliveries -.->|"idempotency_key = analysis.id<br/>(soft link; UNIQUE w/ user_id)"| analysis
@@ -93,11 +95,12 @@ flowchart TD
     ai -->|inference request| ollama
     ollama -->|structured JSON| ai
     ai -->|response| operator
-    operator -->|upsert on pool_update_id| analysis
+    operator -->|"ingest_pool_operator_analysis RPC<br/>(analysis + closures, 1 txn)"| analysis
+    operator -->|closures| closures
 
     analysis --> trigger
     vault -.-> trigger
-    trigger -->|poolUpdateId| notify
+    trigger -->|analysisId| notify
     notify -->|listUsers → recipient emails| authusers
     notify -.-> sendEmails
     sendEmails -->|"status: pending → sending → sent / failed"| deliveries
@@ -105,8 +108,8 @@ flowchart TD
     sendEmails -->|audit row| emails
     ses --> users
 
-    ui -->|read latest analysis| analysis
-    sw -->|REST: latest pool_closure_analysis| analysis
+    ui -->|read latest analysis + closures| analysis
+    sw -->|REST: latest pool_operator_analysis| analysis
     sw --> localnotif
 ```
 

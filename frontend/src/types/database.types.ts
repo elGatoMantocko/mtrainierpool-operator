@@ -119,50 +119,6 @@ export type Database = {
         }
         Relationships: []
       }
-      pool_closure_analysis: {
-        Row: {
-          closure_date: string | null
-          confidence_score: number | null
-          created_at: string
-          flags: string[]
-          id: string
-          pool_update_id: string
-          reasoning: string | null
-          reopening_date: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          closure_date?: string | null
-          confidence_score?: number | null
-          created_at?: string
-          flags?: string[]
-          id?: string
-          pool_update_id: string
-          reasoning?: string | null
-          reopening_date?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          closure_date?: string | null
-          confidence_score?: number | null
-          created_at?: string
-          flags?: string[]
-          id?: string
-          pool_update_id?: string
-          reasoning?: string | null
-          reopening_date?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "pool_closure_analysis_pool_update_id_fkey"
-            columns: ["pool_update_id"]
-            isOneToOne: true
-            referencedRelation: "pool_updates"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       pool_closures: {
         Row: {
           analysis_id: string
