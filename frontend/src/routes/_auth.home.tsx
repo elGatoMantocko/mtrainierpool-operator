@@ -2,7 +2,7 @@ import { Alert, Container, Divider, Stack } from '@mantine/core';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { useQuery } from '@tanstack/react-query';
-import { poolClosureAnalysisOptions } from '../api/poolClosureAnalysis.tsx';
+import { poolOperatorAnalysisOptions } from '../api/poolOperatorAnalysis.tsx';
 import { LatestAnalysis } from '../components/LatestAnalysis.tsx';
 import { Welcome } from '../components/Welcome/Welcome.tsx';
 
@@ -12,7 +12,7 @@ export const Route = createFileRoute('/_auth/home')({
 
 function RouteComponent() {
   const { auth } = Route.useRouteContext();
-  const { data, isLoading, error } = useQuery(poolClosureAnalysisOptions);
+  const { data, isLoading, error } = useQuery(poolOperatorAnalysisOptions);
   return (
     <Container>
       <Stack>

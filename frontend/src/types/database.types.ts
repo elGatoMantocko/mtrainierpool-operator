@@ -163,6 +163,82 @@ export type Database = {
           },
         ]
       }
+      pool_closures: {
+        Row: {
+          analysis_id: string
+          closed_at: string | null
+          confidence_score: number | null
+          created_at: string
+          flags: string[]
+          id: string
+          opened_at: string | null
+          reasoning: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          analysis_id: string
+          closed_at?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          flags?: string[]
+          id?: string
+          opened_at?: string | null
+          reasoning?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          analysis_id?: string
+          closed_at?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          flags?: string[]
+          id?: string
+          opened_at?: string | null
+          reasoning?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pool_closures_analysis_id_fkey"
+            columns: ["analysis_id"]
+            isOneToOne: false
+            referencedRelation: "pool_operator_analysis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pool_operator_analysis: {
+        Row: {
+          created_at: string
+          id: string
+          model: string | null
+          pool_update_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          model?: string | null
+          pool_update_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          model?: string | null
+          pool_update_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pool_operator_analysis_pool_update_id_fkey"
+            columns: ["pool_update_id"]
+            isOneToOne: true
+            referencedRelation: "pool_updates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pool_updates: {
         Row: {
           created_at: string
@@ -195,7 +271,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      ingest_pool_operator_analysis: {
+        Args: { p_closures: Json; p_model: string; p_pool_update_id: string }
+        Returns: string
+      }
     }
     Enums: {
       notification_channel: "email" | "sms"

@@ -97,8 +97,8 @@ async function checkForNewAnalysis(): Promise<void> {
   const session = await getSession();
   if (!session) return;
 
-  const url = new URL(`${session.supabaseUrl}/rest/v1/pool_closure_analysis`);
-  url.searchParams.set('select', 'id,closure_date,reopening_date');
+  const url = new URL(`${session.supabaseUrl}/rest/v1/pool_operator_analysis`);
+  url.searchParams.set('select', 'id,pool_closures(id)');
   url.searchParams.set('order', 'created_at.desc');
   url.searchParams.set('limit', '1');
 
@@ -126,8 +126,7 @@ async function checkForNewAnalysis(): Promise<void> {
 
   const results = (await response.json()) as Array<{
     id: string;
-    closure_date: string | null;
-    reopening_date: string | null;
+    pool_closures: Array<{ id: string }>;
   }>;
 
   const latest = results[0];
@@ -138,19 +137,12 @@ async function checkForNewAnalysis(): Promise<void> {
 
   await setLastSeenId(latest.id);
 
-  if (!latest.closure_date && !latest.reopening_date) return;
-
-  let body: string;
-  if (latest.closure_date && latest.reopening_date) {
-    body = `Pool closed until ${latest.reopening_date}.`;
-  } else if (latest.closure_date) {
-    body = 'Pool is currently closed.';
-  } else {
-    body = `Pool reopens on ${latest.reopening_date}.`;
-  }
+  // Any recorded closure means there's an upcoming or ongoing closure. We don't
+  // reason about the specific dates here — just surface that one exists.
+  if (latest.pool_closures.length === 0) return;
 
   await self.registration.showNotification('Mt. Rainier Pool Update', {
-    body,
+    body: 'There is an upcoming or ongoing pool closure.',
     icon: '/pwa-192x192.png',
     badge: '/pwa-64x64.png',
     tag: SYNC_TAG,
