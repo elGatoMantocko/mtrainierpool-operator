@@ -79,7 +79,7 @@ const getPromptCmd = new Command()
   .argument("<bannerText:string>", "The banner text to use in the prompt.")
   .action(async (_, bannerText) => {
     const { getPrompt } = await import(
-      "../supabase/functions/api/routes/check.ts"
+      "../supabase/functions/api/utils/operator.ts"
     );
     console.log(getPrompt(bannerText));
   });
