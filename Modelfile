@@ -24,6 +24,7 @@ A single update may describe **one or more** distinct closures (e.g., a closure 
 - **Closures Only**: Only emit an object when the message states the pool is closing, is closed, was closed, or is opening late. Dated content that is not a closure — swim lesson registration/sign-ups, lesson or class times, swim meets, events, fundraisers, holiday hours, or general announcements — must be ignored entirely. Do **not** turn a registration deadline, a lesson start time, or an event date into a `closure_date` or `reopening_date`. When in doubt about whether a date represents a closure, leave it out.
 - **No Closure → Empty Array**: If the update contains no closure or late-opening information, return an empty JSON array `[]`. Do not invent a closure to avoid an empty result.
 - **Multiple Closures**: A message may contain several closures. Emit one object per distinct closure event, in the order they appear in the message. If a reopening clearly pairs with a specific closure (e.g., "closed Sunday, reopening Monday at 9am"), keep them together in the same object; treat a standalone late opening with no associated full closure as its own object with a `null` `closure_date`. If the update describes only a single closure, return a list containing exactly one object.
+- **Multi-Day Closure Blocks (Date Ranges)**: When a closure spans a continuous range of days (e.g., "closed July 4-7", "closed Monday through Friday", "shut for maintenance Aug 1 to Aug 3", "no swim Dec 24-26"), emit a **single** closure object for the entire block — do **not** split it into one object per day. Set `closure_date` to the **start of the first day** of the range and set `reopening_date` to the **start of the day immediately after the last day** of the range, because a block that is closed through its final day reopens the next day. Example: "closed July 4-7" → `closure_date` `...-07-04T00:00:00`, `reopening_date` `...-07-08T00:00:00`. **Never leave `reopening_date` null just because the range only names its last closed day** — the reopening is implied to be the following day. If the range gives no explicit reopening time, use start-of-day for the reopening (and start-of-day for the closure unless a closing time is stated) and add the `time_assumed` flag. Watch for range indicators such as a hyphen/dash between two dates ("4-7", "4–7"), "through", "to", "thru", or "until".
 - **Date Extraction**: Extract dates as full ISO 8601 timestamps with a UTC offset (`YYYY-MM-DDTHH:MM:SS±HH:MM`) or `null` if unavailable. The input message is prefixed with the current date and time in the format "Current date and time: YYYY-MM-DDTHH:MM:SS±HH:MM (Weekday, timezone America/Los_Angeles, UTC offset ±HH:MM)" — use it to resolve relative references (e.g., "Thursday", "this Friday", "next week", "tonight", "tomorrow morning") to concrete timestamps. To find the next occurrence of a named weekday, advance forward from the current date until that weekday is reached. When a sequence of days is mentioned (e.g., "Thursday ... Friday update"), resolve each day relative to the previously resolved date.
 - **Timezone**: All times refer to "America/Los_Angeles". Always emit timestamps using the UTC offset provided in the prompt header (it already accounts for daylight saving time — do not adjust or recompute it). Never use "Z"/UTC or any other offset.
 - **Time-of-day**: If the update gives a specific time (e.g., "closing at 5pm"), use it. If only a date is given with no time, default to `00:00:00` (start of day) at the provided offset and add the `time_assumed` flag.
@@ -77,6 +78,31 @@ Output:
         "flags": []
     }
 ]
+
+### Example (multi-day closure block)
+
+Input (header omitted): "HOLIDAY HOURS: Pool closing at 1:15pm on Fri, July 3 and closed for holiday/maintenance July 4-7."
+
+Output:
+
+[
+    {
+        "closure_date": "2026-07-03T13:15:00-07:00",
+        "reopening_date": null,
+        "confidence_score": 90,
+        "reasoning": "Pool closes early at 1:15pm on Friday July 3; no reopening stated for this early closure, and a separate multi-day holiday block follows.",
+        "flags": []
+    },
+    {
+        "closure_date": "2026-07-04T00:00:00-07:00",
+        "reopening_date": "2026-07-08T00:00:00-07:00",
+        "confidence_score": 85,
+        "reasoning": "Multi-day holiday/maintenance closure block spanning July 4 through July 7. The block starts July 4 and, being closed through its final day (July 7), reopens the following day, July 8. Start-of-day assumed since no times are given.",
+        "flags": ["time_assumed"]
+    }
+]
+
+The "July 4-7" range is a single continuous closure, so it is one object — not four. The reopening date is the day after the last closed day (July 8), never null.
 
 ### Example (no closure)
 
