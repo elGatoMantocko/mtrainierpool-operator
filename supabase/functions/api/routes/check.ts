@@ -79,10 +79,11 @@ export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
     const res = await fetch("https://mtrainierpool.com");
     const text = await res.text();
     const doc = new DOMParser().parseFromString(text, "text/html");
-    const updatesBannerParagraph = doc.querySelector("#updates_banner p");
+    const updateMessages = new Set([
+      ...doc.querySelectorAll("#updates_banner p"),
+    ].map((el) => el.textContent.trim()));
 
-    // get the text from the banner and print it
-    const bannerText = updatesBannerParagraph?.textContent.trim();
+    const bannerText = [...updateMessages].join("\n\n");
 
     if (bannerText == null) {
       return c.body(null, 204);
