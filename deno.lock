@@ -26,10 +26,10 @@
     "jsr:@std/testing@^1.0.19": "1.0.19",
     "jsr:@std/text@^1.0.19": "1.0.19",
     "jsr:@std/uuid@^1.1.1": "1.1.1",
-    "jsr:@supabase/functions-js@^2.108.2": "2.108.2",
-    "jsr:@supabase/supabase-js@^2.108.2": "2.108.2",
-    "npm:@aws-sdk/client-ses@^3.1063.0": "3.1075.0",
-    "npm:@aws-sdk/client-ses@^3.1075.0": "3.1075.0",
+    "jsr:@supabase/functions-js@^2.110.0": "2.110.0",
+    "jsr:@supabase/supabase-js@^2.110.0": "2.110.0",
+    "npm:@aws-sdk/client-ses@^3.1063.0": "3.1077.0",
+    "npm:@aws-sdk/client-ses@^3.1077.0": "3.1077.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@6.0.3",
     "npm:@hey-api/openapi-ts@~0.98.1": "0.98.2_typescript@6.0.3",
     "npm:@hono/zod-openapi@^1.4.0": "1.4.0_hono@4.12.27_zod@4.4.3",
@@ -40,43 +40,42 @@
     "npm:@jsr/std__expect@^1.0.19": "1.0.19",
     "npm:@jsr/std__testing@^1.0.19": "1.0.19",
     "npm:@jsr/std__uuid@^1.1.1": "1.1.1",
-    "npm:@jsr/supabase__functions-js@^2.108.2": "2.108.2_zod@4.4.3",
-    "npm:@jsr/supabase__supabase-js@^2.108.2": "2.108.2",
-    "npm:@mantine/core@^9.3.1": "9.3.1_@mantine+hooks@9.3.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
-    "npm:@mantine/dates@^9.3.1": "9.3.1_@mantine+core@9.3.1__@mantine+hooks@9.3.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.3.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
-    "npm:@mantine/form@^9.3.1": "9.3.1_react@19.2.7",
-    "npm:@mantine/hooks@^9.3.1": "9.3.1_react@19.2.7",
-    "npm:@supabase/auth-js@2.108.2": "2.108.2",
-    "npm:@supabase/functions-js@2.108.2": "2.108.2",
-    "npm:@supabase/postgrest-js@2.108.2": "2.108.2",
-    "npm:@supabase/realtime-js@2.108.2": "2.108.2",
-    "npm:@supabase/server@^1.1.0": "1.2.0_@supabase+supabase-js@2.108.2_hono@4.12.27",
-    "npm:@supabase/server@^1.2.0": "1.2.0_@supabase+supabase-js@2.108.2_hono@4.12.27",
-    "npm:@supabase/storage-js@2.108.2": "2.108.2",
-    "npm:@supabase/supabase-js@^2.108.2": "2.108.2",
-    "npm:@tanstack/react-query-devtools@^5.101.1": "5.101.1_@tanstack+react-query@5.101.1__react@19.2.7_react@19.2.7",
-    "npm:@tanstack/react-query@^5.101.1": "5.101.1_react@19.2.7",
+    "npm:@jsr/supabase__functions-js@^2.110.0": "2.110.0_zod@4.4.3",
+    "npm:@jsr/supabase__supabase-js@^2.110.0": "2.110.0",
+    "npm:@mantine/core@^9.4.1": "9.4.1_@mantine+hooks@9.4.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
+    "npm:@mantine/dates@^9.4.1": "9.4.1_@mantine+core@9.4.1__@mantine+hooks@9.4.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.4.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
+    "npm:@mantine/form@^9.4.1": "9.4.1_react@19.2.7",
+    "npm:@mantine/hooks@^9.4.1": "9.4.1_react@19.2.7",
+    "npm:@supabase/auth-js@2.110.0": "2.110.0",
+    "npm:@supabase/functions-js@2.110.0": "2.110.0",
+    "npm:@supabase/postgrest-js@2.110.0": "2.110.0",
+    "npm:@supabase/realtime-js@2.110.0": "2.110.0",
+    "npm:@supabase/server@^1.2.0": "1.2.0_@supabase+supabase-js@2.110.0_hono@4.12.27",
+    "npm:@supabase/storage-js@2.110.0": "2.110.0",
+    "npm:@supabase/supabase-js@^2.110.0": "2.110.0",
+    "npm:@tanstack/react-query-devtools@^5.101.2": "5.101.2_@tanstack+react-query@5.101.2__react@19.2.7_react@19.2.7",
+    "npm:@tanstack/react-query@^5.101.2": "5.101.2_react@19.2.7",
     "npm:@tanstack/react-router-devtools@^1.167.0": "1.167.0_@tanstack+react-router@1.170.16__react@19.2.7__react-dom@19.2.7___react@19.2.7_@tanstack+router-core@1.171.13_react@19.2.7_react-dom@19.2.7__react@19.2.7",
     "npm:@tanstack/react-router@^1.170.16": "1.170.16_react@19.2.7_react-dom@19.2.7__react@19.2.7",
     "npm:@tanstack/router-core@^1.171.13": "1.171.13",
-    "npm:@tanstack/router-plugin@^1.168.18": "1.168.18_@tanstack+react-router@1.170.16__react@19.2.7__react-dom@19.2.7___react@19.2.7_vite@8.1.0_react@19.2.7_react-dom@19.2.7__react@19.2.7",
+    "npm:@tanstack/router-plugin@^1.168.18": "1.168.18_@tanstack+react-router@1.170.16__react@19.2.7__react-dom@19.2.7___react@19.2.7_vite@8.1.2",
     "npm:@types/react-dom@^19.2.3": "19.2.3_@types+react@19.2.17",
     "npm:@types/react@^19.2.17": "19.2.17",
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
-    "npm:@vitejs/plugin-react@^6.0.3": "6.0.3_vite@8.1.0",
+    "npm:@vitejs/plugin-react@^6.0.3": "6.0.3_vite@8.1.2",
     "npm:dayjs@^1.11.21": "1.11.21",
     "npm:hono@^4.12.23": "4.12.27",
     "npm:hono@^4.12.27": "4.12.27",
-    "npm:lucide-react@^1.21.0": "1.21.0_react@19.2.7",
+    "npm:lucide-react@^1.23.0": "1.23.0_react@19.2.7",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
-    "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.15",
-    "npm:postcss-simple-vars@^7.0.1": "7.0.1_postcss@8.5.15",
-    "npm:postcss@^8.5.15": "8.5.15",
+    "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.16",
+    "npm:postcss-simple-vars@^7.0.1": "7.0.1_postcss@8.5.16",
+    "npm:postcss@^8.5.16": "8.5.16",
     "npm:react-dom@^19.2.7": "19.2.7_react@19.2.7",
     "npm:react@^19.2.7": "19.2.7",
     "npm:typescript@^6.0.3": "6.0.3",
-    "npm:vite-plugin-pwa@^1.3.0": "1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.1.0",
-    "npm:vite@^8.1.0": "8.1.0",
+    "npm:vite-plugin-pwa@^1.3.0": "1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.1.2",
+    "npm:vite@^8.1.2": "8.1.2",
     "npm:zod@^4.4.3": "4.4.3"
   },
   "jsr": {
@@ -195,17 +194,17 @@
     "@supabase/functions-js@2.89.0": {
       "integrity": "9b7c4224a25fe62c27a35b49be9a52d134b45238ccbb2efeb21529227c7351a5"
     },
-    "@supabase/functions-js@2.108.2": {
-      "integrity": "39665d68e1cb721b0714ed1f55c075fba16f8d992672b51458660b3c1ec77c8f",
+    "@supabase/functions-js@2.110.0": {
+      "integrity": "e7a3ce2b6fcb91462079634655b872980e3596971bc07e77cf8ccc5a6fc09803",
       "dependencies": [
         "npm:openai"
       ]
     },
-    "@supabase/supabase-js@2.108.2": {
-      "integrity": "db603b534b1939a216ef004fe9fdd0c72bb4ba097fb04be23ea76cb8c70272aa",
+    "@supabase/supabase-js@2.110.0": {
+      "integrity": "6eadc04222c1d17bb35ab8f2127662e8e3f4efafff6983ac2cc9498cce6c01e0",
       "dependencies": [
         "npm:@supabase/auth-js",
-        "npm:@supabase/functions-js@2.108.2",
+        "npm:@supabase/functions-js@2.110.0",
         "npm:@supabase/postgrest-js",
         "npm:@supabase/realtime-js",
         "npm:@supabase/storage-js"
@@ -228,53 +227,9 @@
         "zod"
       ]
     },
-    "@aws-crypto/crc32@5.2.0": {
-      "integrity": "sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg==",
+    "@aws-sdk/client-ses@3.1077.0": {
+      "integrity": "sha512-lXewbg8zGjBYWk5zwJ4KS6l3j0P5Msc8QZiNhrgAli/BJUXdPaBLQfQseNnHDur/FSysdCR+2HD66wdnMQND7Q==",
       "dependencies": [
-        "@aws-crypto/util",
-        "@aws-sdk/types",
-        "tslib"
-      ]
-    },
-    "@aws-crypto/sha256-browser@5.2.0": {
-      "integrity": "sha512-AXfN/lGotSQwu6HNcEsIASo7kWXZ5HYWvfOmSNKDsEqC4OashTp8alTmaz+F7TC2L083SFv5RdB+qU3Vs1kZqw==",
-      "dependencies": [
-        "@aws-crypto/sha256-js",
-        "@aws-crypto/supports-web-crypto",
-        "@aws-crypto/util",
-        "@aws-sdk/types",
-        "@aws-sdk/util-locate-window",
-        "@smithy/util-utf8",
-        "tslib"
-      ]
-    },
-    "@aws-crypto/sha256-js@5.2.0": {
-      "integrity": "sha512-FFQQyu7edu4ufvIZ+OadFpHHOt+eSTBaYaki44c+akjg7qZg9oOQeLlk77F6tSYqjDAFClrHJk9tMf0HdVyOvA==",
-      "dependencies": [
-        "@aws-crypto/util",
-        "@aws-sdk/types",
-        "tslib"
-      ]
-    },
-    "@aws-crypto/supports-web-crypto@5.2.0": {
-      "integrity": "sha512-iAvUotm021kM33eCdNfwIN//F77/IADDSs58i+MDaOqFrVjZo9bAal0NK7HurRuWLLpF1iLX7gbWrjHjeo+YFg==",
-      "dependencies": [
-        "tslib"
-      ]
-    },
-    "@aws-crypto/util@5.2.0": {
-      "integrity": "sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==",
-      "dependencies": [
-        "@aws-sdk/types",
-        "@smithy/util-utf8",
-        "tslib"
-      ]
-    },
-    "@aws-sdk/client-ses@3.1075.0": {
-      "integrity": "sha512-uD57mGUDW1JkMYPwHLl23n6/CGemAMRQnk0oEI1SoQqF9VQzo4i0hGx/wfJG3dwmKUz3MupFmEpkFh0henu96Q==",
-      "dependencies": [
-        "@aws-crypto/sha256-browser",
-        "@aws-crypto/sha256-js",
         "@aws-sdk/core",
         "@aws-sdk/credential-provider-node",
         "@aws-sdk/types",
@@ -285,8 +240,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/core@3.974.23": {
-      "integrity": "sha512-MiWR/uWjxjFXGzrE0Ghc5lWxUxzHsUWFhV+OX7M4cR9SrmrnZs6TXavnCWnzzdwJeFri34xQo81rvGNzK3c4BQ==",
+    "@aws-sdk/core@3.974.25": {
+      "integrity": "sha512-fJFkx6u6wCqGMV/v6EAxiwa2UzEukbvr1hNPv4MrD3yj4IFz011jZg42/eSTOP/u5kJ0tlILqEjCWtT8GiKZvA==",
       "dependencies": [
         "@aws-sdk/types",
         "@aws-sdk/xml-builder",
@@ -298,8 +253,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-env@3.972.49": {
-      "integrity": "sha512-liB3yQNHCM9k/gu/w36XHMKPluT7HTlnGUhRbBGSISDQkcr/Sy1zsZabiuvQj8WG5yW573u9RehrBvvnIQ9OEQ==",
+    "@aws-sdk/credential-provider-env@3.972.51": {
+      "integrity": "sha512-Xo+/zf5k5pZdo53X8aVXN4MJGfU/M1P7yMM/GbNY/x9fyRZGEzjhKqW38GA0FSQQ9TYKs+bfPyz5ja4bi6pjTQ==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -308,8 +263,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-http@3.972.51": {
-      "integrity": "sha512-XET0H2oofciJ5lMRWNIvRjAP7Q3wv2XT+JtJJEdhPWUMwe3TvQ9qcxonpu7vXmNngncvFpi4E2It+Tamas/naA==",
+    "@aws-sdk/credential-provider-http@3.972.53": {
+      "integrity": "sha512-7E9oFUcf9YWe+ttGiWhe/cCSI+pswwelzgQMoKXgPJi1AIfS27TK6et5ZULqEqHu30zbN+jh1RqlwcXqY/aXyg==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -320,8 +275,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-ini@3.972.56": {
-      "integrity": "sha512-IAmc61hbgQiHht9U3x0tnRwz0lzdwOwD/i9voRgdJrKamF+JtmrBOsW9GwB7mfFonNWOWL4qARWYrF8veEMe3w==",
+    "@aws-sdk/credential-provider-ini@3.972.58": {
+      "integrity": "sha512-MPr0hD8pyDGfF3dWXvFOILhcKTB9ptqJOJK9JEuDQzpc2HgKisY16eR7IrKUXxSbz8LZj+LHz/CS8Y5G1ai7yw==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/credential-provider-env",
@@ -338,8 +293,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-login@3.972.55": {
-      "integrity": "sha512-hBBkANo3cDn+h2qxxzER4a+J8JCO9o9Z/YYmU7iky6AcaarX5RRdRcHNC6SLdwY0vAXQygn6soUbDqPn3GghaA==",
+    "@aws-sdk/credential-provider-login@3.972.57": {
+      "integrity": "sha512-kPWc/SCrl9agKeywxKwPEoQHanWag0LcNQrcZpEQpjNifkxq6tQENhgrrS9al317CF6yytyihlX+FhPHlk0QjA==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -349,8 +304,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-node@3.972.58": {
-      "integrity": "sha512-OyCLVmSI7pZO8hxwNVX6pXhTVlJqRBTp+ijdEfJSUj0RyjHnF602OfAarOzGq6wkGodeFkYBt8MmJ6A6ycRgWw==",
+    "@aws-sdk/credential-provider-node@3.972.60": {
+      "integrity": "sha512-hE2hIBJQjCDRx8TbSqpVQ+/o2mIrJZQZbQ3LlwE2bJf7z47x5GmhcvGwZPqJH7Oq//SzTXEBGSZ4qSpK3yPbhw==",
       "dependencies": [
         "@aws-sdk/credential-provider-env",
         "@aws-sdk/credential-provider-http",
@@ -365,8 +320,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-process@3.972.49": {
-      "integrity": "sha512-C8h36lBuC/RnBSsjlO+dn6xZm3KbAl5vpJaVPAfQnMmz2/OISmKOc8XZcqMQgO2ADwBYNRMM6Kf3vz9G/TulMQ==",
+    "@aws-sdk/credential-provider-process@3.972.51": {
+      "integrity": "sha512-081dD2RlnmY+G05v6E73KfACvDjPjnttrLjGHE2SSglbID25UcuijbWpL4g+XR5T2Kl4oIJoVBXi64s+2f009Q==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -375,8 +330,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-sso@3.972.55": {
-      "integrity": "sha512-1FkOz74Ea5QGS9jtIoXp55T/IkSS3spv+nLTT07fRY/+T5xmEOqaYBVIaEmX4zTNvbV6g2lrtlaVKWEoNyJt3w==",
+    "@aws-sdk/credential-provider-sso@3.972.57": {
+      "integrity": "sha512-dC7ZyX3EHKHLOeVUEDzzGvk0L1s6N06YDrau7P0rGXL/j1cO+DzN2w1x9vcEh7zljVCR3019f5mi1Th+GGTURw==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -387,8 +342,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-web-identity@3.972.55": {
-      "integrity": "sha512-g2BoECD1q01kTPByi56+VLVvdWDzMkKIcr77qixpqH0okw2t0U5CoPv+6S8v/D1Y2Wa6QKKtn6XAtDzP+Kfpvg==",
+    "@aws-sdk/credential-provider-web-identity@3.972.57": {
+      "integrity": "sha512-HtWM3FV2o7NJFJSUqFLBlxmV9RxQRHpzCvQaP1n1Qo4CxQSvwpJ8ERWHiLqXMFDgDXyELt+EZNFcpG6XQRcJbQ==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -398,11 +353,9 @@
         "tslib"
       ]
     },
-    "@aws-sdk/nested-clients@3.997.23": {
-      "integrity": "sha512-gO93ZPsI2bxeFZD42f1/qjDw6FAZkNZcKRO94LIiT03fzOmcJ9e/tunxjVjA1Rl69ClmVJzz8H3G9CdKef10PA==",
+    "@aws-sdk/nested-clients@3.997.25": {
+      "integrity": "sha512-VpRQ3wR6l+fwRHV5veJL2ehtyQFrGyH/2CJG9DVtb8H3xyqqnZWSTSrq/CJJ7DvDlDgrPRiW2SkYA8pN6VWCFQ==",
       "dependencies": [
-        "@aws-crypto/sha256-browser",
-        "@aws-crypto/sha256-js",
         "@aws-sdk/core",
         "@aws-sdk/signature-v4-multi-region",
         "@aws-sdk/types",
@@ -413,8 +366,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/signature-v4-multi-region@3.996.35": {
-      "integrity": "sha512-6L/VWs+Wch2stHemCGTmUNqKLMzURxQDK5boNG3Jn3kAOp71meDUuS5sbObpEvFxHDq0uWeSLFDNSYsjNt+Dlg==",
+    "@aws-sdk/signature-v4-multi-region@3.996.37": {
+      "integrity": "sha512-u8qd064XsHzM0Mk+yH4IPKn/ZC9rdniEKs+neBHNlsPZirw3rcLvmrH4ImoKC4yF7A0I/MbcC3dseARnJLiAhg==",
       "dependencies": [
         "@aws-sdk/types",
         "@smithy/signature-v4",
@@ -422,8 +375,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/token-providers@3.1074.0": {
-      "integrity": "sha512-pv80IzgGW4RnXWtft692chZOM9i6PhebVsLCcnaM4dBEPZva2fE6FXAHs76G7Rc7s3yGyX/68G0nZMrUy+Vmpg==",
+    "@aws-sdk/token-providers@3.1077.0": {
+      "integrity": "sha512-sRUkfZ3fpOco95jZHsQUQiXvuIVLvCmWVclFg6dRFDyfsYs6Pdr/NuZ2+yJxeHN+6WAfDh2aZ8nlZntnvuhZUQ==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -433,21 +386,15 @@
         "tslib"
       ]
     },
-    "@aws-sdk/types@3.973.13": {
-      "integrity": "sha512-pEHZqRkAlHfnfAU9tK+WpKv/gBNjGJrHMgA3A0iYRGyswBS2t0pfez+lWlwktb3Bqa0ovh7w/QJTFwp3fDxLNg==",
+    "@aws-sdk/types@3.973.14": {
+      "integrity": "sha512-vH4pEu9YBEwr67yT+GVcmKX0GzfIrIYUn+MF5vXg9OspouVnAekuyVyawFvZHEK7WlcwVDwNrqI3ZBDUAiyu9A==",
       "dependencies": [
         "@smithy/types",
         "tslib"
       ]
     },
-    "@aws-sdk/util-locate-window@3.965.8": {
-      "integrity": "sha512-uUbMs1cBZPafD0ohUj6EwNf0fPZ534NvBxHox4hjX+0Rxq5paSYUem7+hi833pYrzrcnBATKIYpR02MDXT5M9g==",
-      "dependencies": [
-        "tslib"
-      ]
-    },
-    "@aws-sdk/xml-builder@3.972.31": {
-      "integrity": "sha512-SzE4Pgyl+hDF+BuyuzxUSpwnuUu9lJuO1YGgteG89/4Qv0+2IQiVQqdbPV32IozLvXWQChPQcdkk/sKvb1QHiQ==",
+    "@aws-sdk/xml-builder@3.972.32": {
+      "integrity": "sha512-2loKuOMRFDg1nwdni5AtJ9S5juVbRNPNsPC7tWTfkHyycPwACMhxepspUHi8GhvfNlL2cQo3sPMod1uib+KZ0w==",
       "dependencies": [
         "@smithy/types",
         "tslib"
@@ -1611,15 +1558,15 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__uuid/1.1.1.tgz"
     },
-    "@jsr/supabase__functions-js@2.108.2_zod@4.4.3": {
-      "integrity": "sha512-XOf0A+9VoGS5j4SSLRAG7DRnfsmyOW+wtC6UJQ+psH39HaI3jEyQC0QvkpYEGAk2sz+CtDEbZDxnzrC6TLIW1Q==",
+    "@jsr/supabase__functions-js@2.110.0_zod@4.4.3": {
+      "integrity": "sha512-RAzW16Ibyw6DJFmvq+KlnKNpH4pkDG5AmN2SlAQwub2yK9XN1hcfoGAEFEoNN5shYrmJqeNM80YNCj67WHPMPQ==",
       "dependencies": [
         "openai"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__functions-js/2.108.2.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__functions-js/2.110.0.tgz"
     },
-    "@jsr/supabase__supabase-js@2.108.2": {
-      "integrity": "sha512-osbzVZy1W7qpk5l1XP+sGpgtHRQAEtspwysdzAsWlTmi2jGUxVaFRsCpebXRdKem+8IzKZgIoYReRzzZb9BJyw==",
+    "@jsr/supabase__supabase-js@2.110.0": {
+      "integrity": "sha512-G89H4WLjrw7SkpRfG/SBp1aIFspmD7/xASVh3SlGfr1FdD1vMpcukXQdZH04K8pkjDjYuAg5tifZQS4zTjEkvw==",
       "dependencies": [
         "@supabase/auth-js",
         "@supabase/functions-js",
@@ -1627,13 +1574,13 @@
         "@supabase/realtime-js",
         "@supabase/storage-js"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__supabase-js/2.108.2.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/supabase__supabase-js/2.110.0.tgz"
     },
     "@lukeed/ms@2.0.2": {
       "integrity": "sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA=="
     },
-    "@mantine/core@9.3.1_@mantine+hooks@9.3.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
-      "integrity": "sha512-4rBoHpggSohayE+Os7lKdbsHTw7m/uZRKYjk9DN6cKBhQIjdiULdcG+b4b5CMVZSqZDHPgT70uWGI7yqkn8Ufw==",
+    "@mantine/core@9.4.1_@mantine+hooks@9.4.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
+      "integrity": "sha512-lZWEICrum4+vwKxzh/mk4RB1N6BqZ0Cshdl6lhm7OYLiQzmOaxKtOgyaWz+vr65G8mqTXjalZalB+wmMVBYK2Q==",
       "dependencies": [
         "@floating-ui/react",
         "@mantine/hooks",
@@ -1645,8 +1592,8 @@
         "type-fest@5.7.0"
       ]
     },
-    "@mantine/dates@9.3.1_@mantine+core@9.3.1__@mantine+hooks@9.3.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.3.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
-      "integrity": "sha512-Nh4XQyyV1AM0XRnUJugb1kNfCm++nkticsO8aroKmFPZ7cpGV7cjdL+4MJNPu1atS1EUePXl2VLLpKnrclpqOQ==",
+    "@mantine/dates@9.4.1_@mantine+core@9.4.1__@mantine+hooks@9.4.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.4.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
+      "integrity": "sha512-DoQDvQMAlIw6ohwhUwYuTYQevG9y5AQmYWkhOHUuavABFEZmtBglkwziBoATvxT09I/6I56UMPhproXcS6XUfg==",
       "dependencies": [
         "@mantine/core",
         "@mantine/hooks",
@@ -1656,8 +1603,8 @@
         "react-dom"
       ]
     },
-    "@mantine/form@9.3.1_react@19.2.7": {
-      "integrity": "sha512-dGJPcYGkfDnAPKHcnzgf2mSlnjwymaOyROiTEJNbbjE3OVoWbPaw8HwEKav1wATdxNYR9Bw1GHtbfbGTsm1Jww==",
+    "@mantine/form@9.4.1_react@19.2.7": {
+      "integrity": "sha512-e4tqC/D8ii7maPySWIWY306MNljPRprHPhu0/jaZrX7sRyJy+C8V9aU+ZFKYliM1CeiH1UX88+q4hWFUWVEdQw==",
       "dependencies": [
         "@standard-schema/spec",
         "fast-deep-equal",
@@ -1665,8 +1612,8 @@
         "react"
       ]
     },
-    "@mantine/hooks@9.3.1_react@19.2.7": {
-      "integrity": "sha512-zAOlxV59j5CDgAnExN+ypaR6dVW1vwMKDvKUxIlUVd/e52qxYnPyYRD+shJmyOLaZRuQmVF0R/7mJAjt2jw9cA==",
+    "@mantine/hooks@9.4.1_react@19.2.7": {
+      "integrity": "sha512-eTI8wmzPx3r98zgKIEuvukmoGTHBhmtI6+9E6o2DbTmEU2eM1bCdjE2vFdf0op2AlRO0KEYEcZhNQi4T/SJk0A==",
       "dependencies": [
         "react"
       ]
@@ -1955,104 +1902,83 @@
       "os": ["win32"],
       "cpu": ["x64"]
     },
-    "@smithy/core@3.26.0": {
-      "integrity": "sha512-mLUktFAn+Pa2agl1J7VgtYNFWCX8/b4GMJSK1hCu4YCvtBfM6F8Os3EP4ry+DFFlXOf3wyvlgXhuUdFoy52D3g==",
+    "@smithy/core@3.29.0": {
+      "integrity": "sha512-sEvpvkBVoMxjoek35XyJFn2ZD3EJ1RpiZrT47WaZodxzAIWS44zkdvbqGE/ZlugtjiQp62cffYZ9ldyRkjAGnA==",
       "dependencies": [
-        "@aws-crypto/crc32",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/credential-provider-imds@4.4.2": {
-      "integrity": "sha512-18UMDMyrAbDcpmL1gLUA7ww0fRTcdCrSjSJOi2Sbld+tVjwD/pW+OAwjlScFLR7vvBnhZrIPQ7kVuTf1mnJLug==",
+    "@smithy/credential-provider-imds@4.4.5": {
+      "integrity": "sha512-LnjUTNG0GgQlKIq7IioeOrPaEmC5xOd1WtAz24TLSiYQnWX2uHr53GrFuQhkrJBktPYCMga/NbUOW7hFbSA2Cg==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/fetch-http-handler@5.5.2": {
-      "integrity": "sha512-Ei/UK/QMhq0rKaMqGPlOAkE2yS9DZeYmZdk1RAKc3vp3zxgleZHZyBLlZv8yLsxljX4svCRuMTD6u3LLIcU4Bg==",
+    "@smithy/fetch-http-handler@5.6.2": {
+      "integrity": "sha512-q96PSDOAGw+X+nuELd7Cjebps0SYr+YlPbviEX9sLVw+VM4M7VV8hn1nL1mGS6urDu33eQ5A7WhlphaDO6kUyQ==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/is-array-buffer@2.2.0": {
-      "integrity": "sha512-GGP3O9QFD24uGeAXYUjwSTXARoqpZykHadOmA8G5vfJPK0/DC67qa//0qvqrJzL1xc8WQWX7/yc7fwudjPHPhA==",
-      "dependencies": [
-        "tslib"
-      ]
-    },
-    "@smithy/node-http-handler@4.8.2": {
-      "integrity": "sha512-wfl1uwrAqMH9/pi4kqBo5LBcFwrJLxuDLqL7p7qNcJIFcyZDUc6pzhYk4CYv+DP7fIUpQCZumwNnkhPKS52osQ==",
+    "@smithy/node-http-handler@4.9.2": {
+      "integrity": "sha512-s0yAIRj6TVfHgl+QzVyqal1KMGZ9B5512IrxKc6+dOpw8fUmFL3CvuAhjv0J+aNjUPfVZ2IhqPEDvkB5Ncx9oA==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/signature-v4@5.5.2": {
-      "integrity": "sha512-7xHpmPY4rt0IOmeAA8EfjgEH8isT+587TCdy9H6a7d4OMi5CQ0oEHhWllunvPu4j4Cq0vTFwdxXN/kABWPjdyA==",
+    "@smithy/signature-v4@5.6.1": {
+      "integrity": "sha512-SqvuP75p/DmgWWI7jv4kf/UW+V4LFmlUn19s604SgAcRuJRB1vDnWwzZMYCLUcmKxko9wDn6iLgGEIpTNgZbIQ==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/types@4.15.0": {
-      "integrity": "sha512-Z5TAOxygoFvybJV3igo5SloFflSokHx2hu1eFA+DxDTcn+FtKxUSui+rbTRG1pAafMA888Z3MVvCWUuvCrTXjg==",
+    "@smithy/types@4.15.1": {
+      "integrity": "sha512-x3L0XSACF6UYzKpa9biqiRMgvH5+wnFFew9Tm/grFYqgaupPwx/+ojDPpPJM8dZON3S9tjz5U+PQYsCBd1Mw5Q==",
       "dependencies": [
-        "tslib"
-      ]
-    },
-    "@smithy/util-buffer-from@2.2.0": {
-      "integrity": "sha512-IJdWBbTcMQ6DA0gdNhh/BwrLkDR+ADW5Kr1aZmd4k3DIF6ezMV4R2NIAmT08wQJ3yUK82thHWmC/TnK/wpMMIA==",
-      "dependencies": [
-        "@smithy/is-array-buffer",
-        "tslib"
-      ]
-    },
-    "@smithy/util-utf8@2.3.0": {
-      "integrity": "sha512-R8Rdn8Hy72KKcebgLiv8jQcQkXoLMOGGv5uI1/k0l+snqkOzQ1R0ChUBCxWMlBsFMekWjq0wRudIweFs7sKT5A==",
-      "dependencies": [
-        "@smithy/util-buffer-from",
         "tslib"
       ]
     },
     "@standard-schema/spec@1.1.0": {
       "integrity": "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="
     },
-    "@supabase/auth-js@2.108.2": {
-      "integrity": "sha512-tNaQmBgodDZwgB40mRwVbxFy8IDYwjdpcZ0BYrWiwlULCSQoJj4QoG4zgJT7QRPXcqipefNOzvO/qAu4dF98ag==",
+    "@supabase/auth-js@2.110.0": {
+      "integrity": "sha512-Mi288WCTp6wxMFCOu/UgzgHEXODjdl2uVTLqK11eanzGZaldU3RyP8Am+ZbNuVzFP+5+iOvppxzv7N5Ym84xTg==",
       "dependencies": [
         "tslib"
       ]
     },
-    "@supabase/functions-js@2.108.2": {
-      "integrity": "sha512-RNUX8EiBy3iLwAX19jtRzLyePnl11/fHcgwDHLnpKcDSXt/5qBnh3LUwAtIjT21Q66QsmNUR2esrHziLCpNubw==",
+    "@supabase/functions-js@2.110.0": {
+      "integrity": "sha512-Fde5wlY8ZZy+9yqrWlQHo8MacSyUBArBEtN2boB4thJQigPnQD/cc61qZN0n3I1L0gwhWtHYwIMnOBKxSvF6Hw==",
       "dependencies": [
         "tslib"
       ]
     },
-    "@supabase/phoenix@0.4.2": {
-      "integrity": "sha512-YSAGnmDAfuleFCVt3CeurQZAhxRfXWeZIIkwp7NhYzQ1UwW6ePSnzsFAiUm/mbCkfoCf70QQHKW/K6RKh52a4A=="
+    "@supabase/phoenix@0.4.4": {
+      "integrity": "sha512-Gt0pqoXuIqX/8dvG0OKp/wMCobXNH3klNbUPBNyOfN0YA1IswrM3HyWFMOPk1Jy+BRaIyDPcFx4jLBwHNmlyfQ=="
     },
-    "@supabase/postgrest-js@2.108.2": {
-      "integrity": "sha512-GQ28/Y8hk3CFmkb3kXH1h/AQx6JIYSQfO0CJMRVBcEKZoNy6C45cXAZ4fcJvRC5Id0cs6xnkUV0+c0rIocigsw==",
+    "@supabase/postgrest-js@2.110.0": {
+      "integrity": "sha512-ZbC1QZL3jcvBUfVKjJbgRM27G4Mg3Zzqdm44m5pJafe1e52Cli793EOnwQucomBAGEUDd03Nzaf7XV3ji/XexQ==",
       "dependencies": [
         "tslib"
       ]
     },
-    "@supabase/realtime-js@2.108.2": {
-      "integrity": "sha512-aAGxCSUemZvQIibnCdvNvgaKib28I4rfrNjKbQ9cG1uBLwUsI7hVpGXgEbypCCDhLjQlDTAiJlu7rgljYUT73g==",
+    "@supabase/realtime-js@2.110.0": {
+      "integrity": "sha512-Wn2AWpneZuDFTkp/65tqctvoh+3JvyTjMam8sTMqVWy5BgkU8zAvFwilPYPPPhkINeKF8NAJKP7FclJ2iGCUMw==",
       "dependencies": [
         "@supabase/phoenix",
         "tslib"
       ]
     },
-    "@supabase/server@1.2.0_@supabase+supabase-js@2.108.2_hono@4.12.27": {
+    "@supabase/server@1.2.0_@supabase+supabase-js@2.110.0_hono@4.12.27": {
       "integrity": "sha512-6ts8/aC5FEf03A9+WnEsrb79YYqlE1lf8KKtWKVHZIyaDq+RM5tzP4tHRzc8Bwg88pmoDImAkaj9D3lunnanvg==",
       "dependencies": [
         "@supabase/supabase-js",
@@ -2063,15 +1989,15 @@
         "hono"
       ]
     },
-    "@supabase/storage-js@2.108.2": {
-      "integrity": "sha512-TVZPQxXGxY2+A6yTtm77zUHsh70lBhYUEaJL8RQC+BghcX/ygiMG/rmXrNVBce30/WAeNPa8FiG8HbqlGeV05g==",
+    "@supabase/storage-js@2.110.0": {
+      "integrity": "sha512-71+gU3HrhiylAhftY6FmO5PPdcsScnVcS766CVD+vTYK9qTDLbrx8FhgBYbqGm3iV/wkTfzrNJfjGsMeFRkJRQ==",
       "dependencies": [
         "iceberg-js",
         "tslib"
       ]
     },
-    "@supabase/supabase-js@2.108.2": {
-      "integrity": "sha512-hFhnPveb5JQg4a0QYicM0swT253YHMdfeRAl2BKHOlI5VAzuHxUGSr8RbwNLYNPauWOgQMS1H8sz8bvYlgwUfQ==",
+    "@supabase/supabase-js@2.110.0": {
+      "integrity": "sha512-8yI84VJiEVW4zxZpLUmxXmjzQ7O2St9X/ymzlBETDHTURPWG3LmvbSiibq+7dqAJmyoUfxZnSfXeM4HCM8s4XQ==",
       "dependencies": [
         "@supabase/auth-js",
         "@supabase/functions-js",
@@ -2083,22 +2009,22 @@
     "@tanstack/history@1.162.0": {
       "integrity": "sha512-79pf/RkhteYZTRgcR4F9kbk84P2N8rugQJswxfIqovlbRiT3yI7eBE+5QorIrZaOKktsgzRlXh1l/du/xpl4iA=="
     },
-    "@tanstack/query-core@5.101.1": {
-      "integrity": "sha512-Y6Y92dkXtNqx67m2pMSxUsA3zOCwv862JexZRP8/EPwvKXMPu9m8rv43spiXWzOUIggQ3SQApttALStzhA8B4g=="
+    "@tanstack/query-core@5.101.2": {
+      "integrity": "sha512-hH5MLoJhF7KaIGd7q3xTXGXvslI+GYlM1Z/35aSHHWaCJWB7XvTSHYuV3eM7tw+aE0mT/xMro4M4Q9rCGHT0lw=="
     },
-    "@tanstack/query-devtools@5.101.1": {
-      "integrity": "sha512-37RQ9U2PxlXQiv1era2t+uHgVhmiyvxqTMu30+KoVf0rufiucu6rpGRKFJk61Wh5OAZFKqCQd6lxTzFWfLZiuQ=="
+    "@tanstack/query-devtools@5.101.2": {
+      "integrity": "sha512-o+wHcqgN7Pp0s8v1i0UGq/ZrrEKrxdIiMQmKRdYb2w7NPtylYSJ4+wg/tIn71m9DLstwUwdEGAvROdly6HXP6w=="
     },
-    "@tanstack/react-query-devtools@5.101.1_@tanstack+react-query@5.101.1__react@19.2.7_react@19.2.7": {
-      "integrity": "sha512-OXFR9XKdEslraq3cpl3kCUeNvTIq/xGWEZiFZdn2bLB/q4WxSALMEDKYZ5yYjMQytsfnQxwQYqV4qtVEf0nuog==",
+    "@tanstack/react-query-devtools@5.101.2_@tanstack+react-query@5.101.2__react@19.2.7_react@19.2.7": {
+      "integrity": "sha512-eU7HctdA9gDjqoERoEdzLbw9DiqnBDfh5+Hu0u26gjqoHJezOpQAuiesDL2VvkU+2cPV76zgv0tMZsOrI4LjnQ==",
       "dependencies": [
         "@tanstack/query-devtools",
         "@tanstack/react-query",
         "react"
       ]
     },
-    "@tanstack/react-query@5.101.1_react@19.2.7": {
-      "integrity": "sha512-ZnONUuQKJe1bJMStXUL1s5uKN9FcfC28j5cK+iDZcdSHtUv1wtin1cGc/Oewhf2Oc4eKY7lggtpvT/AbMmhHew==",
+    "@tanstack/react-query@5.101.2_react@19.2.7": {
+      "integrity": "sha512-seDkr6kzGzX1okaaTtZPtgA688CDPlXUz1C6xSg0ESqn04Vuc8tlrYms1s3de+znBqhPVxFRfpAfUf+6XvfPWg==",
       "dependencies": [
         "@tanstack/query-core",
         "react"
@@ -2171,7 +2097,7 @@
         "zod"
       ]
     },
-    "@tanstack/router-plugin@1.168.18_@tanstack+react-router@1.170.16__react@19.2.7__react-dom@19.2.7___react@19.2.7_vite@8.1.0_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
+    "@tanstack/router-plugin@1.168.18_@tanstack+react-router@1.170.16__react@19.2.7__react-dom@19.2.7___react@19.2.7_vite@8.1.2": {
       "integrity": "sha512-MofS28/axfnfnhOD2RSgJEaU882aX5RsAzhGz5Vc4XhAmvCjy919u9JrNs4QsTWFbTD1P7IJ8WFlFVsrg0pStg==",
       "dependencies": [
         "@babel/core",
@@ -2274,7 +2200,7 @@
       ],
       "bin": true
     },
-    "@vitejs/plugin-react@6.0.3_vite@8.1.0": {
+    "@vitejs/plugin-react@6.0.3_vite@8.1.2": {
       "integrity": "sha512-vmFvco5/QuC2f9Oj+wTk0+9XeDFkHxSamwZKYc7MxYwKICfvUvlMhqKI0VuICPltGqh1neqBKDvO4kes1ya8vg==",
       "dependencies": [
         "@rolldown/pluginutils",
@@ -3357,8 +3283,8 @@
         "yallist"
       ]
     },
-    "lucide-react@1.21.0_react@19.2.7": {
-      "integrity": "sha512-reEZMXq8Qdd5jg5XYkQ5TR1fB/GiQ7ih4vcrthYDtgjSDwh0i6/YLiGjsWsIwgN49gpAnd4J2elSNzncMEEUUQ==",
+    "lucide-react@1.23.0_react@19.2.7": {
+      "integrity": "sha512-38BpJcD0JhFosxHApP/BYsBetLpQFRoTRzEzstM/XCc3jsAG7wqaY1lgVwxiUe3xqYE+lNxo2PkCmYwXWrwwIw==",
       "dependencies": [
         "react"
       ]
@@ -3517,14 +3443,14 @@
     "possible-typed-array-names@1.1.0": {
       "integrity": "sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg=="
     },
-    "postcss-js@4.1.0_postcss@8.5.15": {
+    "postcss-js@4.1.0_postcss@8.5.16": {
       "integrity": "sha512-oIAOTqgIo7q2EOwbhb8UalYePMvYoIeRY2YKntdpFQXNosSu3vLrniGgmH9OKs/qAkfoj5oB3le/7mINW1LCfw==",
       "dependencies": [
         "camelcase-css",
         "postcss"
       ]
     },
-    "postcss-mixins@12.1.2_postcss@8.5.15": {
+    "postcss-mixins@12.1.2_postcss@8.5.16": {
       "integrity": "sha512-90pSxmZVfbX9e5xCv7tI5RV1mnjdf16y89CJKbf/hD7GyOz1FCxcYMl8ZYA8Hc56dbApTKKmU9HfvgfWdCxlwg==",
       "dependencies": [
         "postcss",
@@ -3534,14 +3460,14 @@
         "tinyglobby"
       ]
     },
-    "postcss-nested@7.0.2_postcss@8.5.15": {
+    "postcss-nested@7.0.2_postcss@8.5.16": {
       "integrity": "sha512-5osppouFc0VR9/VYzYxO03VaDa3e8F23Kfd6/9qcZTUI8P58GIYlArOET2Wq0ywSl2o2PjELhYOFI4W7l5QHKw==",
       "dependencies": [
         "postcss",
         "postcss-selector-parser"
       ]
     },
-    "postcss-preset-mantine@1.18.0_postcss@8.5.15": {
+    "postcss-preset-mantine@1.18.0_postcss@8.5.16": {
       "integrity": "sha512-sP6/s1oC7cOtBdl4mw/IRKmKvYTuzpRrH/vT6v9enMU/EQEQ31eQnHcWtFghOXLH87AAthjL/Q75rLmin1oZoA==",
       "dependencies": [
         "postcss",
@@ -3556,14 +3482,14 @@
         "util-deprecate"
       ]
     },
-    "postcss-simple-vars@7.0.1_postcss@8.5.15": {
+    "postcss-simple-vars@7.0.1_postcss@8.5.16": {
       "integrity": "sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A==",
       "dependencies": [
         "postcss"
       ]
     },
-    "postcss@8.5.15": {
-      "integrity": "sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==",
+    "postcss@8.5.16": {
+      "integrity": "sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==",
       "dependencies": [
         "nanoid",
         "picocolors",
@@ -4048,7 +3974,7 @@
     "strip-comments@2.0.1": {
       "integrity": "sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw=="
     },
-    "sugarss@5.0.1_postcss@8.5.15": {
+    "sugarss@5.0.1_postcss@8.5.16": {
       "integrity": "sha512-ctS5RYCBVvPoZAnzIaX5QSShK8ZiZxD5HUqSxlusvEMC+QZQIPCPOIJg6aceFX+K2rf4+SH89eu++h1Zmsr2nw==",
       "dependencies": [
         "postcss"
@@ -4057,8 +3983,8 @@
     "supports-preserve-symlinks-flag@1.0.0": {
       "integrity": "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
     },
-    "tabbable@6.4.0": {
-      "integrity": "sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg=="
+    "tabbable@6.5.0": {
+      "integrity": "sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA=="
     },
     "tagged-tag@1.0.0": {
       "integrity": "sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng=="
@@ -4267,7 +4193,7 @@
     "util-deprecate@1.0.2": {
       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
     },
-    "vite-plugin-pwa@1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.1.0": {
+    "vite-plugin-pwa@1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.1.2": {
       "integrity": "sha512-c5kMgN+ITrOtHXp8PAtk2uOIEea6XjP/unCGxOWWBzQ6qa65qj/awHg0wf+QF9E/2u9vh86LqxPwzEPNbM2r5A==",
       "dependencies": [
         "@vite-pwa/assets-generator",
@@ -4282,8 +4208,8 @@
         "@vite-pwa/assets-generator"
       ]
     },
-    "vite@8.1.0": {
-      "integrity": "sha512-BuJcQK/56NQTWDGn4ABea3q4SSBdNPWwNZKTkkUpcMPnLoquSYH8llRtSUIgoL1KSCpHt5eghLShn50mH36y7Q==",
+    "vite@8.1.2": {
+      "integrity": "sha512-6YYPbRXTxx6bRXmOn7XdnQAy5DQNHhDgtjhDHI13oe4pY93kkcdGJWxpGwOm++/Wh0QpQhDrpIoVMrmrsI5AGQ==",
       "dependencies": [
         "lightningcss",
         "picomatch",
@@ -4542,7 +4468,7 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@aws-sdk/client-ses@^3.1075.0",
+        "npm:@aws-sdk/client-ses@^3.1077.0",
         "npm:@hey-api/openapi-ts@0.99",
         "npm:@hono/zod-openapi@^1.4.0",
         "npm:@jsr/b-fuze__deno-dom@~0.1.56",
@@ -4551,8 +4477,8 @@
         "npm:@jsr/std__expect@^1.0.19",
         "npm:@jsr/std__testing@^1.0.19",
         "npm:@jsr/std__uuid@^1.1.1",
-        "npm:@jsr/supabase__functions-js@^2.108.2",
-        "npm:@jsr/supabase__supabase-js@^2.108.2",
+        "npm:@jsr/supabase__functions-js@^2.110.0",
+        "npm:@jsr/supabase__supabase-js@^2.110.0",
         "npm:@supabase/server@^1.2.0",
         "npm:hono@^4.12.27",
         "npm:typescript@^6.0.3",
@@ -4564,13 +4490,13 @@
         "packageJson": {
           "dependencies": [
             "npm:@js-temporal/polyfill@~0.5.1",
-            "npm:@mantine/core@^9.3.1",
-            "npm:@mantine/dates@^9.3.1",
-            "npm:@mantine/form@^9.3.1",
-            "npm:@mantine/hooks@^9.3.1",
-            "npm:@supabase/supabase-js@^2.108.2",
-            "npm:@tanstack/react-query-devtools@^5.101.1",
-            "npm:@tanstack/react-query@^5.101.1",
+            "npm:@mantine/core@^9.4.1",
+            "npm:@mantine/dates@^9.4.1",
+            "npm:@mantine/form@^9.4.1",
+            "npm:@mantine/hooks@^9.4.1",
+            "npm:@supabase/supabase-js@^2.110.0",
+            "npm:@tanstack/react-query-devtools@^5.101.2",
+            "npm:@tanstack/react-query@^5.101.2",
             "npm:@tanstack/react-router-devtools@^1.167.0",
             "npm:@tanstack/react-router@^1.170.16",
             "npm:@tanstack/router-core@^1.171.13",
@@ -4580,15 +4506,15 @@
             "npm:@vite-pwa/assets-generator@^1.0.2",
             "npm:@vitejs/plugin-react@^6.0.3",
             "npm:dayjs@^1.11.21",
-            "npm:lucide-react@^1.21.0",
+            "npm:lucide-react@^1.23.0",
             "npm:postcss-preset-mantine@^1.18.0",
             "npm:postcss-simple-vars@^7.0.1",
-            "npm:postcss@^8.5.15",
+            "npm:postcss@^8.5.16",
             "npm:react-dom@^19.2.7",
             "npm:react@^19.2.7",
             "npm:typescript@^6.0.3",
             "npm:vite-plugin-pwa@^1.3.0",
-            "npm:vite@^8.1.0",
+            "npm:vite@^8.1.2",
             "npm:zod@^4.4.3"
           ]
         }
@@ -4597,7 +4523,7 @@
         "dependencies": [
           "jsr:@cliffy/command@^1.2.1",
           "jsr:@std/dotenv@~0.225.7",
-          "jsr:@supabase/supabase-js@^2.108.2",
+          "jsr:@supabase/supabase-js@^2.110.0",
           "npm:@hey-api/openapi-ts@~0.98.1"
         ]
       },
@@ -4605,11 +4531,11 @@
         "dependencies": [
           "jsr:@b-fuze/deno-dom@~0.1.56",
           "jsr:@std/uuid@^1.1.1",
-          "jsr:@supabase/functions-js@^2.108.2",
-          "jsr:@supabase/supabase-js@^2.108.2",
+          "jsr:@supabase/functions-js@^2.110.0",
+          "jsr:@supabase/supabase-js@^2.110.0",
           "npm:@aws-sdk/client-ses@^3.1063.0",
           "npm:@hono/zod-openapi@^1.4.0",
-          "npm:@supabase/server@^1.1.0",
+          "npm:@supabase/server@^1.2.0",
           "npm:hono@^4.12.23",
           "npm:zod@^4.4.3"
         ]

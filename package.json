@@ -8,16 +8,16 @@
     "./frontend"
   ],
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.1075.0",
+    "@aws-sdk/client-ses": "^3.1077.0",
     "@b-fuze/deno-dom": "jsr:^0.1.56",
     "@cliffy/command": "jsr:^1.2.1",
     "@hey-api/openapi-ts": "^0.99.0",
     "@hono/zod-openapi": "^1.4.0",
     "@std/dotenv": "jsr:^0.225.7",
     "@std/uuid": "jsr:^1.1.1",
-    "@supabase/functions-js": "jsr:^2.108.2",
+    "@supabase/functions-js": "jsr:^2.110.0",
     "@supabase/server": "^1.2.0",
-    "@supabase/supabase-js": "jsr:^2.108.2",
+    "@supabase/supabase-js": "jsr:^2.110.0",
     "hono": "^4.12.27",
     "zod": "^4.4.3"
   },
