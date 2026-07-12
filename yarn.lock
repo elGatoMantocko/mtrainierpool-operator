@@ -2755,6 +2755,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@std/encoding@jsr:^1.0.0, @std/encoding@npm:@jsr/std__encoding@^1.0.0":
+  version: 1.0.11
+  resolution: "@jsr/std__encoding@npm:1.0.11::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__encoding%2F1.0.11.tgz"
+  checksum: 10c0/3e6714639e685f2d60b21414e490cde61b7c30f313b18a2bf6fe90250ea34f96309c61c492ab786a276d4b5b68760b87be0850fe1f9bfe18e40efb647576d53b
+  languageName: node
+  linkType: hard
+
 "@std/expect@jsr:^1.0.19, @std/expect@npm:@jsr/std__expect@^1.0.19":
   version: 1.0.19
   resolution: "@jsr/std__expect@npm:1.0.19::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.19.tgz"
@@ -4505,6 +4512,41 @@ __metadata:
   dependencies:
     ms: "npm:^2.0.0"
   checksum: 10c0/f34a2c20161d02303c2807badec2f3b49cbfbbb409abd4f95a07377ae01cfe6b59e3d15ac609cffcd8f2521f0eb37b7e1091acf65da99aa2a4f1ad63c21e7e7a
+  languageName: node
+  linkType: hard
+
+"ical-generator@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "ical-generator@npm:11.0.0"
+  peerDependencies:
+    "@touch4it/ical-timezones": ">=1.6.0"
+    "@types/luxon": ">= 1.26.0"
+    "@types/mocha": ">= 8.2.1"
+    dayjs: ">= 1.10.0"
+    luxon: ">= 1.26.0"
+    moment: ">= 2.29.0"
+    moment-timezone: ">= 0.5.33"
+    rrule: ">= 2.6.8"
+  peerDependenciesMeta:
+    "@touch4it/ical-timezones":
+      optional: true
+    "@types/luxon":
+      optional: true
+    "@types/mocha":
+      optional: true
+    "@types/node":
+      optional: true
+    dayjs:
+      optional: true
+    luxon:
+      optional: true
+    moment:
+      optional: true
+    moment-timezone:
+      optional: true
+    rrule:
+      optional: true
+  checksum: 10c0/66bef957e01355ad59ffa060da9086a21f499d5dc79f0a254203a79613c891f880dff33e089af011af6ddb1e4d9af95cba86e7bc5c4001064d3333566469d5d7
   languageName: node
   linkType: hard
 
@@ -6458,6 +6500,7 @@ __metadata:
     "@hey-api/openapi-ts": "npm:^0.99.0"
     "@hono/zod-openapi": "npm:^1.4.0"
     "@std/dotenv": "jsr:^0.225.7"
+    "@std/encoding": "jsr:^1.0.0"
     "@std/expect": "jsr:^1.0.19"
     "@std/testing": "jsr:^1.0.19"
     "@std/uuid": "jsr:^1.1.1"
@@ -6465,6 +6508,7 @@ __metadata:
     "@supabase/server": "npm:^1.2.0"
     "@supabase/supabase-js": "jsr:^2.110.0"
     hono: "npm:^4.12.27"
+    ical-generator: "npm:^11.0.0"
     typescript: "npm:^6.0.3"
     zod: "npm:^4.4.3"
   languageName: unknown

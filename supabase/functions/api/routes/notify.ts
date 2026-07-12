@@ -1,12 +1,18 @@
-import { SendEmailCommand } from "@aws-sdk/client-ses";
+import { SendRawEmailCommand } from "@aws-sdk/client-ses";
 import { createRoute, z } from "@hono/zod-openapi";
 import { withSupabase } from "@supabase/server/adapters/hono";
 import type { Context } from "hono";
+import ical, {
+  ICalCalendar,
+  ICalCalendarMethod,
+  ICalEventData,
+} from "ical-generator";
 
 import { SupabaseVariables } from "@/index.ts";
 import { AwsVariables, withAws } from "@/middleware/aws.ts";
 import { Tables } from "@/types/database.types.ts";
 import { formatDate } from "@/utils/dates.ts";
+import { buildRawEmail } from "@/utils/email.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
 
 type PoolClosure = Pick<
@@ -92,6 +98,32 @@ function emailData(analysis: PoolOperatorAnalysis): string {
 </html>`;
 }
 
+function calendarData(analysis: PoolOperatorAnalysis): ICalCalendar {
+  const cal = ical({ name: "Mt. Rainier Pool Operator" });
+  cal.method(ICalCalendarMethod.REQUEST);
+
+  for (const closure of analysis.closures) {
+    if (closure.closed_at == null) {
+      continue;
+    }
+    // Pass native Dates: ical-generator's edge-runtime build fails to detect
+    // Temporal values and falls through to a dayjs path that needs the (absent)
+    // UTC plugin. A `Date` takes its safe, plugin-free formatting path.
+    const start = new Date(closure.closed_at);
+    const end = closure.opened_at != null ? new Date(closure.opened_at) : null;
+    const event = {
+      start,
+      end,
+      summary: "Pool Closure",
+      description: closure.reasoning,
+    } satisfies ICalEventData;
+    console.log(event);
+    cal.createEvent(event);
+  }
+
+  return cal;
+}
+
 async function sendEmails(
   c: Context<SupabaseVariables & AwsVariables>,
   recipients: Array<{ id: string; email: string }>,
@@ -107,6 +139,10 @@ async function sendEmails(
     console.log("skipping notification, analysis has no closures.");
     return;
   }
+
+  const ics = calendarData(analysis).toString();
+  const html = emailData(analysis);
+
   for (const user of recipients) {
     // Ensure a delivery row exists. Idempotent on (idempotency_key, user_id);
     // we don't care whether this inserted or no-op'd — the claim below decides
@@ -152,17 +188,17 @@ async function sendEmails(
     const deliveryId = claimed.id;
     try {
       const res = await c.var.aws.ses.send(
-        new SendEmailCommand({
+        new SendRawEmailCommand({
           Source: SMTP_ADMIN_EMAIL,
-          Destination: { ToAddresses: [user.email] },
-          Message: {
-            Subject: {
-              Data: POOL_CLOSED_SUBJECT,
-              Charset: "UTF-8",
-            },
-            Body: {
-              Html: { Data: emailData(analysis), Charset: "UTF-8" },
-            },
+          Destinations: [user.email],
+          RawMessage: {
+            Data: buildRawEmail({
+              from: SMTP_ADMIN_EMAIL,
+              to: user.email,
+              subject: POOL_CLOSED_SUBJECT,
+              html,
+              ics,
+            }),
           },
         }),
       );
