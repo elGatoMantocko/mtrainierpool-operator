@@ -3,7 +3,7 @@
     "@/": "./",
     "@aws-sdk/client-ses": "npm:@aws-sdk/client-ses@^3.1081.0",
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.56",
-    "@std/encoding": "jsr:@std/encoding@^1.0.0",
+    "@std/encoding": "jsr:@std/encoding@^1.0.11",
     "@std/uuid": "jsr:@std/uuid@^1.1.1",
     "@supabase/functions-js": "jsr:@supabase/functions-js@^2.110.0",
     "@supabase/server": "npm:@supabase/server@^1.2.0",

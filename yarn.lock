@@ -2175,19 +2175,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsr/std__internal@npm:^1.0.12, @jsr/std__internal@npm:^1.0.13, @jsr/std__internal@npm:^1.0.14":
+"@jsr/std__internal@npm:^1.0.12, @jsr/std__internal@npm:^1.0.14":
   version: 1.0.14
   resolution: "@jsr/std__internal@npm:1.0.14::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__internal%2F1.0.14.tgz"
   checksum: 10c0/c6df89e03d3374207deb36366349c1ebfdc3c0150692d817c2819389b4d551e016f82fb1dced313e3cd107b7a5aa24a85db4a5ab21628376246b0430c5673c53
   languageName: node
   linkType: hard
 
-"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.4, @jsr/std__path@npm:^1.1.5":
+"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.5":
   version: 1.1.5
   resolution: "@jsr/std__path@npm:1.1.5::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__path%2F1.1.5.tgz"
   dependencies:
     "@jsr/std__internal": "npm:^1.0.14"
   checksum: 10c0/566b9341b5e4c90dd16f74a26f549ef4b0d045d267172c19d702e5ce26d0deeca6afe0679fcf0fb7eee663502248118a3d3f8d3ca9fe02d5a4b2f4862991da90
+  languageName: node
+  linkType: hard
+
+"@jsr/std__path@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@jsr/std__path@npm:1.1.6::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__path%2F1.1.6.tgz"
+  dependencies:
+    "@jsr/std__internal": "npm:^1.0.14"
+  checksum: 10c0/4b34423124287b7e42e7572bca1e494e42209c3b9f5d3696eef984e5ba5d1b43a455718b967e0e17c7c36b7af48696852cd65308b12e9e2320384f5d38e1be41
   languageName: node
   linkType: hard
 
@@ -2774,21 +2783,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@std/encoding@jsr:^1.0.0, @std/encoding@npm:@jsr/std__encoding@^1.0.0":
+"@std/encoding@jsr:^1.0.11":
+  version: 1.0.11
+  resolution: "@std/encoding@jsr:1.0.11::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__encoding%2F1.0.11.tgz"
+  checksum: 10c0/3e6714639e685f2d60b21414e490cde61b7c30f313b18a2bf6fe90250ea34f96309c61c492ab786a276d4b5b68760b87be0850fe1f9bfe18e40efb647576d53b
+  languageName: node
+  linkType: hard
+
+"@std/encoding@npm:@jsr/std__encoding@^1.0.11":
   version: 1.0.11
   resolution: "@jsr/std__encoding@npm:1.0.11::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__encoding%2F1.0.11.tgz"
   checksum: 10c0/3e6714639e685f2d60b21414e490cde61b7c30f313b18a2bf6fe90250ea34f96309c61c492ab786a276d4b5b68760b87be0850fe1f9bfe18e40efb647576d53b
   languageName: node
   linkType: hard
 
-"@std/expect@jsr:^1.0.19, @std/expect@npm:@jsr/std__expect@^1.0.19":
-  version: 1.0.19
-  resolution: "@jsr/std__expect@npm:1.0.19::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.19.tgz"
+"@std/expect@jsr:^1.0.20":
+  version: 1.0.20
+  resolution: "@std/expect@jsr:1.0.20::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.20.tgz"
   dependencies:
     "@jsr/std__assert": "npm:^1.0.19"
-    "@jsr/std__internal": "npm:^1.0.13"
-    "@jsr/std__path": "npm:^1.1.4"
-  checksum: 10c0/d1276b4044b2bd76506e207aac886c0fb8e9d74c67cf70362238858086410518115950cb7de9f0cd395bda616f9f00d16aa0ae2807fedf84072f5ec73986a2a9
+    "@jsr/std__internal": "npm:^1.0.14"
+    "@jsr/std__path": "npm:^1.1.6"
+  checksum: 10c0/3efd23fedf19b9a5dabf5535b3b4bc1ed0e5c316d61b8e5556635dec32d7478991e30d47b85dd5b69661603fa8f0d94a1ccee09609fb933071431820389ddca6
+  languageName: node
+  linkType: hard
+
+"@std/expect@npm:@jsr/std__expect@^1.0.20":
+  version: 1.0.20
+  resolution: "@jsr/std__expect@npm:1.0.20::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.20.tgz"
+  dependencies:
+    "@jsr/std__assert": "npm:^1.0.19"
+    "@jsr/std__internal": "npm:^1.0.14"
+    "@jsr/std__path": "npm:^1.1.6"
+  checksum: 10c0/3efd23fedf19b9a5dabf5535b3b4bc1ed0e5c316d61b8e5556635dec32d7478991e30d47b85dd5b69661603fa8f0d94a1ccee09609fb933071431820389ddca6
   languageName: node
   linkType: hard
 
@@ -6519,8 +6546,8 @@ __metadata:
     "@hey-api/openapi-ts": "npm:^0.99.0"
     "@hono/zod-openapi": "npm:^1.4.0"
     "@std/dotenv": "jsr:^0.225.7"
-    "@std/encoding": "jsr:^1.0.0"
-    "@std/expect": "jsr:^1.0.19"
+    "@std/encoding": "jsr:^1.0.11"
+    "@std/expect": "jsr:^1.0.20"
     "@std/testing": "jsr:^1.0.19"
     "@std/uuid": "jsr:^1.1.1"
     "@supabase/functions-js": "jsr:^2.110.0"
