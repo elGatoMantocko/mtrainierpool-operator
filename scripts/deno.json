@@ -2,7 +2,7 @@
   "imports": {
     "@/": "./",
     "@cliffy/command": "jsr:@cliffy/command@^1.2.1",
-    "@hey-api/openapi-ts": "npm:@hey-api/openapi-ts@^0.98.1",
+    "@hey-api/openapi-ts": "npm:@hey-api/openapi-ts@^0.99.0",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.7",
     "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.110.0"
   }

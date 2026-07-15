@@ -30,7 +30,6 @@
     "jsr:@supabase/supabase-js@^2.110.0": "2.110.0",
     "npm:@aws-sdk/client-ses@^3.1081.0": "3.1081.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@6.0.3",
-    "npm:@hey-api/openapi-ts@~0.98.1": "0.98.2_typescript@6.0.3",
     "npm:@hono/zod-openapi@^1.4.0": "1.4.0_hono@4.12.28_zod@4.4.3",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
@@ -1117,15 +1116,6 @@
     "@floating-ui/utils@0.2.11": {
       "integrity": "sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg=="
     },
-    "@hey-api/codegen-core@0.9.0": {
-      "integrity": "sha512-OK9/R8WuujwgvnrDIPnEiIf6WnfUOi3GaEr6kIngqoI5FUQwYbeDKHE/frTVUl2A76ZQPCrMknHtPx6Gqtwf8Q==",
-      "dependencies": [
-        "@hey-api/types",
-        "ansi-colors",
-        "c12",
-        "color-support"
-      ]
-    },
     "@hey-api/codegen-core@0.9.1": {
       "integrity": "sha512-s97jL1dgTMuiMHv2BZ1X4Tgd99Mf9GOvGdNqNcGwIMmnR+PgYNoraj4Zvp134MKsNCap/m7k0r0vKKnl56pj4w==",
       "dependencies": [
@@ -1135,45 +1125,20 @@
         "color-support"
       ]
     },
-    "@hey-api/json-schema-ref-parser@1.4.3": {
-      "integrity": "sha512-UzGSDzh3QUhrnwl4atnHc2YqDO6KemYVEOwl1Ynowm/tcr0XlpdHOpyWr5UaWIJfiXTXdYRIC9k2Yxm19pcPzQ==",
-      "dependencies": [
-        "@jsdevtools/ono",
-        "@types/json-schema",
-        "js-yaml@4.1.1"
-      ]
-    },
     "@hey-api/json-schema-ref-parser@1.4.4": {
       "integrity": "sha512-otmd+zCxbYVBIp/mlMTnGkvlNYLkVKgs3VOIq0kSnenhB1+fRwLPQIeSwyWM6E51oXhUedkYjVsVpkVexeuJOA==",
       "dependencies": [
         "@jsdevtools/ono",
         "@types/json-schema",
-        "js-yaml@4.2.0"
+        "js-yaml"
       ]
-    },
-    "@hey-api/openapi-ts@0.98.2_typescript@6.0.3": {
-      "integrity": "sha512-2nVJXH8tpFPGTBOhxyjEd1Jw0hsRqJqeTQW3kltAjVdSU4YWxeu97x5sgNOmsbsfeg6Dqz7Wfzs26walBOuswA==",
-      "dependencies": [
-        "@hey-api/codegen-core@0.9.0",
-        "@hey-api/json-schema-ref-parser@1.4.3",
-        "@hey-api/shared@0.4.8",
-        "@hey-api/spec-types",
-        "@hey-api/types",
-        "@lukeed/ms",
-        "ansi-colors",
-        "color-support",
-        "commander@15.0.0",
-        "get-tsconfig",
-        "typescript"
-      ],
-      "bin": true
     },
     "@hey-api/openapi-ts@0.99.0_typescript@6.0.3": {
       "integrity": "sha512-SePU/5oEWWkvUBYmvzdYRctseoLuskyhs4ET0RvLIcmzc8yLQoA2R+KtBIQ8bPsoSUB0m4E5SmBnl6aGSA0szQ==",
       "dependencies": [
-        "@hey-api/codegen-core@0.9.1",
-        "@hey-api/json-schema-ref-parser@1.4.4",
-        "@hey-api/shared@0.5.0",
+        "@hey-api/codegen-core",
+        "@hey-api/json-schema-ref-parser",
+        "@hey-api/shared",
         "@hey-api/spec-types",
         "@hey-api/types",
         "@lukeed/ms",
@@ -1185,24 +1150,11 @@
       ],
       "bin": true
     },
-    "@hey-api/shared@0.4.8": {
-      "integrity": "sha512-29Pg2FB0UW20pplYgcfiQn1hQYpbZ9D2gdDJc7nDK3xh3pvHOTGP0v3R2ueFpFnw9GN1SRhIdhiVuAYWMDimjA==",
-      "dependencies": [
-        "@hey-api/codegen-core@0.9.0",
-        "@hey-api/json-schema-ref-parser@1.4.3",
-        "@hey-api/spec-types",
-        "@hey-api/types",
-        "ansi-colors",
-        "cross-spawn",
-        "open",
-        "semver@7.8.2"
-      ]
-    },
     "@hey-api/shared@0.5.0": {
       "integrity": "sha512-JN/j4Ebh4cJGYIQ5cwWuqe7GeSUyQoz7oC51WqyhKOcrejK6DKZMDkshc5d1eKTRuRL+rjozuRcoUaZZn2DGPw==",
       "dependencies": [
-        "@hey-api/codegen-core@0.9.1",
-        "@hey-api/json-schema-ref-parser@1.4.4",
+        "@hey-api/codegen-core",
+        "@hey-api/json-schema-ref-parser",
         "@hey-api/spec-types",
         "@hey-api/types",
         "ansi-colors",
@@ -3158,13 +3110,6 @@
     "js-tokens@4.0.0": {
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
     },
-    "js-yaml@4.1.1": {
-      "integrity": "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==",
-      "dependencies": [
-        "argparse"
-      ],
-      "bin": true
-    },
     "js-yaml@4.2.0": {
       "integrity": "sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw==",
       "dependencies": [
@@ -3754,10 +3699,6 @@
     },
     "semver@6.3.1": {
       "integrity": "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==",
-      "bin": true
-    },
-    "semver@7.8.2": {
-      "integrity": "sha512-c8jsqUZm3omBOI66G90z1Dyw5z622G8oLG+omfsHBJf3CWQTlOcwOjvOG6wtiNfW6anKm/eA39LMwMtMez2TiQ==",
       "bin": true
     },
     "semver@7.8.4": {
@@ -4536,7 +4477,7 @@
           "jsr:@cliffy/command@^1.2.1",
           "jsr:@std/dotenv@~0.225.7",
           "jsr:@supabase/supabase-js@^2.110.0",
-          "npm:@hey-api/openapi-ts@~0.98.1"
+          "npm:@hey-api/openapi-ts@0.99"
         ]
       },
       "supabase/functions/api": {
