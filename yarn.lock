@@ -2182,16 +2182,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@jsr/std__path@npm:1.1.5::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__path%2F1.1.5.tgz"
-  dependencies:
-    "@jsr/std__internal": "npm:^1.0.14"
-  checksum: 10c0/566b9341b5e4c90dd16f74a26f549ef4b0d045d267172c19d702e5ce26d0deeca6afe0679fcf0fb7eee663502248118a3d3f8d3ca9fe02d5a4b2f4862991da90
-  languageName: node
-  linkType: hard
-
-"@jsr/std__path@npm:^1.1.6":
+"@jsr/std__path@npm:^1, @jsr/std__path@npm:^1.1.5, @jsr/std__path@npm:^1.1.6":
   version: 1.1.6
   resolution: "@jsr/std__path@npm:1.1.6::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__path%2F1.1.6.tgz"
   dependencies:
@@ -2687,17 +2678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/core@npm:^3.29.0":
-  version: 3.29.0
-  resolution: "@smithy/core@npm:3.29.0"
-  dependencies:
-    "@smithy/types": "npm:^4.15.1"
-    tslib: "npm:^2.6.2"
-  checksum: 10c0/4d1dfa9935bd7aecd53c70f8dcf340736cbd9e5893da65d4bf8ece038d62bdbc09ce9e8beef4bd35b808470d5408eaefd4cccba7dbffdb945526679846325081
-  languageName: node
-  linkType: hard
-
-"@smithy/core@npm:^3.29.2":
+"@smithy/core@npm:^3.29.0, @smithy/core@npm:^3.29.2":
   version: 3.29.2
   resolution: "@smithy/core@npm:3.29.2"
   dependencies:
@@ -2751,16 +2732,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@smithy/types@npm:^4.15.1":
-  version: 4.15.1
-  resolution: "@smithy/types@npm:4.15.1"
-  dependencies:
-    tslib: "npm:^2.6.2"
-  checksum: 10c0/65cb70240fa13f37274796b065be48d86cccd182ec97e7b1a0da234e2c9bd5ee686b4f5f111c930fe2209a2a6f168b9a045d59fb80c5545f4bff885ba350afa2
-  languageName: node
-  linkType: hard
-
-"@smithy/types@npm:^4.16.0":
+"@smithy/types@npm:^4.15.1, @smithy/types@npm:^4.16.0":
   version: 4.16.0
   resolution: "@smithy/types@npm:4.16.0"
   dependencies:
@@ -2783,32 +2755,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@std/encoding@jsr:^1.0.11":
-  version: 1.0.11
-  resolution: "@std/encoding@jsr:1.0.11::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__encoding%2F1.0.11.tgz"
-  checksum: 10c0/3e6714639e685f2d60b21414e490cde61b7c30f313b18a2bf6fe90250ea34f96309c61c492ab786a276d4b5b68760b87be0850fe1f9bfe18e40efb647576d53b
-  languageName: node
-  linkType: hard
-
-"@std/encoding@npm:@jsr/std__encoding@^1.0.11":
+"@std/encoding@jsr:^1.0.11, @std/encoding@npm:@jsr/std__encoding@^1.0.11":
   version: 1.0.11
   resolution: "@jsr/std__encoding@npm:1.0.11::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__encoding%2F1.0.11.tgz"
   checksum: 10c0/3e6714639e685f2d60b21414e490cde61b7c30f313b18a2bf6fe90250ea34f96309c61c492ab786a276d4b5b68760b87be0850fe1f9bfe18e40efb647576d53b
   languageName: node
   linkType: hard
 
-"@std/expect@jsr:^1.0.20":
-  version: 1.0.20
-  resolution: "@std/expect@jsr:1.0.20::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.20.tgz"
-  dependencies:
-    "@jsr/std__assert": "npm:^1.0.19"
-    "@jsr/std__internal": "npm:^1.0.14"
-    "@jsr/std__path": "npm:^1.1.6"
-  checksum: 10c0/3efd23fedf19b9a5dabf5535b3b4bc1ed0e5c316d61b8e5556635dec32d7478991e30d47b85dd5b69661603fa8f0d94a1ccee09609fb933071431820389ddca6
-  languageName: node
-  linkType: hard
-
-"@std/expect@npm:@jsr/std__expect@^1.0.20":
+"@std/expect@jsr:^1.0.20, @std/expect@npm:@jsr/std__expect@^1.0.20":
   version: 1.0.20
   resolution: "@jsr/std__expect@npm:1.0.20::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__expect%2F1.0.20.tgz"
   dependencies:
@@ -2852,9 +2806,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/functions-js@jsr:^2.110.1":
+"@supabase/functions-js@jsr:^2.110.1, @supabase/functions-js@npm:@jsr/supabase__functions-js@^2.110.1":
   version: 2.110.1
-  resolution: "@supabase/functions-js@jsr:2.110.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fsupabase__functions-js%2F2.110.1.tgz"
+  resolution: "@jsr/supabase__functions-js@npm:2.110.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fsupabase__functions-js%2F2.110.1.tgz"
   dependencies:
     openai: "npm:^4.52.5"
   checksum: 10c0/9e0bbc7418c4811df7f4f918a75e9696e4cd6a88f7eefef694a08aeab2ca5e1545ab26df54c1b3d4c479aa2e99f9202a579780bdb25a25080f903a59eb702b8e
@@ -2867,15 +2821,6 @@ __metadata:
   dependencies:
     tslib: "npm:2.8.1"
   checksum: 10c0/d00df83a276ced59477635fb666d8bc34e418f9df6406d8b8d81789c709d637e9d1de1526ced46215755c4ef7f60b1a46f4e5a67694e5aa8456843f0afc51764
-  languageName: node
-  linkType: hard
-
-"@supabase/functions-js@npm:@jsr/supabase__functions-js@^2.110.1":
-  version: 2.110.1
-  resolution: "@jsr/supabase__functions-js@npm:2.110.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fsupabase__functions-js%2F2.110.1.tgz"
-  dependencies:
-    openai: "npm:^4.52.5"
-  checksum: 10c0/9e0bbc7418c4811df7f4f918a75e9696e4cd6a88f7eefef694a08aeab2ca5e1545ab26df54c1b3d4c479aa2e99f9202a579780bdb25a25080f903a59eb702b8e
   languageName: node
   linkType: hard
 
@@ -2939,20 +2884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/supabase-js@jsr:^2.110.1":
-  version: 2.110.1
-  resolution: "@supabase/supabase-js@jsr:2.110.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fsupabase__supabase-js%2F2.110.1.tgz"
-  dependencies:
-    "@supabase/auth-js": "npm:2.110.1"
-    "@supabase/functions-js": "npm:2.110.1"
-    "@supabase/postgrest-js": "npm:2.110.1"
-    "@supabase/realtime-js": "npm:2.110.1"
-    "@supabase/storage-js": "npm:2.110.1"
-  checksum: 10c0/b6eb30d83b410456fff3ece98db485220842eb5e044d0f74bd3f34ffb6d2b5c57ef0421550537746e3667fa57c535fead4c7ad391c136b7906c852b6b2d7d2f0
-  languageName: node
-  linkType: hard
-
-"@supabase/supabase-js@npm:@jsr/supabase__supabase-js@^2.110.1":
+"@supabase/supabase-js@jsr:^2.110.1, @supabase/supabase-js@npm:@jsr/supabase__supabase-js@^2.110.1":
   version: 2.110.1
   resolution: "@jsr/supabase__supabase-js@npm:2.110.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fsupabase__supabase-js%2F2.110.1.tgz"
   dependencies:
