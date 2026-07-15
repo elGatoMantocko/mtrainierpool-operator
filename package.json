@@ -26,7 +26,7 @@
   "devDependencies": {
     "@std/expect": "jsr:^1.0.20",
     "@std/testing": "jsr:^1.0.19",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "scripts": {
     "pool": "deno run -A ./scripts/pool.ts",
