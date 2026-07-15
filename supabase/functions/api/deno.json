@@ -1,7 +1,7 @@
 {
   "imports": {
     "@/": "./",
-    "@aws-sdk/client-ses": "npm:@aws-sdk/client-ses@^3.1063.0",
+    "@aws-sdk/client-ses": "npm:@aws-sdk/client-ses@^3.1081.0",
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.56",
     "@std/encoding": "jsr:@std/encoding@^1.0.0",
     "@std/uuid": "jsr:@std/uuid@^1.1.1",

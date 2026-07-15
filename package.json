@@ -8,7 +8,7 @@
     "./frontend"
   ],
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.1077.0",
+    "@aws-sdk/client-ses": "^3.1081.0",
     "@b-fuze/deno-dom": "jsr:^0.1.56",
     "@cliffy/command": "jsr:^1.2.1",
     "@hey-api/openapi-ts": "^0.99.0",
