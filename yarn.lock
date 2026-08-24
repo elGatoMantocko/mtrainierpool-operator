@@ -17,14 +17,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@asteasolutions/zod-to-openapi@npm:^8.5.0":
-  version: 8.5.0
-  resolution: "@asteasolutions/zod-to-openapi@npm:8.5.0"
+"@asteasolutions/zod-to-openapi@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "@asteasolutions/zod-to-openapi@npm:9.1.0"
   dependencies:
-    openapi3-ts: "npm:^4.1.2"
+    openapi3-ts: "npm:^4.6.0"
   peerDependencies:
     zod: ^4.0.0
-  checksum: 10c0/989674e297dbf5daef56813795d5b40a18d8de49e95f67d4d81f17e5b59f678f1a202b68631fa1a2bc83f9bbcb57db90c6a33d33e71a09579e46a0707e785a4b
+  checksum: 10c0/a6bfbdeab046036ed5e8ba1d460e7c2fb4b780f0c3f6d36afe76cea29cd1b8fc33de00661c57b7835c1cb5235c192ab87ff339b0785f328dacfee6eb1396277f
   languageName: node
   linkType: hard
 
@@ -1558,27 +1558,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hono/zod-openapi@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@hono/zod-openapi@npm:1.4.0"
+"@hono/zod-openapi@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@hono/zod-openapi@npm:1.6.0"
   dependencies:
-    "@asteasolutions/zod-to-openapi": "npm:^8.5.0"
-    "@hono/zod-validator": "npm:^0.8.0"
+    "@asteasolutions/zod-to-openapi": "npm:^9.1.0"
+    "@hono/zod-validator": "npm:^0.9.0"
     openapi3-ts: "npm:^4.5.0"
   peerDependencies:
     hono: ">=4.10.0"
     zod: ^4.0.0
-  checksum: 10c0/38b62bc4a619146867e0af015841d580c5844ba43b112b58e89024e4d62e6ef309eed20cb7285c4aabcd07a4c15175a25a83d4044bcf4b5a7df3cfbbfacfa70a
+  checksum: 10c0/f5583a2179f44a5c105fc969bcd4c303e2051b204e47d2bc12fd8108bd2f5ec8b46a818f3e664e466163e5540c0b4f81cb77586b1e2be94b58e8a3ddaae79a2a
   languageName: node
   linkType: hard
 
-"@hono/zod-validator@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@hono/zod-validator@npm:0.8.0"
+"@hono/zod-validator@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@hono/zod-validator@npm:0.9.0"
   peerDependencies:
-    hono: ">=4.10.0"
+    hono: ">=4.11.2"
     zod: ^3.25.0 || ^4.0.0
-  checksum: 10c0/0948014cc1689b9cd812aa6be8ac2540f28d3a58bb4120806f92cccec9bc958b5217ccfcaf814e98c6758d565bc26cdd0fc1089bf78eb88713069d078d3b0125
+  checksum: 10c0/74502187fb18113c2f4254050501e6da84f86b44b7a598675379ec2e8f4a3db571bc1a17d48da3a75c01dcbf251c1a7c8cc12cef4e53523aade0f793b64586e3
   languageName: node
   linkType: hard
 
@@ -5540,12 +5540,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openapi3-ts@npm:^4.1.2, openapi3-ts@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "openapi3-ts@npm:4.5.0"
+"openapi3-ts@npm:^4.5.0, openapi3-ts@npm:^4.6.0":
+  version: 4.6.1
+  resolution: "openapi3-ts@npm:4.6.1"
   dependencies:
-    yaml: "npm:^2.8.0"
-  checksum: 10c0/97de2d24e9ceffb89e1388e137e4a6e17ee57a02dce0c938a5e98b1338ac72b31e8b2ce8dd28945ad43fae8bee2a145892cb548ba5ae60b0930f1b6b79b0747d
+    yaml: "npm:^2.9.0"
+  checksum: 10c0/6593453cb4cc39de4216118946a473244cfc2a1cbc766df27e15be1922e202016fed6e2fc568e67a82535f596f62cbbe5c66e8aafd6c4891849d677140096932
   languageName: node
   linkType: hard
 
@@ -6651,7 +6651,7 @@ __metadata:
     "@b-fuze/deno-dom": "jsr:^0.1.56"
     "@cliffy/command": "jsr:^1.2.1"
     "@hey-api/openapi-ts": "npm:^0.99.0"
-    "@hono/zod-openapi": "npm:^1.4.0"
+    "@hono/zod-openapi": "npm:^1.6.0"
     "@std/dotenv": "jsr:^0.225.8"
     "@std/encoding": "jsr:^1.0.11"
     "@std/expect": "jsr:^1.0.20"
@@ -7584,7 +7584,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.8.0":
+"yaml@npm:^2.9.0":
   version: 2.9.0
   resolution: "yaml@npm:2.9.0"
   bin:

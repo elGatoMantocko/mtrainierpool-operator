@@ -12,7 +12,7 @@
     "@b-fuze/deno-dom": "jsr:^0.1.56",
     "@cliffy/command": "jsr:^1.2.1",
     "@hey-api/openapi-ts": "^0.99.0",
-    "@hono/zod-openapi": "^1.4.0",
+    "@hono/zod-openapi": "^1.6.0",
     "@std/dotenv": "jsr:^0.225.8",
     "@std/encoding": "jsr:^1.0.11",
     "@std/uuid": "jsr:^1.1.1",
