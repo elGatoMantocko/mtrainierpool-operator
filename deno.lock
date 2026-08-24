@@ -68,7 +68,7 @@
     "npm:dayjs@^1.11.23": "1.11.23",
     "npm:hono@^4.13.2": "4.13.2",
     "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.23",
-    "npm:lucide-react@^1.23.0": "1.23.0_react@19.2.7",
+    "npm:lucide-react@^1.31.0": "1.31.0_react@19.2.7",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
     "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.26",
     "npm:postcss-simple-vars@^7.0.1": "7.0.1_postcss@8.5.26",
@@ -3309,8 +3309,8 @@
         "yallist"
       ]
     },
-    "lucide-react@1.23.0_react@19.2.7": {
-      "integrity": "sha512-38BpJcD0JhFosxHApP/BYsBetLpQFRoTRzEzstM/XCc3jsAG7wqaY1lgVwxiUe3xqYE+lNxo2PkCmYwXWrwwIw==",
+    "lucide-react@1.31.0_react@19.2.7": {
+      "integrity": "sha512-G8u2eEtoHUnUa9f8lbvqDhCiORMnYLdUEo06EEG9MQvHQrInKcX3Pa2TH39MM5qyzRcWETxB0+aOwAPI1g1kEg==",
       "dependencies": [
         "react"
       ]
@@ -4555,7 +4555,7 @@
             "npm:@vite-pwa/assets-generator@^1.0.2",
             "npm:@vitejs/plugin-react@^6.0.5",
             "npm:dayjs@^1.11.23",
-            "npm:lucide-react@^1.23.0",
+            "npm:lucide-react@^1.31.0",
             "npm:postcss-preset-mantine@^1.18.0",
             "npm:postcss-simple-vars@^7.0.1",
             "npm:postcss@^8.5.26",
