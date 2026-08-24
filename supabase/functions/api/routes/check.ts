@@ -4,7 +4,7 @@ import * as uuid from "@std/uuid";
 import { withSupabase } from "@supabase/server/adapters/hono";
 import { Buffer } from "node:buffer";
 
-import { SupabaseVariables } from "@/index.ts";
+import type { Database } from "@/types/database.types.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
 import { runPoolOperator } from "@/utils/operator.ts";
 
@@ -48,7 +48,7 @@ const route = createRoute({
   security: [{ SupabaseAuth: [] }],
   // don't use `as const` because this type doesn't fully support DB types
   // publishable or secret imply supabaseAdmin
-  middleware: [withSupabase({ auth: ["secret"] })],
+  middleware: [withSupabase<Database>({ auth: ["secret"] })] as const,
   responses: {
     200: {
       description: "Found a pool status update.",
@@ -72,7 +72,7 @@ const route = createRoute({
   },
 });
 
-export const app = new DefaultOpenAPIHono<SupabaseVariables>().openapi(
+export const app = new DefaultOpenAPIHono().openapi(
   route,
   async (c) => {
     // get new idempotent pool closure message
