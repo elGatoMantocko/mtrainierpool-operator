@@ -44,7 +44,7 @@
     "npm:@jsr/supabase__functions-js@^2.112.3": "2.112.3_zod@4.4.3",
     "npm:@jsr/supabase__supabase-js@^2.112.3": "2.112.3",
     "npm:@mantine/core@^9.5.1": "9.5.1_@mantine+hooks@9.5.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.18",
-    "npm:@mantine/dates@^9.5.1": "9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.18_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.18",
+    "npm:@mantine/dates@^9.5.1": "9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.18_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.23_react@19.2.7_react-dom@19.2.7__react@19.2.7",
     "npm:@mantine/form@^9.5.1": "9.5.1_react@19.2.7",
     "npm:@mantine/hooks@^9.5.1": "9.5.1_react@19.2.7",
     "npm:@opentelemetry/api@1": "1.9.1",
@@ -65,9 +65,9 @@
     "npm:@types/react@^19.2.18": "19.2.18",
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
     "npm:@vitejs/plugin-react@^6.0.5": "6.0.5_vite@8.2.1",
-    "npm:dayjs@^1.11.21": "1.11.21",
+    "npm:dayjs@^1.11.23": "1.11.23",
     "npm:hono@^4.13.2": "4.13.2",
-    "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.21",
+    "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.23",
     "npm:lucide-react@^1.23.0": "1.23.0_react@19.2.7",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
     "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.26",
@@ -1536,7 +1536,7 @@
         "type-fest@5.8.0"
       ]
     },
-    "@mantine/dates@9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.18_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.18": {
+    "@mantine/dates@9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.18_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.23_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
       "integrity": "sha512-1FTIgF8L6AKEb+Ql53zVyCCp4JxvQp/AUDts5T/JEI7U0CZGpzg+FHGtmNShLR4ONuOfzOV1gkgU8INbxVJjag==",
       "dependencies": [
         "@mantine/core",
@@ -2542,8 +2542,8 @@
         "is-data-view"
       ]
     },
-    "dayjs@1.11.21": {
-      "integrity": "sha512-98IT+HOahAisibz/yjKbzuOBwYcjJ7BCLPzARyHiyEBmRz4fatF+KPJszEHXsGYjUG234aH/cOjW1wwTbKUZlA=="
+    "dayjs@1.11.23": {
+      "integrity": "sha512-QDTCU0M0MxR3hQfnlDJfwekQiaanm1ubOD231u73WBckQ/fsamwRLiE2GBz6D3a/xF1NgfiDLJjXBa1hYOYTtQ=="
     },
     "debug@4.4.3": {
       "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
@@ -2952,7 +2952,7 @@
         "ms"
       ]
     },
-    "ical-generator@11.1.0_dayjs@1.11.21": {
+    "ical-generator@11.1.0_dayjs@1.11.23": {
       "integrity": "sha512-/CSyXcelySK5qYAUxXnwzhAi1UPVnapnVMXqkRQ+L0RXHCFtzqLm92o5PD0ZRhaWBCtkS0hP8YIxMrSRZ+8Zug==",
       "dependencies": [
         "dayjs"
@@ -4554,7 +4554,7 @@
             "npm:@types/react@^19.2.18",
             "npm:@vite-pwa/assets-generator@^1.0.2",
             "npm:@vitejs/plugin-react@^6.0.5",
-            "npm:dayjs@^1.11.21",
+            "npm:dayjs@^1.11.23",
             "npm:lucide-react@^1.23.0",
             "npm:postcss-preset-mantine@^1.18.0",
             "npm:postcss-simple-vars@^7.0.1",
