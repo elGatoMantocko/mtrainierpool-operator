@@ -10,7 +10,7 @@
     "@hono/zod-openapi": "npm:@hono/zod-openapi@^1.6.0",
     "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.112.3",
     "hono": "npm:hono@^4.13.2",
-    "ical-generator": "npm:ical-generator@^11.0.0",
+    "ical-generator": "npm:ical-generator@^11.1.0",
     "zod": "npm:zod@^4.4.3"
   }
 }
