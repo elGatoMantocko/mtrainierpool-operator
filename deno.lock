@@ -43,10 +43,10 @@
     "npm:@jsr/std__uuid@^1.1.1": "1.1.1",
     "npm:@jsr/supabase__functions-js@^2.112.3": "2.112.3_zod@4.4.3",
     "npm:@jsr/supabase__supabase-js@^2.112.3": "2.112.3",
-    "npm:@mantine/core@^9.4.1": "9.4.1_@mantine+hooks@9.4.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
-    "npm:@mantine/dates@^9.4.1": "9.4.1_@mantine+core@9.4.1__@mantine+hooks@9.4.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.4.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
-    "npm:@mantine/form@^9.4.1": "9.4.1_react@19.2.7",
-    "npm:@mantine/hooks@^9.4.1": "9.4.1_react@19.2.7",
+    "npm:@mantine/core@^9.5.1": "9.5.1_@mantine+hooks@9.5.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
+    "npm:@mantine/dates@^9.5.1": "9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17",
+    "npm:@mantine/form@^9.5.1": "9.5.1_react@19.2.7",
+    "npm:@mantine/hooks@^9.5.1": "9.5.1_react@19.2.7",
     "npm:@opentelemetry/api@1": "1.9.1",
     "npm:@supabase/auth-js@2.112.3": "2.112.3",
     "npm:@supabase/functions-js@2.112.3": "2.112.3",
@@ -1085,29 +1085,29 @@
         "tslib"
       ]
     },
-    "@floating-ui/core@1.7.5": {
-      "integrity": "sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==",
+    "@floating-ui/core@1.8.0": {
+      "integrity": "sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==",
       "dependencies": [
         "@floating-ui/utils"
       ]
     },
-    "@floating-ui/dom@1.7.6": {
-      "integrity": "sha512-9gZSAI5XM36880PPMm//9dfiEngYoC6Am2izES1FF406YFsjvyBMmeJ2g4SAju3xWwtuynNRFL2s9hgxpLI5SQ==",
+    "@floating-ui/dom@1.8.0": {
+      "integrity": "sha512-yXSrzeHZBTZadLOlfyhCkJHNeLJnHRnRInwdZ40L7ZiaAtrBwoYlsDrX3v5zB1Utk7CLfzcOVnVVWoXEky7Ceg==",
       "dependencies": [
         "@floating-ui/core",
         "@floating-ui/utils"
       ]
     },
-    "@floating-ui/react-dom@2.1.8_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
-      "integrity": "sha512-cC52bHwM/n/CxS87FH0yWdngEZrjdtLW/qVruo68qg+prK7ZQ4YGdut2GyDVpoGeAYe/h899rVeOVm6Oi40k2A==",
+    "@floating-ui/react-dom@2.1.9_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
+      "integrity": "sha512-JDjEFGCpImxDCA7JJKviA0M9+RtmJdj0m/NVU5IMgBK+AmZouAQQ7/+2GLH0GXXY0YMw9oXPB8hKdbPYg5QLYg==",
       "dependencies": [
         "@floating-ui/dom",
         "react",
         "react-dom"
       ]
     },
-    "@floating-ui/react@0.27.19_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
-      "integrity": "sha512-31B8h5mm8YxotlE7/AU/PhNAl8eWxAmjL/v2QOxroDNkTFLk3Uu82u63N3b6TXa4EGJeeZLVcd/9AlNlVqzeog==",
+    "@floating-ui/react@0.27.20_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
+      "integrity": "sha512-CMqMy7OaXl9W0eq1Uy7L7i2Y/anPvHmFmESd2CEw0t5YvZhcVCeo4MBevAmswRllX7Y2dEidA4ozGPunLSTQpw==",
       "dependencies": [
         "@floating-ui/react-dom",
         "@floating-ui/utils",
@@ -1116,8 +1116,8 @@
         "tabbable"
       ]
     },
-    "@floating-ui/utils@0.2.11": {
-      "integrity": "sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg=="
+    "@floating-ui/utils@0.2.12": {
+      "integrity": "sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww=="
     },
     "@hey-api/codegen-core@0.9.1": {
       "integrity": "sha512-s97jL1dgTMuiMHv2BZ1X4Tgd99Mf9GOvGdNqNcGwIMmnR+PgYNoraj4Zvp134MKsNCap/m7k0r0vKKnl56pj4w==",
@@ -1536,8 +1536,8 @@
     "@lukeed/ms@2.0.2": {
       "integrity": "sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA=="
     },
-    "@mantine/core@9.4.1_@mantine+hooks@9.4.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
-      "integrity": "sha512-lZWEICrum4+vwKxzh/mk4RB1N6BqZ0Cshdl6lhm7OYLiQzmOaxKtOgyaWz+vr65G8mqTXjalZalB+wmMVBYK2Q==",
+    "@mantine/core@9.5.1_@mantine+hooks@9.5.1__react@19.2.7_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
+      "integrity": "sha512-3olDOYJBfW4kR37Aqdy/+FnYG7iNb5SPzOGeCp9dDxnt65K94sEqETDnXGJptOMO2xLm4KLJ/eBt3IIhJA7Z4Q==",
       "dependencies": [
         "@floating-ui/react",
         "@mantine/hooks",
@@ -1546,11 +1546,11 @@
         "react-dom",
         "react-number-format",
         "react-remove-scroll",
-        "type-fest@5.7.0"
+        "type-fest@5.8.0"
       ]
     },
-    "@mantine/dates@9.4.1_@mantine+core@9.4.1__@mantine+hooks@9.4.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.4.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
-      "integrity": "sha512-DoQDvQMAlIw6ohwhUwYuTYQevG9y5AQmYWkhOHUuavABFEZmtBglkwziBoATvxT09I/6I56UMPhproXcS6XUfg==",
+    "@mantine/dates@9.5.1_@mantine+core@9.5.1__@mantine+hooks@9.5.1___react@19.2.7__react@19.2.7__react-dom@19.2.7___react@19.2.7__@types+react@19.2.17_@mantine+hooks@9.5.1__react@19.2.7_dayjs@1.11.21_react@19.2.7_react-dom@19.2.7__react@19.2.7_@types+react@19.2.17": {
+      "integrity": "sha512-1FTIgF8L6AKEb+Ql53zVyCCp4JxvQp/AUDts5T/JEI7U0CZGpzg+FHGtmNShLR4ONuOfzOV1gkgU8INbxVJjag==",
       "dependencies": [
         "@mantine/core",
         "@mantine/hooks",
@@ -1560,8 +1560,8 @@
         "react-dom"
       ]
     },
-    "@mantine/form@9.4.1_react@19.2.7": {
-      "integrity": "sha512-e4tqC/D8ii7maPySWIWY306MNljPRprHPhu0/jaZrX7sRyJy+C8V9aU+ZFKYliM1CeiH1UX88+q4hWFUWVEdQw==",
+    "@mantine/form@9.5.1_react@19.2.7": {
+      "integrity": "sha512-WsMZGBTsoG2Y/K+6QK0+GmsJxq5KzWHIzo65lRpkq/SwdenV9G+3m0LstlhI9i2/wQF83GfwP7mCbKMfzf00Eg==",
       "dependencies": [
         "@standard-schema/spec",
         "fast-deep-equal",
@@ -1569,8 +1569,8 @@
         "react"
       ]
     },
-    "@mantine/hooks@9.4.1_react@19.2.7": {
-      "integrity": "sha512-eTI8wmzPx3r98zgKIEuvukmoGTHBhmtI6+9E6o2DbTmEU2eM1bCdjE2vFdf0op2AlRO0KEYEcZhNQi4T/SJk0A==",
+    "@mantine/hooks@9.5.1_react@19.2.7": {
+      "integrity": "sha512-2sK9OdWvrzKBOuWxLfQA5qcAJzxpzqNlKumaP7Uq0i7LDBQeY/sYgNiBWLwtW+iZw6fFXwPf0nI7q5VVpvqnNQ==",
       "dependencies": [
         "react"
       ]
@@ -4095,8 +4095,8 @@
     "type-fest@0.16.0": {
       "integrity": "sha512-eaBzG6MxNzEn9kiwvtre90cXaNLkmadMWa1zQMs3XORCXNbsH/OewwbxC5ia9dCxIxnTAsSxXJaa/p5y8DlvJg=="
     },
-    "type-fest@5.7.0": {
-      "integrity": "sha512-1URUxUqfHFM1c+zfSPsa3gnkO7Aq21qyH75SIduNYz4SzY964rn1X2vCMQaHSHhktiw+0kPa2iyb6PUpXqB6Vg==",
+    "type-fest@5.8.0": {
+      "integrity": "sha512-YGYEVz3Fm5iy/AybuA0oyNFq7H4CgQNfRp/qfe8nurE1kuCeNm3/vfm9X4Mtl+qLyaKJUh5xrFZwogr41SMjYA==",
       "dependencies": [
         "tagged-tag"
       ]
@@ -4577,10 +4577,10 @@
         "packageJson": {
           "dependencies": [
             "npm:@js-temporal/polyfill@~0.5.1",
-            "npm:@mantine/core@^9.4.1",
-            "npm:@mantine/dates@^9.4.1",
-            "npm:@mantine/form@^9.4.1",
-            "npm:@mantine/hooks@^9.4.1",
+            "npm:@mantine/core@^9.5.1",
+            "npm:@mantine/dates@^9.5.1",
+            "npm:@mantine/form@^9.5.1",
+            "npm:@mantine/hooks@^9.5.1",
             "npm:@supabase/supabase-js@^2.112.3",
             "npm:@tanstack/react-query-devtools@^5.101.4",
             "npm:@tanstack/react-query@^5.101.4",
