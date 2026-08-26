@@ -12,6 +12,7 @@ import { type Database, Tables } from "@/types/database.types.ts";
 import { formatDate } from "@/utils/dates.ts";
 import { buildRawEmail } from "@/utils/email.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
+import { POOL_OPERATOR_ANALYSIS_FIELDS } from "@/utils/queries.ts";
 import { type SupabaseContext } from "@supabase/server";
 import { Context } from "hono";
 
@@ -250,11 +251,7 @@ export const app = new DefaultOpenAPIHono()
 
       const { data: analysis, error: analysisError } = await supabase
         .from("pool_operator_analysis")
-        .select(
-          `id
-          , poolUpdate:pool_updates(id, message, source)
-          , closures:pool_closures(closed_at, opened_at, reasoning)`,
-        )
+        .select(POOL_OPERATOR_ANALYSIS_FIELDS)
         .eq("id", analysisId)
         .maybeSingle();
 

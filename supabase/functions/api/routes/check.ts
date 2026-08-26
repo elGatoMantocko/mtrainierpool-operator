@@ -7,6 +7,7 @@ import { Buffer } from "node:buffer";
 import type { Database } from "@/types/database.types.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
 import { runPoolOperator } from "@/utils/operator.ts";
+import { POOL_UPDATES_FIELDS } from "@/utils/queries.ts";
 
 const NAMESPACE_POOL_UPDATE = await uuid.v5.generate(
   uuid.NAMESPACE_URL,
@@ -97,43 +98,25 @@ export const app = new DefaultOpenAPIHono().openapi(
     const { data, error } = await c.var.supabaseContext.supabaseAdmin
       .from("pool_updates")
       .upsert({ id, message: bannerText, source: "mtrainierpool.com" })
-      .select(
-        `id
-        ,message
-        ,source
-        ,createdAt:created_at
-        ,updatedAt:updated_at
-        ,analysis:pool_operator_analysis(
-          id,
-          model,
-          createdAt:created_at,
-          updatedAt:updated_at,
-          closures:pool_closures(
-            id,
-            closedAt:closed_at,
-            openedAt:opened_at,
-            reasoning,
-            confidenceScore:confidence_score,
-            flags,
-            createdAt:created_at,
-            updatedAt:updated_at
-          )
-        )`,
-      )
+      .select(POOL_UPDATES_FIELDS)
       .single();
 
     if (error) {
-      throw new Error("failed to create new pool closure record", {
+      throw new Error("failed to create new pool update record", {
         cause: error,
       });
     }
 
     console.log("got a pool update", data);
 
-    // need to run and apply an analysis
-    if (data.analysis == null) {
-      EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
+    if (data.analysis != null) {
+      console.log("analysis already exists", data.analysis);
+      return c.json(data satisfies z.infer<typeof StatusUpdate>, 200);
     }
+
+    // need to run and apply an analysis
+    console.log("running pool-operator analysis");
+    EdgeRuntime.waitUntil(runPoolOperator(c, data.id, bannerText));
 
     return c.json(data satisfies z.infer<typeof StatusUpdate>, 200);
   },
