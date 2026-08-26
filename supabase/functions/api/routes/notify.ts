@@ -1,19 +1,19 @@
 import { SendRawEmailCommand } from "@aws-sdk/client-ses";
 import { createRoute, z } from "@hono/zod-openapi";
 import { withSupabase } from "@supabase/server/adapters/hono";
-import type { Context } from "hono";
 import ical, {
   ICalCalendar,
   ICalCalendarMethod,
   ICalEventData,
 } from "ical-generator";
 
-import { SupabaseVariables } from "@/index.ts";
-import { AwsVariables, withAws } from "@/middleware/aws.ts";
-import { Tables } from "@/types/database.types.ts";
+import { type AwsVariables, withAws } from "@/middleware/aws.ts";
+import { type Database, Tables } from "@/types/database.types.ts";
 import { formatDate } from "@/utils/dates.ts";
 import { buildRawEmail } from "@/utils/email.ts";
 import { DefaultOpenAPIHono } from "@/utils/hono.ts";
+import { type SupabaseContext } from "@supabase/server";
+import { Context } from "hono";
 
 type PoolClosure = Pick<
   Tables<{ schema: "public" }, "pool_closures">,
@@ -53,7 +53,10 @@ const route = createRoute({
   path: "/email",
   security: [{ SupabaseAuth: [] }],
   // secret key only — matches /check; implies supabaseAdmin
-  middleware: [withSupabase({ auth: ["secret"] }), withAws()],
+  middleware: [
+    withSupabase<Database>({ auth: ["secret"] }),
+    withAws(),
+  ] as const,
   request: {
     body: {
       required: true,
@@ -124,8 +127,12 @@ function calendarData(analysis: PoolOperatorAnalysis): ICalCalendar {
   return cal;
 }
 
-async function sendEmails(
-  c: Context<SupabaseVariables & AwsVariables>,
+type SupabaseHonoContext = Context<
+  { Variables: { supabaseContext: SupabaseContext<Database> } } & AwsVariables
+>;
+
+async function sendEmails<C extends SupabaseHonoContext>(
+  c: C,
   recipients: Array<{ id: string; email: string }>,
   analysis: PoolOperatorAnalysis,
 ): Promise<void> {
@@ -234,7 +241,7 @@ async function sendEmails(
   }
 }
 
-export const app = new DefaultOpenAPIHono<SupabaseVariables & AwsVariables>()
+export const app = new DefaultOpenAPIHono()
   .openapi(
     route,
     async (c) => {

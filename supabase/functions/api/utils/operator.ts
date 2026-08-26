@@ -1,7 +1,8 @@
-import { Context } from "hono";
+import type { Context } from "hono";
 
-import { SupabaseVariables } from "@/index.ts";
-import { TablesInsert } from "@/types/database.types.ts";
+import type { SupabaseContext } from "@supabase/server";
+
+import type { Database, TablesInsert } from "@/types/database.types.ts";
 
 export function getPrompt(bannerText: string): string {
   const now = Temporal.Now.zonedDateTimeISO("America/Los_Angeles");
@@ -52,7 +53,13 @@ function sanitize<T extends string | null>(data: T): T {
   return cleaned;
 }
 
-export async function runPoolOperator<C extends Context<SupabaseVariables>>(
+type SupabaseHonoContext = Context<
+  { Variables: { supabaseContext: SupabaseContext<Database> } }
+>;
+
+export async function runPoolOperator<
+  C extends SupabaseHonoContext,
+>(
   c: C,
   poolUpdateId: string,
   bannerText: string,

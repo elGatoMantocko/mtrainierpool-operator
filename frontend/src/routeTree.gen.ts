@@ -9,16 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root';
-import { Route as LogoutRouteImport } from './routes/logout';
-import { Route as LoginRouteImport } from './routes/login';
-import { Route as AuthRouteImport } from './routes/_auth';
 import { Route as IndexRouteImport } from './routes/index';
-import { Route as AuthCallbackRouteImport } from './routes/auth.callback';
+import { Route as AuthRouteImport } from './routes/_auth';
+import { Route as LoginRouteImport } from './routes/login';
+import { Route as LogoutRouteImport } from './routes/logout';
 import { Route as AuthHomeRouteImport } from './routes/_auth.home';
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback';
 
-const LogoutRoute = LogoutRouteImport.update({
-  id: '/logout',
-  path: '/logout',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any);
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRouteImport,
 } as any);
 const LoginRoute = LoginRouteImport.update({
@@ -26,24 +30,20 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any);
-const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
-  getParentRoute: () => rootRouteImport,
-} as any);
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any);
-const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/auth/callback',
-  path: '/auth/callback',
+const LogoutRoute = LogoutRouteImport.update({
+  id: '/logout',
+  path: '/logout',
   getParentRoute: () => rootRouteImport,
 } as any);
 const AuthHomeRoute = AuthHomeRouteImport.update({
   id: '/home',
   path: '/home',
   getParentRoute: () => AuthRoute,
+} as any);
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
+  getParentRoute: () => rootRouteImport,
 } as any);
 
 export interface FileRoutesByFullPath {
@@ -94,18 +94,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/logout': {
-      id: '/logout';
-      path: '/logout';
-      fullPath: '/logout';
-      preLoaderRoute: typeof LogoutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    '/login': {
-      id: '/login';
-      path: '/login';
-      fullPath: '/login';
-      preLoaderRoute: typeof LoginRouteImport;
+    '/': {
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     '/_auth': {
@@ -115,18 +108,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport;
       parentRoute: typeof rootRouteImport;
     };
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
+    '/login': {
+      id: '/login';
+      path: '/login';
+      fullPath: '/login';
+      preLoaderRoute: typeof LoginRouteImport;
       parentRoute: typeof rootRouteImport;
     };
-    '/auth/callback': {
-      id: '/auth/callback';
-      path: '/auth/callback';
-      fullPath: '/auth/callback';
-      preLoaderRoute: typeof AuthCallbackRouteImport;
+    '/logout': {
+      id: '/logout';
+      path: '/logout';
+      fullPath: '/logout';
+      preLoaderRoute: typeof LogoutRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     '/_auth/home': {
@@ -135,6 +128,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/home';
       preLoaderRoute: typeof AuthHomeRouteImport;
       parentRoute: typeof AuthRoute;
+    };
+    '/auth/callback': {
+      id: '/auth/callback';
+      path: '/auth/callback';
+      fullPath: '/auth/callback';
+      preLoaderRoute: typeof AuthCallbackRouteImport;
+      parentRoute: typeof rootRouteImport;
     };
   }
 }

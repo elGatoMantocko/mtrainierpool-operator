@@ -1,16 +1,10 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
-import type { SupabaseContext } from "@supabase/server";
 import { cors } from "hono/cors";
 import { HTTPException } from "hono/http-exception";
 import { logger } from "hono/logger";
 
 import { app as checkApp } from "@/routes/check.ts";
 import { app as notifyApp } from "@/routes/notify.ts";
-import { Database } from "./types/database.types.ts";
-
-export type SupabaseVariables = {
-  Variables: { supabaseContext: SupabaseContext<Database> };
-};
 
 const api = new OpenAPIHono();
 api.route("/check", checkApp);
