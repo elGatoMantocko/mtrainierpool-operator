@@ -30,9 +30,9 @@
     "jsr:@std/uuid@^1.1.1": "1.1.1",
     "jsr:@supabase/functions-js@^2.112.3": "2.112.3",
     "jsr:@supabase/supabase-js@^2.112.3": "2.112.3",
-    "npm:@aws-sdk/client-ses@^3.1111.0": "3.1111.0",
+    "npm:@aws-sdk/client-ses@^3.1116.0": "3.1116.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@7.0.2",
-    "npm:@hono/zod-openapi@^1.6.0": "1.6.0_hono@4.13.2_zod@4.4.3",
+    "npm:@hono/zod-openapi@^1.6.1": "1.6.1_hono@4.13.3_zod@4.4.3",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
     "npm:@jsr/cliffy__command@^1.2.1": "1.2.1",
@@ -52,23 +52,23 @@
     "npm:@supabase/functions-js@2.112.3": "2.112.3",
     "npm:@supabase/postgrest-js@2.112.3": "2.112.3",
     "npm:@supabase/realtime-js@2.112.3": "2.112.3",
-    "npm:@supabase/server@^1.4.1": "1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.2",
+    "npm:@supabase/server@^1.4.1": "1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.3",
     "npm:@supabase/storage-js@2.112.3": "2.112.3",
     "npm:@supabase/supabase-js@^2.112.3": "2.112.3_@opentelemetry+api@1.9.1",
     "npm:@tanstack/react-query-devtools@^5.101.4": "5.101.4_@tanstack+react-query@5.101.4__react@19.2.8_react@19.2.8",
     "npm:@tanstack/react-query@^5.101.4": "5.101.4_react@19.2.8",
-    "npm:@tanstack/react-router-devtools@^1.167.1": "1.167.1_@tanstack+react-router@1.170.29__react@19.2.8__react-dom@19.2.8___react@19.2.8_@tanstack+router-core@1.171.24_react@19.2.8_react-dom@19.2.8__react@19.2.8",
-    "npm:@tanstack/react-router@^1.170.29": "1.170.29_react@19.2.8_react-dom@19.2.8__react@19.2.8",
-    "npm:@tanstack/router-core@^1.171.24": "1.171.24",
-    "npm:@tanstack/router-plugin@^1.168.32": "1.168.32_@tanstack+react-router@1.170.29__react@19.2.8__react-dom@19.2.8___react@19.2.8_vite@8.2.1_react@19.2.8_react-dom@19.2.8__react@19.2.8",
+    "npm:@tanstack/react-router-devtools@^1.167.1": "1.167.1_@tanstack+react-router@1.170.31__react@19.2.8__react-dom@19.2.8___react@19.2.8_@tanstack+router-core@1.171.26_react@19.2.8_react-dom@19.2.8__react@19.2.8",
+    "npm:@tanstack/react-router@^1.170.31": "1.170.31_react@19.2.8_react-dom@19.2.8__react@19.2.8",
+    "npm:@tanstack/router-core@^1.171.26": "1.171.26",
+    "npm:@tanstack/router-plugin@^1.168.34": "1.168.34_@tanstack+react-router@1.170.31__react@19.2.8__react-dom@19.2.8___react@19.2.8_vite@8.2.2",
     "npm:@types/react-dom@^19.2.4": "19.2.4_@types+react@19.2.18",
     "npm:@types/react@^19.2.18": "19.2.18",
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
-    "npm:@vitejs/plugin-react@^6.0.5": "6.0.5_vite@8.2.1",
+    "npm:@vitejs/plugin-react@^6.1.0": "6.1.0_vite@8.2.2",
     "npm:dayjs@^1.11.23": "1.11.23",
-    "npm:hono@^4.13.2": "4.13.2",
+    "npm:hono@^4.13.3": "4.13.3",
     "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.23",
-    "npm:lucide-react@^1.31.0": "1.31.0_react@19.2.8",
+    "npm:lucide-react@^1.33.0": "1.33.0_react@19.2.8",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
     "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.26",
     "npm:postcss-simple-vars@^7.0.1": "7.0.1_postcss@8.5.26",
@@ -76,8 +76,8 @@
     "npm:react-dom@^19.2.8": "19.2.8_react@19.2.8",
     "npm:react@^19.2.8": "19.2.8",
     "npm:typescript@^7.0.2": "7.0.2",
-    "npm:vite-plugin-pwa@^1.3.0": "1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.2.1",
-    "npm:vite@^8.2.1": "8.2.1",
+    "npm:vite-plugin-pwa@^1.3.0": "1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.2.2",
+    "npm:vite@^8.2.2": "8.2.2",
     "npm:zod@^4.4.3": "4.4.3"
   },
   "jsr": {
@@ -230,8 +230,8 @@
         "zod"
       ]
     },
-    "@aws-sdk/client-ses@3.1111.0": {
-      "integrity": "sha512-gd8yPGBB8z8p2BaZN3PnpRCIvqZsTNyJVviP6ateih60uyhdKMaPIwa0XGiYdR/+ogRkn4GDdQ93plXdbDbEEA==",
+    "@aws-sdk/client-ses@3.1116.0": {
+      "integrity": "sha512-kVkoaeT5xQbUrmTFVcFOnFsBH/BzJk6G14jO2wqp1TCCDlmqHLWwVuzuZ9WiXwTlsSvnJnBMVzigq6IPlP7rzg==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/credential-provider-node",
@@ -243,8 +243,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/core@3.977.8": {
-      "integrity": "sha512-7+Kcrkvrk9lM/m7jRhHpT4jCdvzGHsuaSRbF8TdzzkY1mRzp/Ogwf9c7H29k4gGhey0BBWhCWr16+t0J61gwmg==",
+    "@aws-sdk/core@3.977.9": {
+      "integrity": "sha512-reqPFEQrZxDZpeGj4PFMepBeR5LGYHRqq/L0motTzgFkCRBA4rFdaVXDSLYyGHhxVz7sT2PDnPN9CluGSfgyJA==",
       "dependencies": [
         "@aws-sdk/types",
         "@aws-sdk/xml-builder",
@@ -256,8 +256,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-env@3.972.69": {
-      "integrity": "sha512-AreCFzcB4kH2HF9031Ot0jSJr3KXvRg6e8uDeub20JEVdZU3Bv0sTq1plc7VsT3KiqutlzH7l0j50UcCWHUioA==",
+    "@aws-sdk/credential-provider-env@3.972.70": {
+      "integrity": "sha512-H404B7dJl2mCrBqahDEYsanB0xhdDp6tXnXcTUnXmmpy2Q3J0Ho0bUajZ2jr/RdwzCyS59Gi8xXIFwPLGBl6Uw==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -266,8 +266,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-http@3.972.71": {
-      "integrity": "sha512-A8ObcqVmDMnk4F9NozZ7JwmUu9Q4xyBJkmyq1C5U+wNM9ht9J7+EuuyabsLWXZnOoTqFaJuYBYTKf5CTipkEjA==",
+    "@aws-sdk/credential-provider-http@3.972.72": {
+      "integrity": "sha512-X98zYOrVOeuosCX+6ktf29FC2N2GHPLia7qv6mzPzTc+RPAuHWCDS++Z6JK7eGYqb/v6uaW7bAXaOvDBfol+0w==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -278,8 +278,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-ini@3.973.14": {
-      "integrity": "sha512-7c+Wti2LsERNWMfm7ySz3/6RPopFW3Nmn7s63Xpcq6R/tRuY5hpvkHA2xVgi5ukJbvok9l0IDtVEvqTtg+X7dw==",
+    "@aws-sdk/credential-provider-ini@3.973.15": {
+      "integrity": "sha512-Rykg6s5ceBuynMOGWgoowO4N+27JfnqXAnVaSunZl0hOO1XodSrxGNz6sCEbnmS0lAfQZDKyb3fbr46gSuv6Sg==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/credential-provider-env",
@@ -296,8 +296,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-login@3.972.76": {
-      "integrity": "sha512-LVixwOnEJfrrfKHeZjBA8pIMTZjNDq8ak8VpcoWUuCJDrSnBNU8POJksULMgvN089P0MXtQYH2Zs627/MK1K0g==",
+    "@aws-sdk/credential-provider-login@3.972.77": {
+      "integrity": "sha512-Jb59xfEISoN5mmbnA+HYqdtrSX3CgCtJoof+V5D8/TgUI56W63GEEd5Y58WijU3Ou6+WEgaLD1feVzaRXV5IDQ==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -307,8 +307,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-node@3.972.80": {
-      "integrity": "sha512-bE2qh8ww4iClO1jHsBXdOE8FUgzDbdxbyorNjSCoPSkQd51k3jODItuPZfuwcLHZqDXsH+bI4AMHhqtuyR7mSg==",
+    "@aws-sdk/credential-provider-node@3.972.81": {
+      "integrity": "sha512-Rml+WitoFvXmv6JZ18U/xGdGDGGvB/mOin0ya0lTnTrdC0Z1lrVxTYh7iNklZBcvcRMrs4DoEf6xy1KWyrLQQw==",
       "dependencies": [
         "@aws-sdk/credential-provider-env",
         "@aws-sdk/credential-provider-http",
@@ -323,8 +323,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-process@3.972.69": {
-      "integrity": "sha512-9kpTNdZTrcqXTfhxM7fgl9Z68ek3Fu5oe3Yf+A/pJGibEqpgZxz2tSY7SinmyCIU2PJ+ygY4FPoBBnLpocMtrQ==",
+    "@aws-sdk/credential-provider-process@3.972.70": {
+      "integrity": "sha512-2ry03fGRJr4sV3jI+ocjj5JqALnFD6ymM5KiNCDZMvq8bX2GSbE0vji4aM43TVCl2nXqqLRZaUxdq/KeWRAY4Q==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/types",
@@ -333,8 +333,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-sso@3.973.13": {
-      "integrity": "sha512-Oc81qauMPzUoTnAS2YKpNwY6sY/LUyQTEeaf6yP197WMxkEBQfcKLR1MFpD7+pNTubXnfkH6gwpji+Gc7iyD2Q==",
+    "@aws-sdk/credential-provider-sso@3.973.14": {
+      "integrity": "sha512-jkhg/8ocAAoc0RFyLMhCw+/zZh7gystQgd4F4hznNa8P4Cc501PQmxd+jGLiMHodPJ+7Zv/3znM62gZojyasmA==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -345,8 +345,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/credential-provider-web-identity@3.972.75": {
-      "integrity": "sha512-YPN6uoGDgjjjeVFZrcOeCJqmB6zpXoeeNgIjqe+DexJaWqdjVfCCe+VAZwli9Z2h8KhFW8oxkO39emQ1tyz/Mw==",
+    "@aws-sdk/credential-provider-web-identity@3.972.76": {
+      "integrity": "sha512-d3AGyVu759PGr35mEB2s22xxlNEA5rpdxtSPJthfPFJvoQ8dt357iVPECqWfUxXp1toJAvKmbtcIYVGigaGsCA==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -356,8 +356,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/nested-clients@3.997.43": {
-      "integrity": "sha512-bit+VpqWNyi3wHxFoTsTliNXimCSL2r2OeDTm7ZrG+YsTZ2D7ofDJ6r/t9PVBn80i6/v0X2h9Tgw6QP2MAKfPw==",
+    "@aws-sdk/nested-clients@3.997.44": {
+      "integrity": "sha512-NhEgryjlBF9w38ZXqGymQV28IhkYa1mKhlbYnqIis57AYwWGVYfUPgg/qC2rLRqOUfblxx++irvju10kVTa8Vw==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/signature-v4-multi-region",
@@ -369,8 +369,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/signature-v4-multi-region@3.996.45": {
-      "integrity": "sha512-bBuyztukzXq6plzFGHAWiQt0QXo+HL8b8lX5cFTzkez/74PtS1c0qPFCIVuHkyoT+miH2qOjAcm1/yoro2ESPA==",
+    "@aws-sdk/signature-v4-multi-region@3.996.46": {
+      "integrity": "sha512-L+2xZTye/2T96f3lwCws0Zw6GG2JHZW9e8FpVgGBeeExSKyeoZ6CWRpBml/7DNiK/O26jrgPM9F+Ay8VkgzUWQ==",
       "dependencies": [
         "@aws-sdk/types",
         "@smithy/signature-v4",
@@ -378,8 +378,8 @@
         "tslib"
       ]
     },
-    "@aws-sdk/token-providers@3.1111.0": {
-      "integrity": "sha512-JfljgoVtl+s3Qy21n9a7Z48uCQaOXcN74KJ3TEQfPoB293GrXFSt6HSQJF1sTZ8c/5QedEvd3NjJQMO4u9qa5A==",
+    "@aws-sdk/token-providers@3.1116.0": {
+      "integrity": "sha512-ygIivKqh8aHzNkucOCXHyIBgBpLPfrSI0mCqXF+vLBsPTUKqj0VSqAY0GFPe7lQl4HntjOcQ+KSyS7oUV2C54Q==",
       "dependencies": [
         "@aws-sdk/core",
         "@aws-sdk/nested-clients",
@@ -389,15 +389,15 @@
         "tslib"
       ]
     },
-    "@aws-sdk/types@3.974.4": {
-      "integrity": "sha512-dSFDNG00MEz0/xl5gxL62giLd1iYyJsTxZ1I1DOj6lC+bbgLB4TRsYClJg3b62dhXT1uATzsTNXPnC+33EJV3A==",
+    "@aws-sdk/types@3.974.5": {
+      "integrity": "sha512-LkwLL2BLbC6wNNm4JaH9mbEqBMdOZCct6VAYqhdN4U1xrWM+fUJQEfbHwQgDypapOWTRtlk25akb5afM0P8CIQ==",
       "dependencies": [
         "@smithy/types",
         "tslib"
       ]
     },
-    "@aws-sdk/xml-builder@3.972.39": {
-      "integrity": "sha512-FTti8DS5MMWXNUWiRwXAJeYS+0GHHiMy0+7XOhcwk63ILHmfS2UFy2z/HNpZCSOJJ3P3dnWY6hfYNW3DF0nXUA==",
+    "@aws-sdk/xml-builder@3.972.40": {
+      "integrity": "sha512-wlFmCIGUlwF4zx/kncw+bmxTQh1HeSJq4mYV/V5cZUSJadDP3kXvGW8Rn21cimj/7y9ju+47oYWXi97vF7czaA==",
       "dependencies": [
         "@smithy/types",
         "tslib"
@@ -1162,8 +1162,8 @@
     "@hey-api/types@0.1.4": {
       "integrity": "sha512-thWfawrDIP7wSI9ioT13I5soaaqB5vAPIiZmgD8PbeEVKNrkonc0N/Sjj97ezl7oQgusZmaNphGdMKipPO6IBg=="
     },
-    "@hono/zod-openapi@1.6.0_hono@4.13.2_zod@4.4.3": {
-      "integrity": "sha512-42HXUBIaGmQh+hZGLw3Hy5piOreIXgnBnUSs55mtn2gnW/xWtU9nQwEUtRRCk5to8Vm2XbfO0J83eUCwCf5eTg==",
+    "@hono/zod-openapi@1.6.1_hono@4.13.3_zod@4.4.3": {
+      "integrity": "sha512-z1xS3FZxl4bBkU3kMIsQsLtsqxPTha5XZCsDEPMSZ6+3RRBQI7KED1GeoDpq2WueXCacsNIjcB0MtCnEHY7ahQ==",
       "dependencies": [
         "@asteasolutions/zod-to-openapi",
         "@hono/zod-validator",
@@ -1172,7 +1172,7 @@
         "zod"
       ]
     },
-    "@hono/zod-validator@0.9.0_hono@4.13.2_zod@4.4.3": {
+    "@hono/zod-validator@0.9.0_hono@4.13.3_zod@4.4.3": {
       "integrity": "sha512-n0ZSXmCiHVIp4Y5wlOOyZCeTd/rsawA/qW1cipB8QOYKZ9N8Tk0nZUZCXho9cu374AN4JpDNKioNKBJ/W+LBug==",
       "dependencies": [
         "hono",
@@ -1831,8 +1831,8 @@
       "os": ["win32"],
       "cpu": ["x64"]
     },
-    "@smithy/core@3.33.2": {
-      "integrity": "sha512-CUGXpnPkVdjUCbix+83sWLW9VFgQOm44MDOx/ihITJMAnOZKvL8YYIc7DR9pP/tZ8CIRvMiON/TucvygqbHO3w==",
+    "@smithy/core@3.33.3": {
+      "integrity": "sha512-CsOeKq/9kA3y6VJHt+/+VTCtBaxJ4OTFpgrjIUhPpDIKxBci1k2bJaQASF2h/ELWrulGp+t97DZ0mevfAD8idg==",
       "dependencies": [
         "@smithy/types",
         "tslib"
@@ -1854,16 +1854,16 @@
         "tslib"
       ]
     },
-    "@smithy/node-http-handler@4.11.2": {
-      "integrity": "sha512-avwAh9HM3h2lcfjvP3zYIZGf+XVgLQ91wOJ2qoFbNpW1UZeZb33aGlhTZvtkANHfcGhJroRY64525OjfgOg30g==",
+    "@smithy/node-http-handler@4.11.3": {
+      "integrity": "sha512-2jY1tSpERfPfWqyBV2pH+iGFaghVsIJszJNsT7hxtQYhVJpWDyc0LqOWI+nXOxOAHaEfZ4PXXtp1wW1TGpHhkA==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
         "tslib"
       ]
     },
-    "@smithy/signature-v4@5.7.2": {
-      "integrity": "sha512-P7Ki6px6OOrxVtx8K7nLmyx4SlXUW/uTKDdMG44UHefmPGSRMBKe2v+TM59WdLcpUIrBrnuCsIqiM2MbsZjmhw==",
+    "@smithy/signature-v4@5.7.3": {
+      "integrity": "sha512-7ImGm+FkHRLcBaRttIAMZ6bzJZWb2cJGoYjq46F2UjycujWzrL9GEN9h4w7eQyXJYnltrUhxbbieBAIRrdqpow==",
       "dependencies": [
         "@smithy/core",
         "@smithy/types",
@@ -1907,7 +1907,7 @@
         "tslib"
       ]
     },
-    "@supabase/server@1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.2": {
+    "@supabase/server@1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.3": {
       "integrity": "sha512-Fyzpi+Srfn+flN3PwueObhSmwhXFaTkrnk3iD+ttNBEz6gD0VmaOqTe7tCxTSodm1zncWSxsyPQxATL7V+SfIw==",
       "dependencies": [
         "@supabase/supabase-js",
@@ -1963,7 +1963,7 @@
         "react"
       ]
     },
-    "@tanstack/react-router-devtools@1.167.1_@tanstack+react-router@1.170.29__react@19.2.8__react-dom@19.2.8___react@19.2.8_@tanstack+router-core@1.171.24_react@19.2.8_react-dom@19.2.8__react@19.2.8": {
+    "@tanstack/react-router-devtools@1.167.1_@tanstack+react-router@1.170.31__react@19.2.8__react-dom@19.2.8___react@19.2.8_@tanstack+router-core@1.171.26_react@19.2.8_react-dom@19.2.8__react@19.2.8": {
       "integrity": "sha512-pjfGrmjj4d7naEPM7oshqFfwBoxDPNo/UxltlHH5ePbHsJ+plBhd+JaAewm1ueYOjZ0js9hckjWWDYXpCrSfKw==",
       "dependencies": [
         "@tanstack/react-router",
@@ -1976,8 +1976,8 @@
         "@tanstack/router-core"
       ]
     },
-    "@tanstack/react-router@1.170.29_react@19.2.8_react-dom@19.2.8__react@19.2.8": {
-      "integrity": "sha512-xQwakR0ReaUGu3xeXEl2CqzlIXk4i9vxaf/zqdzoELMY0mDZgMOr+xobiA5cQdn8cnovqZgqqUxcwXhsruC+NA==",
+    "@tanstack/react-router@1.170.31_react@19.2.8_react-dom@19.2.8__react@19.2.8": {
+      "integrity": "sha512-jqITLcf9Y+es9Wm7fD7XfXFGKk1Fujm+okGqHtr+UhISnQuyLQ8d3frsJlIN0Np1doYoeb5weozSkv72+EZ5bw==",
       "dependencies": [
         "@tanstack/history",
         "@tanstack/react-store",
@@ -1996,8 +1996,8 @@
         "use-sync-external-store"
       ]
     },
-    "@tanstack/router-core@1.171.24": {
-      "integrity": "sha512-+j+8NmV4QOS+ILNLdXFlLTdKPPbBQIy6mXDZ0QWEKYZ0xQOdlnOCXVHPflyGanD2SWSxjqGkw8CsW0CXXP7fLg==",
+    "@tanstack/router-core@1.171.26": {
+      "integrity": "sha512-VymmPSs/93szHur/7PBygT6tRbmfcNO1xR46Wn/JVHeBqVduLPCuxBeJEgfVmVq8E4hSklPEh8i6qGXQd6WRqA==",
       "dependencies": [
         "@tanstack/history",
         "cookie-es",
@@ -2005,7 +2005,7 @@
         "seroval-plugins"
       ]
     },
-    "@tanstack/router-devtools-core@1.168.1_@tanstack+router-core@1.171.24_csstype@3.2.3": {
+    "@tanstack/router-devtools-core@1.168.1_@tanstack+router-core@1.171.26": {
       "integrity": "sha512-qr4voa4cpSMwQvS3867xkU3AB3MtJbTuovKIy+btjJ/Faju6er9w0nDylmD+005Mk/3YKw9/iueZJl2JAB7JOA==",
       "dependencies": [
         "@tanstack/router-core",
@@ -2017,8 +2017,8 @@
         "csstype"
       ]
     },
-    "@tanstack/router-generator@1.167.30": {
-      "integrity": "sha512-Tf9TJfdpP0yL3k1D1ke6hR1dvPCgKShTik3HcBRDeTK5eNrp9/X0Q0YApN8thE6pVcXL6a78O3ZE7XN7s7KwNw==",
+    "@tanstack/router-generator@1.167.32": {
+      "integrity": "sha512-KKPWUMUda7JYil+uDQPrX4ecyoXP9J3DesdpavOWpGCavsiAd6cxH6yq18krLGa1j20qmPJc10LJSLOOFia5tQ==",
       "dependencies": [
         "@babel/types",
         "@tanstack/router-core",
@@ -2030,8 +2030,8 @@
         "zod"
       ]
     },
-    "@tanstack/router-plugin@1.168.32_@tanstack+react-router@1.170.29__react@19.2.8__react-dom@19.2.8___react@19.2.8_vite@8.2.1_react@19.2.8_react-dom@19.2.8__react@19.2.8": {
-      "integrity": "sha512-P+qYIY9b/K+ZGUPNiyLqsd20vN/1abgmSNG0Ch9KTKldag3icR7TlrJgnM2km86yuRdXa4nJ5YT7+JLV5rJRZg==",
+    "@tanstack/router-plugin@1.168.34_@tanstack+react-router@1.170.31__react@19.2.8__react-dom@19.2.8___react@19.2.8_vite@8.2.2": {
+      "integrity": "sha512-WsXLQU8tQmoTyoQRB1JI3lGg5wnwo6VB2R8D2RQbtCVlUi3bjreSNgZSJ7Ghw06ZoUyNMO+Csiqf679nNnzN+w==",
       "dependencies": [
         "@babel/core",
         "@babel/template",
@@ -2227,8 +2227,8 @@
       ],
       "bin": true
     },
-    "@vitejs/plugin-react@6.0.5_vite@8.2.1": {
-      "integrity": "sha512-BOVzne/NL162sMdResB25mUv+vWMF5NoAjNf09TeGlE7ZpszZWSD3winycicLJw72yeVsoCn/2kOhEuCvEShMA==",
+    "@vitejs/plugin-react@6.1.0_vite@8.2.2": {
+      "integrity": "sha512-qd2BzUBehkov86WFhg0JkEFEYyCLG9uPCe6qWTY/kRlss9OvJrOF2UbIWT7p+8IzZHkEu0DNGHc4HSv+JdDLsw==",
       "dependencies": [
         "@rolldown/pluginutils",
         "vite"
@@ -2943,8 +2943,8 @@
         "function-bind"
       ]
     },
-    "hono@4.13.2": {
-      "integrity": "sha512-JydRilDRkYBQMt9qR9U92mXxmbGqsqSn/IKOrh4e7/gEbn+0zSr8igTu0obwJoNGN4sez28DIql7FBHWydoJpA=="
+    "hono@4.13.3": {
+      "integrity": "sha512-r8AO2mYHoLxSHkgafNeC/BXyb2vWRxD3jem4Ts+ptav8oTG5FIRifAjuJEmZI4bSvvc2ns0GxmIYiZnHqN3mMw=="
     },
     "humanize-ms@1.2.1": {
       "integrity": "sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==",
@@ -3309,8 +3309,8 @@
         "yallist"
       ]
     },
-    "lucide-react@1.31.0_react@19.2.8": {
-      "integrity": "sha512-G8u2eEtoHUnUa9f8lbvqDhCiORMnYLdUEo06EEG9MQvHQrInKcX3Pa2TH39MM5qyzRcWETxB0+aOwAPI1g1kEg==",
+    "lucide-react@1.33.0_react@19.2.8": {
+      "integrity": "sha512-MTRwMy0ZlL8Ur/vOAiJ9XGHE+kFPC7brq6MxAm0GiGXEBj0qy0jA/pG4N675oSzciO/UCdX8T+5yUQdmDeTLxg==",
       "dependencies": [
         "react"
       ]
@@ -3778,14 +3778,14 @@
     "serialize-javascript@7.0.5": {
       "integrity": "sha512-F4LcB0UqUl1zErq+1nYEEzSHJnIwb3AF2XWB94b+afhrekOUijwooAYqFyRbjYkm2PAKBabx6oYv/xDxNi8IBw=="
     },
-    "seroval-plugins@1.6.2_seroval@1.6.2": {
+    "seroval-plugins@1.6.2_seroval@1.6.3": {
       "integrity": "sha512-TfxuUjlbBESzUOWdTkTKqvSmav0ABym+itetDXLK6mDz8SmrpdI30aF8RTXE8Bvq+tH/1yIDkvy3W0lfQb1ipQ==",
       "dependencies": [
         "seroval"
       ]
     },
-    "seroval@1.6.2": {
-      "integrity": "sha512-mPT+SD2TrlB6wvte1KkYOYUkubaTbd6pZ/6Kk3C9nxzrHmCZyhxOO7XGAeL7f+yLKZglzGtM9odUVvg/EhO+vQ=="
+    "seroval@1.6.3": {
+      "integrity": "sha512-5PwLbVPpT4DEki1hYVSSsoxWY6xCNMVucAVLK/CH0mXSDfp/I4KaAex72q80GNt5hpn7CCMGdSpIg4YGqH/wXQ=="
     },
     "set-function-length@1.2.2": {
       "integrity": "sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==",
@@ -4184,7 +4184,7 @@
     "universalify@2.0.1": {
       "integrity": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw=="
     },
-    "unplugin@3.3.0_vite@8.2.1": {
+    "unplugin@3.3.0_vite@8.2.2": {
       "integrity": "sha512-qa66K+crbfyE6JK10GjvbJeRrOsuC/JpbnHctfyp/i4oBTxWOzJfRZyDiOk1PtErMFRu8JhsU/wPvOdBNWe5Rg==",
       "dependencies": [
         "@jridgewell/remapping",
@@ -4240,7 +4240,7 @@
     "util-deprecate@1.0.2": {
       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
     },
-    "vite-plugin-pwa@1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.2.1": {
+    "vite-plugin-pwa@1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.2.2": {
       "integrity": "sha512-c5kMgN+ITrOtHXp8PAtk2uOIEea6XjP/unCGxOWWBzQ6qa65qj/awHg0wf+QF9E/2u9vh86LqxPwzEPNbM2r5A==",
       "dependencies": [
         "@vite-pwa/assets-generator",
@@ -4255,8 +4255,8 @@
         "@vite-pwa/assets-generator"
       ]
     },
-    "vite@8.2.1": {
-      "integrity": "sha512-EU/eS7BH3XROHh2YnBefjM6DBKA6ZeMZEYQbj7NLWg5wHYlhB8B/Mayd5XsgWq+NFYccDOTemRpdETWR6Ka/lw==",
+    "vite@8.2.2": {
+      "integrity": "sha512-cFKLV/PRgAUlIRm5WjMjJ86jrftzpqcgH+Us+DS8mI3CDNiH30Whrz8uHL3+MOLPAgqbMBAqWdAHAphOAM+z/Q==",
       "dependencies": [
         "lightningcss",
         "picomatch",
@@ -4515,9 +4515,9 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@aws-sdk/client-ses@^3.1111.0",
+        "npm:@aws-sdk/client-ses@^3.1116.0",
         "npm:@hey-api/openapi-ts@0.99",
-        "npm:@hono/zod-openapi@^1.6.0",
+        "npm:@hono/zod-openapi@^1.6.1",
         "npm:@jsr/b-fuze__deno-dom@~0.1.56",
         "npm:@jsr/cliffy__command@^1.2.1",
         "npm:@jsr/std__dotenv@~0.225.8",
@@ -4528,7 +4528,7 @@
         "npm:@jsr/supabase__functions-js@^2.112.3",
         "npm:@jsr/supabase__supabase-js@^2.112.3",
         "npm:@supabase/server@^1.4.1",
-        "npm:hono@^4.13.2",
+        "npm:hono@^4.13.3",
         "npm:ical-generator@^11.1.0",
         "npm:typescript@^7.0.2",
         "npm:zod@^4.4.3"
@@ -4547,15 +4547,15 @@
             "npm:@tanstack/react-query-devtools@^5.101.4",
             "npm:@tanstack/react-query@^5.101.4",
             "npm:@tanstack/react-router-devtools@^1.167.1",
-            "npm:@tanstack/react-router@^1.170.29",
-            "npm:@tanstack/router-core@^1.171.24",
-            "npm:@tanstack/router-plugin@^1.168.32",
+            "npm:@tanstack/react-router@^1.170.31",
+            "npm:@tanstack/router-core@^1.171.26",
+            "npm:@tanstack/router-plugin@^1.168.34",
             "npm:@types/react-dom@^19.2.4",
             "npm:@types/react@^19.2.18",
             "npm:@vite-pwa/assets-generator@^1.0.2",
-            "npm:@vitejs/plugin-react@^6.0.5",
+            "npm:@vitejs/plugin-react@^6.1.0",
             "npm:dayjs@^1.11.23",
-            "npm:lucide-react@^1.31.0",
+            "npm:lucide-react@^1.33.0",
             "npm:postcss-preset-mantine@^1.18.0",
             "npm:postcss-simple-vars@^7.0.1",
             "npm:postcss@^8.5.26",
@@ -4563,7 +4563,7 @@
             "npm:react@^19.2.8",
             "npm:typescript@^7.0.2",
             "npm:vite-plugin-pwa@^1.3.0",
-            "npm:vite@^8.2.1",
+            "npm:vite@^8.2.2",
             "npm:zod@^4.4.3"
           ]
         }
@@ -4583,10 +4583,10 @@
           "jsr:@std/uuid@^1.1.1",
           "jsr:@supabase/functions-js@^2.112.3",
           "jsr:@supabase/supabase-js@^2.112.3",
-          "npm:@aws-sdk/client-ses@^3.1111.0",
-          "npm:@hono/zod-openapi@^1.6.0",
+          "npm:@aws-sdk/client-ses@^3.1116.0",
+          "npm:@hono/zod-openapi@^1.6.1",
           "npm:@supabase/server@^1.4.1",
-          "npm:hono@^4.13.2",
+          "npm:hono@^4.13.3",
           "npm:ical-generator@^11.1.0",
           "npm:zod@^4.4.3"
         ]
