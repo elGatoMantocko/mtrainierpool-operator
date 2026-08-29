@@ -19,7 +19,7 @@
     "@supabase/functions-js": "jsr:^2.112.3",
     "@supabase/server": "^1.4.1",
     "@supabase/supabase-js": "jsr:^2.112.3",
-    "hono": "^4.13.2",
+    "hono": "^4.13.3",
     "ical-generator": "^11.1.0",
     "zod": "^4.4.3"
   },

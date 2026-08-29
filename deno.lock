@@ -32,7 +32,7 @@
     "jsr:@supabase/supabase-js@^2.112.3": "2.112.3",
     "npm:@aws-sdk/client-ses@^3.1116.0": "3.1116.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@7.0.2",
-    "npm:@hono/zod-openapi@^1.6.1": "1.6.1_hono@4.13.2_zod@4.4.3",
+    "npm:@hono/zod-openapi@^1.6.1": "1.6.1_hono@4.13.3_zod@4.4.3",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
     "npm:@jsr/cliffy__command@^1.2.1": "1.2.1",
@@ -52,7 +52,7 @@
     "npm:@supabase/functions-js@2.112.3": "2.112.3",
     "npm:@supabase/postgrest-js@2.112.3": "2.112.3",
     "npm:@supabase/realtime-js@2.112.3": "2.112.3",
-    "npm:@supabase/server@^1.4.1": "1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.2",
+    "npm:@supabase/server@^1.4.1": "1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.3",
     "npm:@supabase/storage-js@2.112.3": "2.112.3",
     "npm:@supabase/supabase-js@^2.112.3": "2.112.3_@opentelemetry+api@1.9.1",
     "npm:@tanstack/react-query-devtools@^5.101.4": "5.101.4_@tanstack+react-query@5.101.4__react@19.2.8_react@19.2.8",
@@ -66,7 +66,7 @@
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
     "npm:@vitejs/plugin-react@^6.0.5": "6.0.5_vite@8.2.1",
     "npm:dayjs@^1.11.23": "1.11.23",
-    "npm:hono@^4.13.2": "4.13.2",
+    "npm:hono@^4.13.3": "4.13.3",
     "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.23",
     "npm:lucide-react@^1.31.0": "1.31.0_react@19.2.8",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
@@ -1162,7 +1162,7 @@
     "@hey-api/types@0.1.4": {
       "integrity": "sha512-thWfawrDIP7wSI9ioT13I5soaaqB5vAPIiZmgD8PbeEVKNrkonc0N/Sjj97ezl7oQgusZmaNphGdMKipPO6IBg=="
     },
-    "@hono/zod-openapi@1.6.1_hono@4.13.2_zod@4.4.3": {
+    "@hono/zod-openapi@1.6.1_hono@4.13.3_zod@4.4.3": {
       "integrity": "sha512-z1xS3FZxl4bBkU3kMIsQsLtsqxPTha5XZCsDEPMSZ6+3RRBQI7KED1GeoDpq2WueXCacsNIjcB0MtCnEHY7ahQ==",
       "dependencies": [
         "@asteasolutions/zod-to-openapi",
@@ -1172,7 +1172,7 @@
         "zod"
       ]
     },
-    "@hono/zod-validator@0.9.0_hono@4.13.2_zod@4.4.3": {
+    "@hono/zod-validator@0.9.0_hono@4.13.3_zod@4.4.3": {
       "integrity": "sha512-n0ZSXmCiHVIp4Y5wlOOyZCeTd/rsawA/qW1cipB8QOYKZ9N8Tk0nZUZCXho9cu374AN4JpDNKioNKBJ/W+LBug==",
       "dependencies": [
         "hono",
@@ -1907,7 +1907,7 @@
         "tslib"
       ]
     },
-    "@supabase/server@1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.2": {
+    "@supabase/server@1.4.1_@supabase+supabase-js@2.112.3__@opentelemetry+api@1.9.1_hono@4.13.3": {
       "integrity": "sha512-Fyzpi+Srfn+flN3PwueObhSmwhXFaTkrnk3iD+ttNBEz6gD0VmaOqTe7tCxTSodm1zncWSxsyPQxATL7V+SfIw==",
       "dependencies": [
         "@supabase/supabase-js",
@@ -2943,8 +2943,8 @@
         "function-bind"
       ]
     },
-    "hono@4.13.2": {
-      "integrity": "sha512-JydRilDRkYBQMt9qR9U92mXxmbGqsqSn/IKOrh4e7/gEbn+0zSr8igTu0obwJoNGN4sez28DIql7FBHWydoJpA=="
+    "hono@4.13.3": {
+      "integrity": "sha512-r8AO2mYHoLxSHkgafNeC/BXyb2vWRxD3jem4Ts+ptav8oTG5FIRifAjuJEmZI4bSvvc2ns0GxmIYiZnHqN3mMw=="
     },
     "humanize-ms@1.2.1": {
       "integrity": "sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==",
@@ -4528,7 +4528,7 @@
         "npm:@jsr/supabase__functions-js@^2.112.3",
         "npm:@jsr/supabase__supabase-js@^2.112.3",
         "npm:@supabase/server@^1.4.1",
-        "npm:hono@^4.13.2",
+        "npm:hono@^4.13.3",
         "npm:ical-generator@^11.1.0",
         "npm:typescript@^7.0.2",
         "npm:zod@^4.4.3"
@@ -4586,7 +4586,7 @@
           "npm:@aws-sdk/client-ses@^3.1116.0",
           "npm:@hono/zod-openapi@^1.6.1",
           "npm:@supabase/server@^1.4.1",
-          "npm:hono@^4.13.2",
+          "npm:hono@^4.13.3",
           "npm:ical-generator@^11.1.0",
           "npm:zod@^4.4.3"
         ]
