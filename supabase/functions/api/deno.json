@@ -7,7 +7,7 @@
     "@std/uuid": "jsr:@std/uuid@^1.1.1",
     "@supabase/functions-js": "jsr:@supabase/functions-js@^2.112.3",
     "@supabase/server": "npm:@supabase/server@^1.4.1",
-    "@hono/zod-openapi": "npm:@hono/zod-openapi@^1.6.0",
+    "@hono/zod-openapi": "npm:@hono/zod-openapi@^1.6.1",
     "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.112.3",
     "hono": "npm:hono@^4.13.2",
     "ical-generator": "npm:ical-generator@^11.1.0",

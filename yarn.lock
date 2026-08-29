@@ -1539,9 +1539,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hono/zod-openapi@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "@hono/zod-openapi@npm:1.6.0"
+"@hono/zod-openapi@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "@hono/zod-openapi@npm:1.6.1"
   dependencies:
     "@asteasolutions/zod-to-openapi": "npm:^9.1.0"
     "@hono/zod-validator": "npm:^0.9.0"
@@ -1549,7 +1549,7 @@ __metadata:
   peerDependencies:
     hono: ">=4.10.0"
     zod: ^4.0.0
-  checksum: 10c0/f5583a2179f44a5c105fc969bcd4c303e2051b204e47d2bc12fd8108bd2f5ec8b46a818f3e664e466163e5540c0b4f81cb77586b1e2be94b58e8a3ddaae79a2a
+  checksum: 10c0/108defce684f571769d577bb76288ccfd77a5d1a211f4d711af6e778fa7784873b21b805e51ce977f7338f2850f191e1edccb67f5eefe81dd8c019e651730441
   languageName: node
   linkType: hard
 
@@ -6597,7 +6597,7 @@ __metadata:
     "@b-fuze/deno-dom": "jsr:^0.1.56"
     "@cliffy/command": "jsr:^1.2.1"
     "@hey-api/openapi-ts": "npm:^0.99.0"
-    "@hono/zod-openapi": "npm:^1.6.0"
+    "@hono/zod-openapi": "npm:^1.6.1"
     "@std/dotenv": "jsr:^0.225.8"
     "@std/encoding": "jsr:^1.0.11"
     "@std/expect": "jsr:^1.0.20"
