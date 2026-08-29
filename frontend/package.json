@@ -36,7 +36,7 @@
     "@tanstack/react-router-devtools": "^1.167.1",
     "@tanstack/router-core": "^1.171.26",
     "dayjs": "^1.11.23",
-    "lucide-react": "^1.31.0",
+    "lucide-react": "^1.33.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "zod": "^4.4.3"
