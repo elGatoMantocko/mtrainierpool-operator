@@ -32,7 +32,7 @@
     "jsr:@supabase/supabase-js@^2.112.3": "2.112.3",
     "npm:@aws-sdk/client-ses@^3.1156.0": "3.1156.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@7.0.2",
-    "npm:@hono/zod-openapi@^1.6.1": "1.6.1_hono@4.13.13_zod@4.4.3",
+    "npm:@hono/zod-openapi@^1.6.3": "1.6.3_hono@4.13.13_zod@4.4.3",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
     "npm:@jsr/cliffy__command@^1.2.1": "1.2.1",
@@ -1162,8 +1162,8 @@
     "@hey-api/types@0.1.4": {
       "integrity": "sha512-thWfawrDIP7wSI9ioT13I5soaaqB5vAPIiZmgD8PbeEVKNrkonc0N/Sjj97ezl7oQgusZmaNphGdMKipPO6IBg=="
     },
-    "@hono/zod-openapi@1.6.1_hono@4.13.13_zod@4.4.3": {
-      "integrity": "sha512-z1xS3FZxl4bBkU3kMIsQsLtsqxPTha5XZCsDEPMSZ6+3RRBQI7KED1GeoDpq2WueXCacsNIjcB0MtCnEHY7ahQ==",
+    "@hono/zod-openapi@1.6.3_hono@4.13.13_zod@4.4.3": {
+      "integrity": "sha512-VYR82Y60plu8g3pN60OUXMVKpmxh3R04Qs++3DY9vtwZ9/sA/BRY0PcRIR+Z37/3itWtM7pYwT9bKiH9JhqV6Q==",
       "dependencies": [
         "@asteasolutions/zod-to-openapi",
         "@hono/zod-validator",
@@ -1172,8 +1172,8 @@
         "zod"
       ]
     },
-    "@hono/zod-validator@0.9.0_hono@4.13.13_zod@4.4.3": {
-      "integrity": "sha512-n0ZSXmCiHVIp4Y5wlOOyZCeTd/rsawA/qW1cipB8QOYKZ9N8Tk0nZUZCXho9cu374AN4JpDNKioNKBJ/W+LBug==",
+    "@hono/zod-validator@0.9.1_hono@4.13.13_zod@4.4.3": {
+      "integrity": "sha512-iiv6w0qrIc0arfvCtUqBWsvl4fXjzaTcQcCJTTtCnkawF9HHGE+KjEl0ox3gQJ6rKZEgE3mLExlQCF72M+mNuw==",
       "dependencies": [
         "hono",
         "zod"
@@ -3417,8 +3417,8 @@
       ],
       "bin": true
     },
-    "openapi3-ts@4.6.1": {
-      "integrity": "sha512-XW9MOldkhoICNeXVzzmXzmOW5G73ppOEGmh7fLCqHjgfdEYCGGN+00MlVCeUZgovjjfC56j9tvtDt1zGabNjjA==",
+    "openapi3-ts@4.6.2": {
+      "integrity": "sha512-gyyil3DweqhXiEhTqtAs9wwRLfWHmetwhI4kmM5Rn0d6gtmK863Ki7qqbQnp9+Wwlqoe3B1LFWj7kMp5ctE4rQ==",
       "dependencies": [
         "yaml"
       ]
@@ -4502,8 +4502,8 @@
     "yallist@3.1.1": {
       "integrity": "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g=="
     },
-    "yaml@2.9.0": {
-      "integrity": "sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==",
+    "yaml@2.9.1": {
+      "integrity": "sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==",
       "bin": true
     },
     "zod@4.4.3": {
@@ -4518,7 +4518,7 @@
       "dependencies": [
         "npm:@aws-sdk/client-ses@^3.1156.0",
         "npm:@hey-api/openapi-ts@0.99",
-        "npm:@hono/zod-openapi@^1.6.1",
+        "npm:@hono/zod-openapi@^1.6.3",
         "npm:@jsr/b-fuze__deno-dom@~0.1.56",
         "npm:@jsr/cliffy__command@^1.2.1",
         "npm:@jsr/std__dotenv@~0.225.8",
@@ -4585,7 +4585,7 @@
           "jsr:@supabase/functions-js@^2.112.3",
           "jsr:@supabase/supabase-js@^2.112.3",
           "npm:@aws-sdk/client-ses@^3.1156.0",
-          "npm:@hono/zod-openapi@^1.6.1",
+          "npm:@hono/zod-openapi@^1.6.3",
           "npm:@supabase/server@^1.4.1",
           "npm:hono@^4.13.13",
           "npm:ical-generator@^11.1.0",
