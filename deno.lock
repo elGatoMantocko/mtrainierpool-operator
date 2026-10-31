@@ -32,7 +32,7 @@
     "jsr:@supabase/supabase-js@^2.112.3": "2.112.3",
     "npm:@aws-sdk/client-ses@^3.1156.0": "3.1156.0",
     "npm:@hey-api/openapi-ts@0.99": "0.99.0_typescript@7.0.2",
-    "npm:@hono/zod-openapi@^1.6.3": "1.6.3_hono@4.13.13_zod@4.4.3",
+    "npm:@hono/zod-openapi@^1.6.3": "1.6.3_hono@4.13.13_zod@4.6.7",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
     "npm:@jsr/cliffy__command@^1.2.1": "1.2.1",
@@ -78,7 +78,7 @@
     "npm:typescript@^7.0.2": "7.0.2",
     "npm:vite-plugin-pwa@^1.3.0": "1.3.0_@vite-pwa+assets-generator@1.0.2_vite@8.2.2",
     "npm:vite@^8.2.2": "8.2.2",
-    "npm:zod@^4.4.3": "4.4.3"
+    "npm:zod@^4.6.7": "4.6.7"
   },
   "jsr": {
     "@b-fuze/deno-dom@0.1.56": {
@@ -223,11 +223,11 @@
         "leven"
       ]
     },
-    "@asteasolutions/zod-to-openapi@9.1.0_zod@4.4.3": {
+    "@asteasolutions/zod-to-openapi@9.1.0_zod@4.6.7": {
       "integrity": "sha512-pLMeRgRYS7/vZIgAAkOe2P6+XGTifR1MT9pqDoxZ11EmcJJ+DPmdPqLN8ZZF4U8R9KHCCQCS9c2wtuE8wSrfkw==",
       "dependencies": [
         "openapi3-ts",
-        "zod"
+        "zod@4.6.7"
       ]
     },
     "@aws-sdk/client-ses@3.1156.0": {
@@ -1162,21 +1162,21 @@
     "@hey-api/types@0.1.4": {
       "integrity": "sha512-thWfawrDIP7wSI9ioT13I5soaaqB5vAPIiZmgD8PbeEVKNrkonc0N/Sjj97ezl7oQgusZmaNphGdMKipPO6IBg=="
     },
-    "@hono/zod-openapi@1.6.3_hono@4.13.13_zod@4.4.3": {
+    "@hono/zod-openapi@1.6.3_hono@4.13.13_zod@4.6.7": {
       "integrity": "sha512-VYR82Y60plu8g3pN60OUXMVKpmxh3R04Qs++3DY9vtwZ9/sA/BRY0PcRIR+Z37/3itWtM7pYwT9bKiH9JhqV6Q==",
       "dependencies": [
         "@asteasolutions/zod-to-openapi",
         "@hono/zod-validator",
         "hono",
         "openapi3-ts",
-        "zod"
+        "zod@4.6.7"
       ]
     },
-    "@hono/zod-validator@0.9.1_hono@4.13.13_zod@4.4.3": {
+    "@hono/zod-validator@0.9.1_hono@4.13.13_zod@4.6.7": {
       "integrity": "sha512-iiv6w0qrIc0arfvCtUqBWsvl4fXjzaTcQcCJTTtCnkawF9HHGE+KjEl0ox3gQJ6rKZEgE3mLExlQCF72M+mNuw==",
       "dependencies": [
         "hono",
-        "zod"
+        "zod@4.6.7"
       ]
     },
     "@img/sharp-darwin-arm64@0.33.5": {
@@ -2028,7 +2028,7 @@
         "jiti",
         "magic-string",
         "prettier",
-        "zod"
+        "zod@4.6.7"
       ]
     },
     "@tanstack/router-plugin@1.168.34_@tanstack+react-router@1.170.31__react@19.2.8__react-dom@19.2.8___react@19.2.8_vite@8.2.2": {
@@ -2044,7 +2044,7 @@
         "chokidar",
         "unplugin",
         "vite",
-        "zod"
+        "zod@4.6.7"
       ],
       "optionalPeers": [
         "@tanstack/react-router",
@@ -3410,10 +3410,10 @@
         "form-data-encoder",
         "formdata-node",
         "node-fetch",
-        "zod"
+        "zod@4.4.3"
       ],
       "optionalPeers": [
-        "zod"
+        "zod@4.4.3"
       ],
       "bin": true
     },
@@ -4508,6 +4508,9 @@
     },
     "zod@4.4.3": {
       "integrity": "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ=="
+    },
+    "zod@4.6.7": {
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="
     }
   },
   "workspace": {
@@ -4532,7 +4535,7 @@
         "npm:hono@^4.13.13",
         "npm:ical-generator@^11.1.2",
         "npm:typescript@^7.0.2",
-        "npm:zod@^4.4.3"
+        "npm:zod@^4.6.7"
       ]
     },
     "members": {
@@ -4565,7 +4568,7 @@
             "npm:typescript@^7.0.2",
             "npm:vite-plugin-pwa@^1.3.0",
             "npm:vite@^8.2.2",
-            "npm:zod@^4.4.3"
+            "npm:zod@^4.6.7"
           ]
         }
       },
@@ -4589,7 +4592,7 @@
           "npm:@supabase/server@^1.4.1",
           "npm:hono@^4.13.13",
           "npm:ical-generator@^11.1.2",
-          "npm:zod@^4.4.3"
+          "npm:zod@^4.6.7"
         ]
       }
     }
