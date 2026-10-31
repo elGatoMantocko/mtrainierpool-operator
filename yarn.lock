@@ -4627,9 +4627,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ical-generator@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "ical-generator@npm:11.1.0"
+"ical-generator@npm:^11.1.2":
+  version: 11.1.2
+  resolution: "ical-generator@npm:11.1.2"
   peerDependencies:
     "@touch4it/ical-timezones": ">=1.6.0"
     "@types/luxon": ">= 1.26.0"
@@ -4658,7 +4658,7 @@ __metadata:
       optional: true
     rrule:
       optional: true
-  checksum: 10c0/4325d95e7d9ac0abff80aaa723fb5877e8efc748d8065c61af4318330d4177c29a45dc84eddca8ce36d9c7447f188156d3f3d0413e27a7ae2d8e5bf8b7c82e2d
+  checksum: 10c0/a8d039077d66bf444712502cc0cb2bee32b071947c108bc21108a573a18e388d350d18ca75e549b4f3f3509dff968440499baa32d465f451f89525d544d29405
   languageName: node
   linkType: hard
 
@@ -6620,7 +6620,7 @@ __metadata:
     "@supabase/server": "npm:^1.4.1"
     "@supabase/supabase-js": "jsr:^2.112.3"
     hono: "npm:^4.13.13"
-    ical-generator: "npm:^11.1.0"
+    ical-generator: "npm:^11.1.2"
     typescript: "npm:^7.0.2"
     zod: "npm:^4.4.3"
   languageName: unknown

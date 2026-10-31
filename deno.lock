@@ -67,7 +67,7 @@
     "npm:@vitejs/plugin-react@^6.1.0": "6.1.0_vite@8.2.2",
     "npm:dayjs@^1.11.23": "1.11.23",
     "npm:hono@^4.13.13": "4.13.13",
-    "npm:ical-generator@^11.1.0": "11.1.0_dayjs@1.11.23",
+    "npm:ical-generator@^11.1.2": "11.1.2_dayjs@1.11.23",
     "npm:lucide-react@^1.33.0": "1.33.0_react@19.2.8",
     "npm:openai@^4.52.5": "4.104.0_zod@4.4.3",
     "npm:postcss-preset-mantine@^1.18.0": "1.18.0_postcss@8.5.26",
@@ -2953,8 +2953,8 @@
         "ms"
       ]
     },
-    "ical-generator@11.1.0_dayjs@1.11.23": {
-      "integrity": "sha512-/CSyXcelySK5qYAUxXnwzhAi1UPVnapnVMXqkRQ+L0RXHCFtzqLm92o5PD0ZRhaWBCtkS0hP8YIxMrSRZ+8Zug==",
+    "ical-generator@11.1.2_dayjs@1.11.23": {
+      "integrity": "sha512-/pr2IbEhMoEGsLvCsgRoK5yEtFwLC08JuI6sQy0jejJq/94CTttaRHgnrmsvsM2290YOXfZjwyZc9J4UQhB+vA==",
       "dependencies": [
         "dayjs"
       ],
@@ -4530,7 +4530,7 @@
         "npm:@jsr/supabase__supabase-js@^2.112.3",
         "npm:@supabase/server@^1.4.1",
         "npm:hono@^4.13.13",
-        "npm:ical-generator@^11.1.0",
+        "npm:ical-generator@^11.1.2",
         "npm:typescript@^7.0.2",
         "npm:zod@^4.4.3"
       ]
@@ -4588,7 +4588,7 @@
           "npm:@hono/zod-openapi@^1.6.3",
           "npm:@supabase/server@^1.4.1",
           "npm:hono@^4.13.13",
-          "npm:ical-generator@^11.1.0",
+          "npm:ical-generator@^11.1.2",
           "npm:zod@^4.4.3"
         ]
       }
