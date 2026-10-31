@@ -5,7 +5,7 @@
     "types": ["@supabase/functions-js/edge-runtime.d.ts"]
   },
   "imports": {
-    "@std/testing": "jsr:@std/testing@^1.0.20"
+    "@std/testing": "jsr:@std/testing@^1.0.21"
   },
   "minimumDependencyAge": "P7D",
   "lint": {
@@ -14,5 +14,5 @@
   "fmt": {
     "exclude": ["./supabase/functions/api/types/*.types.ts"]
   },
-  "allowScripts": ["npm:sharp@0.33.5"]
+  "allowScripts": ["npm:sharp@0.35.5"]
 }

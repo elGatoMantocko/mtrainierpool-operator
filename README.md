@@ -2,6 +2,8 @@
 
 > **Fair warning:** this is completely over-engineered. The problem could be solved with a mailing list that mtrainierpool.com maintains. This project exists because I wanted an excuse to play with Supabase and Postgres.
 
+**Live app:** https://12817.mantock.com
+
 An app that tracks whether the Mt. Rainier pool is open. It scrapes the pool's website, stores closure announcements in Supabase, and runs them through an AI model to extract structured open/closed status with dates and confidence scores. When the pool closes, it emails registered users and the installed PWA shows a closure notification.
 
 ## a simple ui
@@ -240,7 +242,7 @@ supabase start
 **3. Configure `frontend/.env`**
 
 ```sh
-VITE_SUPABASE_URL=https://<your-domain>:<port>
+VITE_SUPABASE_URL=https://<your-domain>
 VITE_SUPABASE_ANON_KEY=<your-anon-key>
 ```
 
@@ -261,4 +263,4 @@ If the certs are absent the preview server falls back to HTTP.
 docker compose up --build
 ```
 
-The frontend is available on port `3000`. API calls (`/rest/v1`, `/auth/v1`, `/storage/v1`, `/functions/v1`) are proxied to Kong (`supabase_kong_swimming:8000`) over the shared Docker network.
+The container listens on port `3000`, but the app is served at your public URL (`SITE_BASE_URL`, e.g. `https://12817.mantock.com`) with no port. Keep `VITE_SUPABASE_URL`, `SITE_BASE_URL` and `DISCORD_AUTH_REDIRECT_URI` on that same origin. API calls (`/rest/v1`, `/auth/v1`, `/storage/v1`, `/functions/v1`) are proxied to Kong (`supabase_kong_swimming:8000`) over the shared Docker network.
