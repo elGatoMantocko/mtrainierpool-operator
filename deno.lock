@@ -46,8 +46,8 @@
     "npm:@jsr/std__uuid@^1.1.2": "1.1.2",
     "npm:@jsr/supabase__functions-js@^2.118.0": "2.118.0_zod@4.6.7",
     "npm:@jsr/supabase__supabase-js@^2.118.0": "2.118.0",
-    "npm:@mantine/core@^9.7.3": "9.7.3_@mantine+hooks@9.7.3__react@19.3.1_react@19.3.1_react-dom@19.3.1__react@19.3.1",
-    "npm:@mantine/dates@^9.7.3": "9.7.3_@mantine+core@9.7.3__@mantine+hooks@9.7.3___react@19.3.1__react@19.3.1__react-dom@19.3.1___react@19.3.1_@mantine+hooks@9.7.3__react@19.3.1_dayjs@1.11.23_react@19.3.1_react-dom@19.3.1__react@19.3.1",
+    "npm:@mantine/core@^9.7.3": "9.7.3_@mantine+hooks@9.7.3__react@19.3.1_react@19.3.1_react-dom@19.3.1__react@19.3.1_@types+react@19.3.0",
+    "npm:@mantine/dates@^9.7.3": "9.7.3_@mantine+core@9.7.3__@mantine+hooks@9.7.3___react@19.3.1__react@19.3.1__react-dom@19.3.1___react@19.3.1__@types+react@19.3.0_@mantine+hooks@9.7.3__react@19.3.1_dayjs@1.11.23_react@19.3.1_react-dom@19.3.1__react@19.3.1_@types+react@19.3.0",
     "npm:@mantine/form@^9.7.3": "9.7.3_react@19.3.1",
     "npm:@mantine/hooks@^9.7.3": "9.7.3_react@19.3.1",
     "npm:@opentelemetry/api@1": "1.10.0",
@@ -58,14 +58,14 @@
     "npm:@supabase/server@^1.9.2": "1.9.2_@supabase+supabase-js@2.118.0__@opentelemetry+api@1.10.0_hono@4.13.13_@opentelemetry+api@1.10.0",
     "npm:@supabase/storage-js@2.118.0": "2.118.0",
     "npm:@supabase/supabase-js@^2.118.0": "2.118.0_@opentelemetry+api@1.10.0",
-    "npm:@tanstack/react-query-devtools@^5.104.5": "5.104.5_@tanstack+react-query@5.104.5__@types+react@19.2.18__react@19.3.1_@types+react@19.2.18_react@19.3.1",
-    "npm:@tanstack/react-query@^5.104.5": "5.104.5_@types+react@19.2.18_react@19.3.1",
+    "npm:@tanstack/react-query-devtools@^5.104.5": "5.104.5_@tanstack+react-query@5.104.5__@types+react@19.3.0__react@19.3.1_@types+react@19.3.0_react@19.3.1",
+    "npm:@tanstack/react-query@^5.104.5": "5.104.5_@types+react@19.3.0_react@19.3.1",
     "npm:@tanstack/react-router-devtools@^1.167.2": "1.167.2_@tanstack+react-router@1.170.46__react@19.3.1__react-dom@19.3.1___react@19.3.1_@tanstack+router-core@1.171.39_react@19.3.1_react-dom@19.3.1__react@19.3.1",
     "npm:@tanstack/react-router@^1.170.46": "1.170.46_react@19.3.1_react-dom@19.3.1__react@19.3.1",
     "npm:@tanstack/router-core@^1.171.39": "1.171.39",
     "npm:@tanstack/router-plugin@^1.168.48": "1.168.48_@tanstack+react-router@1.170.46__react@19.3.1__react-dom@19.3.1___react@19.3.1_vite@8.2.2_react@19.3.1_react-dom@19.3.1__react@19.3.1",
-    "npm:@types/react-dom@^19.2.4": "19.2.4_@types+react@19.2.18",
-    "npm:@types/react@^19.2.18": "19.2.18",
+    "npm:@types/react-dom@^19.3.0": "19.3.0_@types+react@19.3.0",
+    "npm:@types/react@^19.3.0": "19.3.0",
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
     "npm:@vitejs/plugin-react@^6.1.0": "6.1.0_vite@8.2.2",
     "npm:dayjs@^1.11.23": "1.11.23",
@@ -1614,7 +1614,7 @@
     "@lukeed/ms@2.0.2": {
       "integrity": "sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA=="
     },
-    "@mantine/core@9.7.3_@mantine+hooks@9.7.3__react@19.3.1_react@19.3.1_react-dom@19.3.1__react@19.3.1": {
+    "@mantine/core@9.7.3_@mantine+hooks@9.7.3__react@19.3.1_react@19.3.1_react-dom@19.3.1__react@19.3.1_@types+react@19.3.0": {
       "integrity": "sha512-wYJ9Bd82a7HqwJ+hubFqUIocBGMuw6txzdPnnleHvv1h0NlnkESevK/WHTRh4FtOw33B5N2ADT34s3x1/8d8jg==",
       "dependencies": [
         "@floating-ui/react",
@@ -1627,7 +1627,7 @@
         "type-fest@5.10.0"
       ]
     },
-    "@mantine/dates@9.7.3_@mantine+core@9.7.3__@mantine+hooks@9.7.3___react@19.3.1__react@19.3.1__react-dom@19.3.1___react@19.3.1_@mantine+hooks@9.7.3__react@19.3.1_dayjs@1.11.23_react@19.3.1_react-dom@19.3.1__react@19.3.1": {
+    "@mantine/dates@9.7.3_@mantine+core@9.7.3__@mantine+hooks@9.7.3___react@19.3.1__react@19.3.1__react-dom@19.3.1___react@19.3.1__@types+react@19.3.0_@mantine+hooks@9.7.3__react@19.3.1_dayjs@1.11.23_react@19.3.1_react-dom@19.3.1__react@19.3.1_@types+react@19.3.0": {
       "integrity": "sha512-Ea7coqQp3iNs+1XTEjbcoPLP5M9DG5jcxWuEmJC21KUwpBmZKq+RyT0ovxoS8PrWBqvtu/bss8qbjE97wxyqrw==",
       "dependencies": [
         "@mantine/core",
@@ -2170,7 +2170,7 @@
         "superjson"
       ]
     },
-    "@tanstack/react-query-devtools@5.104.5_@tanstack+react-query@5.104.5__@types+react@19.2.18__react@19.3.1_@types+react@19.2.18_react@19.3.1": {
+    "@tanstack/react-query-devtools@5.104.5_@tanstack+react-query@5.104.5__@types+react@19.3.0__react@19.3.1_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-2SMhSSYnOGSaPLuSTKLOj5nPoP4sqasOfkpTn5BLe6LIZuHzrpcqrJx0Rm8uUSN5Ob4lPAbh/1oWClnnGaR7Bg==",
       "dependencies": [
         "@tanstack/query-devtools",
@@ -2182,7 +2182,7 @@
         "@types/react"
       ]
     },
-    "@tanstack/react-query@5.104.5_@types+react@19.2.18_react@19.3.1": {
+    "@tanstack/react-query@5.104.5_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-RORgFe052U+93weaNuqg7qHq7vNVNzXN/VrXqD4bbAuQCWUqOl2lV5Ui9flWk5CVvMyL/Bh27QWhzwH0aaOx9g==",
       "dependencies": [
         "@tanstack/query-core",
@@ -2327,14 +2327,14 @@
         "undici-types"
       ]
     },
-    "@types/react-dom@19.2.4_@types+react@19.2.18": {
-      "integrity": "sha512-Bsc+QHgp+P/F02XDzNCY9jnZNCUuLki36KT7VKrTXXLdHf+vHMNZnW1rVu5DNW/rCK+fya3DATySbLM4yhtKUw==",
+    "@types/react-dom@19.3.0_@types+react@19.3.0": {
+      "integrity": "sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==",
       "dependencies": [
         "@types/react"
       ]
     },
-    "@types/react@19.2.18": {
-      "integrity": "sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==",
+    "@types/react@19.3.0": {
+      "integrity": "sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==",
       "dependencies": [
         "csstype"
       ]
@@ -3795,7 +3795,7 @@
         "react-dom"
       ]
     },
-    "react-remove-scroll-bar@2.3.8_@types+react@19.2.18_react@19.3.1": {
+    "react-remove-scroll-bar@2.3.8_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==",
       "dependencies": [
         "@types/react",
@@ -3807,7 +3807,7 @@
         "@types/react"
       ]
     },
-    "react-remove-scroll@2.7.2_@types+react@19.2.18_react@19.3.1": {
+    "react-remove-scroll@2.7.2_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-Iqb9NjCCTt6Hf+vOdNIZGdTiH1QSqr27H/Ek9sv/a97gfueI/5h1s3yRi1nngzMUaOOToin5dI1dXKdXiF+u0Q==",
       "dependencies": [
         "@types/react",
@@ -3822,7 +3822,7 @@
         "@types/react"
       ]
     },
-    "react-style-singleton@2.2.3_@types+react@19.2.18_react@19.3.1": {
+    "react-style-singleton@2.2.3_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==",
       "dependencies": [
         "@types/react",
@@ -4483,7 +4483,7 @@
       ],
       "bin": true
     },
-    "use-callback-ref@1.3.3_@types+react@19.2.18_react@19.3.1": {
+    "use-callback-ref@1.3.3_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==",
       "dependencies": [
         "@types/react",
@@ -4494,7 +4494,7 @@
         "@types/react"
       ]
     },
-    "use-sidecar@1.1.3_@types+react@19.2.18_react@19.3.1": {
+    "use-sidecar@1.1.3_@types+react@19.3.0_react@19.3.1": {
       "integrity": "sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==",
       "dependencies": [
         "@types/react",
@@ -4825,8 +4825,8 @@
             "npm:@tanstack/react-router@^1.170.46",
             "npm:@tanstack/router-core@^1.171.39",
             "npm:@tanstack/router-plugin@^1.168.48",
-            "npm:@types/react-dom@^19.2.4",
-            "npm:@types/react@^19.2.18",
+            "npm:@types/react-dom@^19.3.0",
+            "npm:@types/react@^19.3.0",
             "npm:@vite-pwa/assets-generator@^1.0.2",
             "npm:@vitejs/plugin-react@^6.1.0",
             "npm:dayjs@^1.11.23",
