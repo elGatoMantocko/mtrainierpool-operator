@@ -2,16 +2,17 @@
   "version": "5",
   "specifiers": {
     "jsr:@b-fuze/deno-dom@~0.1.56": "0.1.56",
-    "jsr:@cliffy/command@^1.2.1": "1.2.1",
-    "jsr:@cliffy/flags@1.2.1": "1.2.1",
-    "jsr:@cliffy/internal@1.2.1": "1.2.1",
-    "jsr:@cliffy/table@1.2.1": "1.2.1",
+    "jsr:@cliffy/command@^1.2.1": "1.3.1",
+    "jsr:@cliffy/flags@^1.3.1": "1.3.1",
+    "jsr:@cliffy/internal@^1.3.1": "1.3.1",
+    "jsr:@cliffy/table@^1.3.1": "1.3.1",
+    "jsr:@cliffy/upgrade@^1.3.1": "1.3.1",
     "jsr:@denosaurs/plug@1.1.0": "1.1.0",
     "jsr:@std/assert@^1.0.19": "1.0.19",
-    "jsr:@std/async@^1.5.0": "1.5.0",
+    "jsr:@std/async@^1.5.1": "1.5.1",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/crypto@^1.1.0": "1.1.0",
-    "jsr:@std/data-structures@^1.1.2": "1.1.2",
+    "jsr:@std/data-structures@^1.1.3": "1.1.3",
     "jsr:@std/dotenv@~0.225.8": "0.225.8",
     "jsr:@std/encoding@1": "1.0.11",
     "jsr:@std/encoding@^1.0.11": "1.0.11",
@@ -25,9 +26,11 @@
     "jsr:@std/path@^1.1.5": "1.1.6",
     "jsr:@std/path@^1.1.6": "1.1.6",
     "jsr:@std/semver@^1.0.8": "1.0.8",
-    "jsr:@std/testing@^1.0.20": "1.0.20",
-    "jsr:@std/text@^1.0.19": "1.0.19",
-    "jsr:@std/uuid@^1.1.1": "1.1.1",
+    "jsr:@std/streams@^1.0.17": "1.2.0",
+    "jsr:@std/tar@~0.1.10": "0.1.10",
+    "jsr:@std/testing@^1.0.21": "1.0.21",
+    "jsr:@std/text@^1.0.19": "1.1.0",
+    "jsr:@std/uuid@^1.1.2": "1.1.2",
     "jsr:@supabase/functions-js@^2.118.0": "2.118.0",
     "jsr:@supabase/supabase-js@^2.118.0": "2.118.0",
     "npm:@aws-sdk/client-ses@^3.1156.0": "3.1156.0",
@@ -39,8 +42,8 @@
     "npm:@jsr/std__dotenv@~0.225.8": "0.225.8",
     "npm:@jsr/std__encoding@^1.0.11": "1.0.11",
     "npm:@jsr/std__expect@^1.0.20": "1.0.20",
-    "npm:@jsr/std__testing@^1.0.20": "1.0.20",
-    "npm:@jsr/std__uuid@^1.1.1": "1.1.1",
+    "npm:@jsr/std__testing@^1.0.21": "1.0.21",
+    "npm:@jsr/std__uuid@^1.1.2": "1.1.2",
     "npm:@jsr/supabase__functions-js@^2.118.0": "2.118.0_zod@4.6.7",
     "npm:@jsr/supabase__supabase-js@^2.118.0": "2.118.0",
     "npm:@mantine/core@^9.5.1": "9.5.1_@mantine+hooks@9.5.1__react@19.2.8_react@19.2.8_react-dom@19.2.8__react@19.2.8",
@@ -88,30 +91,44 @@
       ]
     },
     "@cliffy/command@1.2.1": {
-      "integrity": "b7b017c81560d96580ea810c8564566884d8194416f6fc06bfdc8846e8fd590f",
+      "integrity": "b7b017c81560d96580ea810c8564566884d8194416f6fc06bfdc8846e8fd590f"
+    },
+    "@cliffy/command@1.3.1": {
+      "integrity": "366ab6d5f68abe3ded22c09f65c151cfba600fa26690a4763f390c2f1e07ca4d",
       "dependencies": [
         "jsr:@cliffy/flags",
         "jsr:@cliffy/internal",
         "jsr:@cliffy/table",
+        "jsr:@cliffy/upgrade",
         "jsr:@std/fmt@^1.0.10",
-        "jsr:@std/semver",
         "jsr:@std/text"
       ]
     },
-    "@cliffy/flags@1.2.1": {
-      "integrity": "10034920ef7595db586fecec5a3b10a4ec800c513cbbc368414cd748dac706fb",
+    "@cliffy/flags@1.3.1": {
+      "integrity": "12f38efa0c8c2531c09f1b9a70bae4c4dcfbe01793bac11ac8ac92dddedaa294",
       "dependencies": [
         "jsr:@cliffy/internal",
         "jsr:@std/text"
       ]
     },
-    "@cliffy/internal@1.2.1": {
-      "integrity": "e398f41c6839d3d4d249c963bfcb1058013091425926d53a3cb482b1ca70684b"
+    "@cliffy/internal@1.3.1": {
+      "integrity": "b309718fbfb8a226e74bc06f151d4459c2bdfa7ce68482decca75106bbf28816"
     },
-    "@cliffy/table@1.2.1": {
-      "integrity": "be333e62f2c754f8bf75a38c8177515b152040572c9f75298e9bcef1314b82ff",
+    "@cliffy/table@1.3.1": {
+      "integrity": "483c43936b9be148cbedd8bd39e5c0d098c9c87c4667fe2ad9b8acff77f79b8b",
       "dependencies": [
         "jsr:@std/fmt@^1.0.10"
+      ]
+    },
+    "@cliffy/upgrade@1.3.1": {
+      "integrity": "9407061b092de52533d291e2488df24ec0718e28e024ac208603c0e16ae6407a",
+      "dependencies": [
+        "jsr:@cliffy/internal",
+        "jsr:@cliffy/table",
+        "jsr:@std/fmt@^1.0.10",
+        "jsr:@std/path@^1.1.6",
+        "jsr:@std/semver",
+        "jsr:@std/tar"
       ]
     },
     "@denosaurs/plug@1.1.0": {
@@ -129,8 +146,8 @@
         "jsr:@std/internal@^1.0.12"
       ]
     },
-    "@std/async@1.5.0": {
-      "integrity": "4c1f22d287a17ad7d8643b1952bc5a4d21e5d8b68dc8c20d8268eecc69096e82"
+    "@std/async@1.5.1": {
+      "integrity": "c82455dc70cab29a0adf3ac8075db934785bffdd3902af5afcf25d21a74cfd86"
     },
     "@std/bytes@1.0.6": {
       "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
@@ -138,8 +155,8 @@
     "@std/crypto@1.1.0": {
       "integrity": "b8d6d0a6377a32b213af2661ed7bf1062d94feac0c57def5526a8e74a95c3ec8"
     },
-    "@std/data-structures@1.1.2": {
-      "integrity": "2471377c9e0051f9ec34e57d0ebd0ad133a5a889677446ec6ba9938e4e102918"
+    "@std/data-structures@1.1.3": {
+      "integrity": "a5ec67199e79ee5b29123474d93fa9a47701ec08a4ef3bd1b623a36476306c5b"
     },
     "@std/dotenv@0.225.8": {
       "integrity": "27b8c1a9d00cbf938345a5924487c04d9b27bdd7e7bd1983f54bcf76d0a0174a"
@@ -172,8 +189,17 @@
     "@std/semver@1.0.8": {
       "integrity": "dc830e8b8b6a380c895d53fbfd1258dc253704ca57bbe1629ac65fd7830179b7"
     },
-    "@std/testing@1.0.20": {
-      "integrity": "21380ed438672762e4ec549cbf4fe41c5b68f5598773a30b64abe7375513e721",
+    "@std/streams@1.2.0": {
+      "integrity": "256b934254778f2bf45f5713b934209ff29e9b4b7fd4ec095219966813758c5f"
+    },
+    "@std/tar@0.1.10": {
+      "integrity": "6bf907f3a4bc8bfef42973ba132d946756a6161ef6b914a9e1c06debe664db17",
+      "dependencies": [
+        "jsr:@std/streams"
+      ]
+    },
+    "@std/testing@1.0.21": {
+      "integrity": "a0d14b2519005242821565091127c7d6fa96ca1b330e84e9249afcd602ee764f",
       "dependencies": [
         "jsr:@std/assert",
         "jsr:@std/async",
@@ -183,11 +209,11 @@
         "jsr:@std/path@^1.1.6"
       ]
     },
-    "@std/text@1.0.19": {
-      "integrity": "003a0e032d360e8c3a4e0410fb792c77a66bd6553fee9d60c6ec1bce30d29223"
+    "@std/text@1.1.0": {
+      "integrity": "3db511996317f63e35b76fe18fe35249723ae0ff6f8305398c78dd64ffa809a7"
     },
-    "@std/uuid@1.1.1": {
-      "integrity": "7b49060282d90f72fec64952f8c7a2914cbe6fdba3eca665f8cedc90830154a7",
+    "@std/uuid@1.1.2": {
+      "integrity": "348b68ca357058d83e3aa463c8a72e836d7df7e9e095332b0e1ec78873b40b7a",
       "dependencies": [
         "jsr:@std/bytes",
         "jsr:@std/crypto"
@@ -1404,12 +1430,12 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__assert/1.0.19.tgz"
     },
-    "@jsr/std__async@1.5.0": {
-      "integrity": "sha512-I2Qekl1oQYM+dpI2RQUCKi1TBuaA7Od3LNzxcqls9s1e2ytiZyREL4403qHJ6UbLNAwbqO2ZhdWAWDUQAajyiA==",
+    "@jsr/std__async@1.5.1": {
+      "integrity": "sha512-L6CfoI0FsWWTdnR6tWej3mcRObhmz7dthGj577uLwbDXpA1jZQTnIOL2PRdqgzqHzz9Q6Y8xvfOcEUpDNp8Wkw==",
       "dependencies": [
         "@jsr/std__data-structures"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/std__async/1.5.0.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__async/1.5.1.tgz"
     },
     "@jsr/std__bytes@1.0.6": {
       "integrity": "sha512-St6yKggjFGhxS52IFLJWvkchRFbAKg2Xh8UxA4S1EGz7GJ2Ui+ssDDldj/w2c8vCxvl6qgR0HaYbKeFJNqujmA==",
@@ -1419,12 +1445,12 @@
       "integrity": "sha512-3k5X+V01YqCgIu3tuvS6saFVUn39p+Xe0ITMigwyoDDZsRMUsZcyjwxJpyL6TZF7NFI5Do7alSsHQElZQH1OJg==",
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__crypto/1.1.0.tgz"
     },
-    "@jsr/std__data-structures@1.1.2": {
-      "integrity": "sha512-YaNAaUYGr3qBnq8LJ0/FSW6tsnDBMX7hcPuGU7Zi/+aWlAJsZ4OroBNSpRIflizbOvCJCycAnXe9yLjIwDF2KA==",
+    "@jsr/std__data-structures@1.1.3": {
+      "integrity": "sha512-crPd/DvrElv0WDxCuDIlA4PDLvBgVbo+Ry3/XgOFKQTnWTNnpi/XC4znW6awQQZ0nbJLpWoo9AYc/+CxTYfUpQ==",
       "dependencies": [
         "@jsr/std__assert"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/std__data-structures/1.1.2.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__data-structures/1.1.3.tgz"
     },
     "@jsr/std__dotenv@0.225.8": {
       "integrity": "sha512-KcGf0dNnJcQPPLiLXnB2hRmuB1/+L+RRYeEaxmcGwsZe45JrhVtMeULNUy7+0N5h9fr1cMHrGfMtE5xceReQMQ==",
@@ -1474,8 +1500,8 @@
       "integrity": "sha512-YhkykPU2Majz66e+rQbP0okYc7kKv+U32aguLPCXZZAL+vEVmBA+khHjPHhLBpWR073gzU3WHqGRgB7a/aXCjg==",
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__semver/1.0.8.tgz"
     },
-    "@jsr/std__testing@1.0.20": {
-      "integrity": "sha512-DRCuU1u4OXD/AXBJ2q9IvMHthMSti1V1604b2+xa5WaAcm6Ghazk0ac1AsMwiAOXEpK0nfIXd1MD3ttT8LQ5Rw==",
+    "@jsr/std__testing@1.0.21": {
+      "integrity": "sha512-co+fpkfJIthVk8XP9tJOrkOIBjKac2ubY7FtCOM9zWj53OxXhP7XiOb6pRQZKWVcdH3byf9+kMAKYe+Ar9YaVQ==",
       "dependencies": [
         "@jsr/std__assert",
         "@jsr/std__async",
@@ -1484,7 +1510,7 @@
         "@jsr/std__internal",
         "@jsr/std__path"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/std__testing/1.0.20.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__testing/1.0.21.tgz"
     },
     "@jsr/std__text@1.0.19": {
       "integrity": "sha512-OIXUoD4gty+GH+ZOpe7LT1jVr+31ctOoIoxBzLN1m3fvAOtqWyEz6Ap3NwDiuEgHpAIMz/O5L2SKDr0F2bChCA==",
@@ -1493,13 +1519,13 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__text/1.0.19.tgz"
     },
-    "@jsr/std__uuid@1.1.1": {
-      "integrity": "sha512-LRHNRnFWWC2sGe8bxhDOZgZsomTEBepvjcG/sPmwCGH/4sT0JlcUWoxM6Gf5I01B6BRVMJdEjCY5gPu0buJqWQ==",
+    "@jsr/std__uuid@1.1.2": {
+      "integrity": "sha512-7s7l/gBzq85btrBUZ4wK6e2PR46mheEdADzUQbWQeRlSkz4hc9MyyQXUxb1OQ3j2xyahPPuOeyjbscsD1cbstg==",
       "dependencies": [
         "@jsr/std__bytes",
         "@jsr/std__crypto"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/std__uuid/1.1.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__uuid/1.1.2.tgz"
     },
     "@jsr/supabase__functions-js@2.118.0_zod@4.6.7": {
       "integrity": "sha512-U3M1aO7JmsZObpZAVXRng+XCU7GCHelnffmlcAEE8mjA4ViEx8CPLV9kGeFrNSK7qwFwIlQoRvlBBO8pHQRaBA==",
@@ -4526,7 +4552,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/testing@^1.0.20"
+      "jsr:@std/testing@^1.0.21"
     ],
     "packageJson": {
       "dependencies": [
@@ -4538,8 +4564,8 @@
         "npm:@jsr/std__dotenv@~0.225.8",
         "npm:@jsr/std__encoding@^1.0.11",
         "npm:@jsr/std__expect@^1.0.20",
-        "npm:@jsr/std__testing@^1.0.20",
-        "npm:@jsr/std__uuid@^1.1.1",
+        "npm:@jsr/std__testing@^1.0.21",
+        "npm:@jsr/std__uuid@^1.1.2",
         "npm:@jsr/supabase__functions-js@^2.118.0",
         "npm:@jsr/supabase__supabase-js@^2.118.0",
         "npm:@supabase/server@^1.9.2",
@@ -4595,7 +4621,7 @@
         "dependencies": [
           "jsr:@b-fuze/deno-dom@~0.1.56",
           "jsr:@std/encoding@^1.0.11",
-          "jsr:@std/uuid@^1.1.1",
+          "jsr:@std/uuid@^1.1.2",
           "jsr:@supabase/functions-js@^2.118.0",
           "jsr:@supabase/supabase-js@^2.118.0",
           "npm:@aws-sdk/client-ses@^3.1156.0",

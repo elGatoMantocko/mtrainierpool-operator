@@ -2100,12 +2100,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsr/std__async@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "@jsr/std__async@npm:1.5.0::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__async%2F1.5.0.tgz"
+"@jsr/std__async@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@jsr/std__async@npm:1.5.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__async%2F1.5.1.tgz"
   dependencies:
-    "@jsr/std__data-structures": "npm:^1.1.1"
-  checksum: 10c0/c64b368bbdebe2f0479ac20df9c8c2a2e1abbc18133a878f9a0352b7cb9a6249b273423a4fd4e2397a4d5aa25b7cc69820cb73000872ebcb5809f4fd1198a254
+    "@jsr/std__data-structures": "npm:^1.1.3"
+  checksum: 10c0/8904a537f5df254a5238386d5761e2f4b363655d508497a358a24ba5a994f770fece7ddc1f392da94e0e0e97639a4259bfcb48a31c41a85caa3788e5ab268a74
   languageName: node
   linkType: hard
 
@@ -2123,12 +2123,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jsr/std__data-structures@npm:^1.1.1, @jsr/std__data-structures@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@jsr/std__data-structures@npm:1.1.2::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__data-structures%2F1.1.2.tgz"
+"@jsr/std__data-structures@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@jsr/std__data-structures@npm:1.1.3::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__data-structures%2F1.1.3.tgz"
   dependencies:
     "@jsr/std__assert": "npm:^1.0.19"
-  checksum: 10c0/f01d479f7cebc690939fe4aea96b58ffe11dae7965acd8020789e45b95feb9b8de4c634692418f28d14101efa231e65d71e6d498ae38793df5de31d22fe2488a
+  checksum: 10c0/ce0bed58949cf57094db65c0abe585c48999b7827cb163060e02806ea167a8aa1b361d595acbe0f512008bb7a636a521cb209515dfea030e72f215e9f3a2b6da
   languageName: node
   linkType: hard
 
@@ -2745,27 +2745,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@std/testing@jsr:^1.0.20, @std/testing@npm:@jsr/std__testing@^1.0.20":
-  version: 1.0.20
-  resolution: "@jsr/std__testing@npm:1.0.20::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__testing%2F1.0.20.tgz"
+"@std/testing@jsr:^1.0.21, @std/testing@npm:@jsr/std__testing@^1.0.21":
+  version: 1.0.21
+  resolution: "@jsr/std__testing@npm:1.0.21::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__testing%2F1.0.21.tgz"
   dependencies:
     "@jsr/std__assert": "npm:^1.0.19"
-    "@jsr/std__async": "npm:^1.5.0"
-    "@jsr/std__data-structures": "npm:^1.1.2"
+    "@jsr/std__async": "npm:^1.5.1"
+    "@jsr/std__data-structures": "npm:^1.1.3"
     "@jsr/std__fs": "npm:^1.0.24"
     "@jsr/std__internal": "npm:^1.0.14"
     "@jsr/std__path": "npm:^1.1.6"
-  checksum: 10c0/7635e7a5b7d4137a1a4a56e5b81c20079d723f5d041031a21deba32832976376613eafce4a8a83dda2ea463f607b02dea3bc35c274ef5bd916fb72a8fd12de57
+  checksum: 10c0/1250c7a199fad75d492a0b628f273022265ef2cfccb3d9aa28eea01329da651a2a749864fb830a0bcc9ca6ba9aeaf2c3ae3fc4f99ef2bd3bf1a336d67fc6de80
   languageName: node
   linkType: hard
 
-"@std/uuid@jsr:^1.1.1, @std/uuid@npm:@jsr/std__uuid@^1.1.1":
-  version: 1.1.1
-  resolution: "@jsr/std__uuid@npm:1.1.1::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__uuid%2F1.1.1.tgz"
+"@std/uuid@jsr:^1.1.2, @std/uuid@npm:@jsr/std__uuid@^1.1.2":
+  version: 1.1.2
+  resolution: "@jsr/std__uuid@npm:1.1.2::__archiveUrl=https%3A%2F%2Fnpm.jsr.io%2F~%2F11%2F%40jsr%2Fstd__uuid%2F1.1.2.tgz"
   dependencies:
     "@jsr/std__bytes": "npm:^1.0.6"
     "@jsr/std__crypto": "npm:^1.1.0"
-  checksum: 10c0/c1c4fa291335108ad24a54db66276f42126a5e9489a2ce53e89a0842534beef1e562b33bc9ea2deab4646a1298deef75301ba6ee45e026bb49957056f98b85bf
+  checksum: 10c0/b21113ed7e48d842f1eae8505cd8f23c592d9cfe8e094a7a72876870da863dba2f796d05cad1ab43f4870a34da4cdd0c36884e07c4ada300f42821b7ef552514
   languageName: node
   linkType: hard
 
@@ -6639,8 +6639,8 @@ __metadata:
     "@std/dotenv": "jsr:^0.225.8"
     "@std/encoding": "jsr:^1.0.11"
     "@std/expect": "jsr:^1.0.20"
-    "@std/testing": "jsr:^1.0.20"
-    "@std/uuid": "jsr:^1.1.1"
+    "@std/testing": "jsr:^1.0.21"
+    "@std/uuid": "jsr:^1.1.2"
     "@supabase/functions-js": "jsr:^2.118.0"
     "@supabase/server": "npm:^1.9.2"
     "@supabase/supabase-js": "jsr:^2.118.0"
