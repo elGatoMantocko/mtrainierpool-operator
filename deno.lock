@@ -67,7 +67,7 @@
     "npm:@types/react-dom@^19.3.0": "19.3.0_@types+react@19.3.0",
     "npm:@types/react@^19.3.0": "19.3.0",
     "npm:@vite-pwa/assets-generator@^1.0.2": "1.0.2",
-    "npm:@vitejs/plugin-react@^6.1.0": "6.1.0_vite@8.2.2",
+    "npm:@vitejs/plugin-react@^6.1.2": "6.1.2_vite@8.2.2",
     "npm:dayjs@^1.11.23": "1.11.23",
     "npm:hono@^4.13.13": "4.13.13",
     "npm:ical-generator@^11.1.2": "11.1.2_dayjs@1.11.23",
@@ -2457,8 +2457,8 @@
       ],
       "bin": true
     },
-    "@vitejs/plugin-react@6.1.0_vite@8.2.2": {
-      "integrity": "sha512-qd2BzUBehkov86WFhg0JkEFEYyCLG9uPCe6qWTY/kRlss9OvJrOF2UbIWT7p+8IzZHkEu0DNGHc4HSv+JdDLsw==",
+    "@vitejs/plugin-react@6.1.2_vite@8.2.2": {
+      "integrity": "sha512-fhJNGUdscQa4HkI0xFxwonWyhnVReCPDbXI7FH7jmzpnVCrFQI7PRrhWecO263610vOrs9tr2Y4xcf8uAdFxbw==",
       "dependencies": [
         "@rolldown/pluginutils",
         "vite"
@@ -4832,7 +4832,7 @@
             "npm:@types/react-dom@^19.3.0",
             "npm:@types/react@^19.3.0",
             "npm:@vite-pwa/assets-generator@^1.0.2",
-            "npm:@vitejs/plugin-react@^6.1.0",
+            "npm:@vitejs/plugin-react@^6.1.2",
             "npm:dayjs@^1.11.23",
             "npm:lucide-react@^1.61.0",
             "npm:postcss-preset-mantine@^1.18.0",
