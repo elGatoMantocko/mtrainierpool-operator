@@ -14,5 +14,5 @@
   "fmt": {
     "exclude": ["./supabase/functions/api/types/*.types.ts"]
   },
-  "allowScripts": ["npm:sharp@0.33.5"]
+  "allowScripts": ["npm:sharp@0.35.5"]
 }
