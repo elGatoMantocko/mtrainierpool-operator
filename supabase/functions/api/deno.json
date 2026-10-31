@@ -5,10 +5,10 @@
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.56",
     "@std/encoding": "jsr:@std/encoding@^1.0.11",
     "@std/uuid": "jsr:@std/uuid@^1.1.1",
-    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.112.3",
-    "@supabase/server": "npm:@supabase/server@^1.4.1",
+    "@supabase/functions-js": "jsr:@supabase/functions-js@^2.118.0",
+    "@supabase/server": "npm:@supabase/server@^1.9.2",
     "@hono/zod-openapi": "npm:@hono/zod-openapi@^1.6.3",
-    "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.112.3",
+    "@supabase/supabase-js": "jsr:@supabase/supabase-js@^2.118.0",
     "hono": "npm:hono@^4.13.13",
     "ical-generator": "npm:ical-generator@^11.1.2",
     "zod": "npm:zod@^4.6.7"
