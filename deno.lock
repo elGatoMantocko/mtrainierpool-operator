@@ -2,7 +2,7 @@
   "version": "5",
   "specifiers": {
     "jsr:@b-fuze/deno-dom@~0.1.56": "0.1.56",
-    "jsr:@cliffy/command@^1.2.1": "1.3.1",
+    "jsr:@cliffy/command@^1.3.1": "1.3.1",
     "jsr:@cliffy/flags@^1.3.1": "1.3.1",
     "jsr:@cliffy/internal@^1.3.1": "1.3.1",
     "jsr:@cliffy/table@^1.3.1": "1.3.1",
@@ -38,7 +38,7 @@
     "npm:@hono/zod-openapi@^1.6.3": "1.6.3_hono@4.13.13_zod@4.6.7",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1",
     "npm:@jsr/b-fuze__deno-dom@~0.1.56": "0.1.56",
-    "npm:@jsr/cliffy__command@^1.2.1": "1.2.1",
+    "npm:@jsr/cliffy__command@^1.3.1": "1.3.1",
     "npm:@jsr/std__dotenv@~0.225.8": "0.225.8",
     "npm:@jsr/std__encoding@^1.0.11": "1.0.11",
     "npm:@jsr/std__expect@^1.0.20": "1.0.20",
@@ -1379,39 +1379,51 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/b-fuze__deno-dom/0.1.56.tgz"
     },
-    "@jsr/cliffy__command@1.2.1": {
-      "integrity": "sha512-qsrEVMGaunL8BL4OdmfiIywr0M3H/tZ8+iAHBJfWfzRYCwRr9VVyjaZM5rjA3nmHdAt5g7K6op9PLlHzdUxqoQ==",
+    "@jsr/cliffy__command@1.3.1": {
+      "integrity": "sha512-xfwUppZF3FxaUPdiYncET/wgQerVpeiqbc4ASlIBW6Ze6yxkNK5/A3iOMbqWl/IF8mCS8Q+iDApcl+hxrtyTaQ==",
       "dependencies": [
         "@jsr/cliffy__flags",
         "@jsr/cliffy__internal",
         "@jsr/cliffy__table",
+        "@jsr/cliffy__upgrade",
         "@jsr/std__fmt",
-        "@jsr/std__semver",
         "@jsr/std__text"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__command/1.2.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__command/1.3.1.tgz"
     },
-    "@jsr/cliffy__flags@1.2.1": {
-      "integrity": "sha512-KHUlbfkcGM198RUWwSiBdWpJgc9pFZBj437Tdf4DPPy+Q6rAA0PMzWERAwUFf0k4k2lMWnajDrGvtiv+ZUaF5A==",
+    "@jsr/cliffy__flags@1.3.1": {
+      "integrity": "sha512-ossBdyZ7YZksdq9R0hWNpF8WPPxVKM3qXRQfM9LEbPvh7B3beFnDsUPGmgXB1v0scUMz3p6qIpWXdIClyNeTbw==",
       "dependencies": [
         "@jsr/cliffy__internal",
         "@jsr/std__text"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__flags/1.2.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__flags/1.3.1.tgz"
     },
-    "@jsr/cliffy__internal@1.2.1": {
-      "integrity": "sha512-2kQD0hab+16PiYNZf3b85CUik13l71XZzKtJRhK/RnifO6gOjRpBTmhIAhwjAdWaeW1vkOQ73Scqm/D/yMR3ag==",
+    "@jsr/cliffy__internal@1.3.1": {
+      "integrity": "sha512-i26tW16HBMsoB2RE73QmZdFM93bveVUeaWwscDynvIsVk2nobThfVXRjgzH3PXmQNKU2FmAkitHlqYcEZOBdJw==",
       "dependencies": [
         "@jsr/std__fmt"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__internal/1.2.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__internal/1.3.1.tgz"
     },
-    "@jsr/cliffy__table@1.2.1": {
-      "integrity": "sha512-C/edvcMwtnbFx0zyoeGRcC+ZRvGYqxEhRi19HpfbfiYS4ZErKjEwMJmavO/DN7Wxbk34UpJP+UQKL7nKe+dYkA==",
+    "@jsr/cliffy__table@1.3.1": {
+      "integrity": "sha512-nme6FiT7jJ0/SLdapswVIlpxEWhfi6ZYM0gP90ASQpqNinvC/roilx77LPlNl+TVFoEqhJcVQzWcy8ax8kFfSA==",
       "dependencies": [
         "@jsr/std__fmt"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__table/1.2.1.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__table/1.3.1.tgz"
+    },
+    "@jsr/cliffy__upgrade@1.3.1": {
+      "integrity": "sha512-iXwRgWF4FZLpH89t6r1qMIErNvjSn6CAoC6SiEXxG7qQz+eQ8msknv/RoAiaSVsxU6wcKk8qwDP9mRn8pPA6RA==",
+      "dependencies": [
+        "@jsr/cliffy__internal",
+        "@jsr/cliffy__table",
+        "@jsr/std__fmt",
+        "@jsr/std__path",
+        "@jsr/std__semver",
+        "@jsr/std__tar"
+      ],
+      "tarball": "https://npm.jsr.io/~/11/@jsr/cliffy__upgrade/1.3.1.tgz"
     },
     "@jsr/denosaurs__plug@1.1.0": {
       "integrity": "sha512-GNRMr8XcYWbv8C1B5OjDa5u8q3p2lz7YVWQLhH5HAy0pkpb0+Y3npSxzjM49v5ajTFIzUCwIKv1gQukPm9q7qw==",
@@ -1500,6 +1512,20 @@
       "integrity": "sha512-YhkykPU2Majz66e+rQbP0okYc7kKv+U32aguLPCXZZAL+vEVmBA+khHjPHhLBpWR073gzU3WHqGRgB7a/aXCjg==",
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__semver/1.0.8.tgz"
     },
+    "@jsr/std__streams@1.2.0": {
+      "integrity": "sha512-cQnU2wdP12rYRy+gGAiFarEK9YmWjVwnFMiOGIe0wMKmRLY68INH9hB/mqjKdPX/ruUhNYB70x5YRPLzUYIrbg==",
+      "dependencies": [
+        "@jsr/std__bytes"
+      ],
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__streams/1.2.0.tgz"
+    },
+    "@jsr/std__tar@0.1.10": {
+      "integrity": "sha512-ikXNVN4gBptpqTctaF0j1El/vhxv1WVw4pMC+3TAFugCDFBe2OtG3DqeDFMkWMHvJ/JGITdk/B9O5bM0bxFdeA==",
+      "dependencies": [
+        "@jsr/std__streams"
+      ],
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__tar/0.1.10.tgz"
+    },
     "@jsr/std__testing@1.0.21": {
       "integrity": "sha512-co+fpkfJIthVk8XP9tJOrkOIBjKac2ubY7FtCOM9zWj53OxXhP7XiOb6pRQZKWVcdH3byf9+kMAKYe+Ar9YaVQ==",
       "dependencies": [
@@ -1512,12 +1538,12 @@
       ],
       "tarball": "https://npm.jsr.io/~/11/@jsr/std__testing/1.0.21.tgz"
     },
-    "@jsr/std__text@1.0.19": {
-      "integrity": "sha512-OIXUoD4gty+GH+ZOpe7LT1jVr+31ctOoIoxBzLN1m3fvAOtqWyEz6Ap3NwDiuEgHpAIMz/O5L2SKDr0F2bChCA==",
+    "@jsr/std__text@1.1.0": {
+      "integrity": "sha512-ofJfYrlnxcUZs4LxsFz83YmEvOV2DxbiFl7LoYF9ORUrKgnWD2DaRfRwyqm26xleQTWdc2d0rWMEzwe6C+v6MA==",
       "dependencies": [
         "@jsr/std__regexp"
       ],
-      "tarball": "https://npm.jsr.io/~/11/@jsr/std__text/1.0.19.tgz"
+      "tarball": "https://npm.jsr.io/~/11/@jsr/std__text/1.1.0.tgz"
     },
     "@jsr/std__uuid@1.1.2": {
       "integrity": "sha512-7s7l/gBzq85btrBUZ4wK6e2PR46mheEdADzUQbWQeRlSkz4hc9MyyQXUxb1OQ3j2xyahPPuOeyjbscsD1cbstg==",
@@ -4560,7 +4586,7 @@
         "npm:@hey-api/openapi-ts@0.99",
         "npm:@hono/zod-openapi@^1.6.3",
         "npm:@jsr/b-fuze__deno-dom@~0.1.56",
-        "npm:@jsr/cliffy__command@^1.2.1",
+        "npm:@jsr/cliffy__command@^1.3.1",
         "npm:@jsr/std__dotenv@~0.225.8",
         "npm:@jsr/std__encoding@^1.0.11",
         "npm:@jsr/std__expect@^1.0.20",
@@ -4611,7 +4637,7 @@
       },
       "scripts": {
         "dependencies": [
-          "jsr:@cliffy/command@^1.2.1",
+          "jsr:@cliffy/command@^1.3.1",
           "jsr:@std/dotenv@~0.225.8",
           "jsr:@supabase/supabase-js@^2.118.0",
           "npm:@hey-api/openapi-ts@0.99"
